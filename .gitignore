@@ -1,6 +1,5 @@
-actividad semana3/veterinary.json >> .gitignore
-git add .
-git commit -m Subiendo mis proyectos de Ciencia de datos
-git push
+# Ignorar todas las carpetas de datos
+data/
 
-echo actividad semana3/veterinary.json
+# Ignorar todos los archivos CSV
+*.csv
