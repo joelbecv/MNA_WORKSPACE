@@ -1,0 +1,6 @@
+actividad semana3/veterinary.json >> .gitignore
+git add .
+git commit -m Subiendo mis proyectos de Ciencia de datos
+git push
+
+echo actividad semana3/veterinary.json
