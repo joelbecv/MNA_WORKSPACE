@@ -3,3 +3,10 @@ data/
 
 # Ignorar todos los archivos CSV
 *.csv
+
+# Archivos del sistema macOS
+.DS_Store
+**/.DS_Store
+
+# Configuración local de VS Code
+.vscode/
