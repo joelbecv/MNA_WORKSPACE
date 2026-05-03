@@ -34,7 +34,7 @@ Requiere Webots instalado en `/Applications/Webots.app`. Abre la simulación en 
 export WEBOTS_HOME=/Applications/Webots.app/Contents
 export DYLD_LIBRARY_PATH=/Applications/Webots.app/Contents/lib/controller
 export PYTHONPATH=/Applications/Webots.app/Contents/lib/controller/python
-/Applications/Webots.app/Contents/MacOS/webots-controller simple_controller_act_2_1.py
+/Applications/Webots.app/Contents/MacOS/webots-controller "/Users/joelbecerril/Library/CloudStorage/GoogleDrive-baldjoel@gmail.com/Mi unidad/maestria/IA/Tec/Navegación autonoma/Sem_2/simple_controller_act_2_1.py"
 ```
 
 ---
