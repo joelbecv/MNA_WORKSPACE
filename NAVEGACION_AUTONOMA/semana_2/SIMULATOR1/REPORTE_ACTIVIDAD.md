@@ -758,6 +758,11 @@ Para correr el controlador del compañero:
 ~/miniconda3/envs/ml_env/bin/python /Users/joelbecerril/MNA_WORKSPACE/NAVEGACION_AUTONOMA/semana_2/SIMULATOR1/simple_controller_H2.py
 ```
 
+Para correr H3:
+```bash
+~/miniconda3/envs/ml_env/bin/python /Users/joelbecerril/MNA_WORKSPACE/NAVEGACION_AUTONOMA/semana_2/SIMULATOR1/simple_controller_H3.py
+```
+
 ### Controles en tiempo de ejecución
 
 | Tecla | Acción |
@@ -766,3 +771,136 @@ Para correr el controlador del compañero:
 | `↑ ↓` | (Manual) Aumentar / reducir velocidad |
 | `← →` | (Manual) Girar izquierda / derecha |
 | `A` | Capturar imagen con timestamp |
+
+---
+
+## Sesión de mejoras — Mayo 2026
+
+### Archivos generados
+
+| Archivo | Descripción | Enlace |
+|---|---|---|
+| `simple_controller_H2.py` | H2 con correcciones de estabilidad (HSV, PID, hold) | [Ver en GitHub](https://github.com/joelbecv/MNA_WORKSPACE/blob/main/NAVEGACION_AUTONOMA/semana_2/SIMULATOR1/simple_controller_H2.py) |
+| `simple_controller_H3.py` | H3 — versión para entrega con rubrica completa | [Ver en GitHub](https://github.com/joelbecv/MNA_WORKSPACE/blob/main/NAVEGACION_AUTONOMA/semana_2/SIMULATOR1/simple_controller_H3.py) |
+| `CHANGELOG_H2.md` | Documentación de cambios en H2 | [Ver en GitHub](https://github.com/joelbecv/MNA_WORKSPACE/blob/main/NAVEGACION_AUTONOMA/semana_2/SIMULATOR1/CHANGELOG_H2.md) |
+| `CHANGELOG_H3.md` | Documentación de cambios en H3 | [Ver en GitHub](https://github.com/joelbecv/MNA_WORKSPACE/blob/main/NAVEGACION_AUTONOMA/semana_2/SIMULATOR1/CHANGELOG_H3.md) |
+| `SCRIPT_VIDEO_H2.md` | Guión para video demostrativo de YouTube | [Ver en GitHub](https://github.com/joelbecv/MNA_WORKSPACE/blob/main/NAVEGACION_AUTONOMA/semana_2/SIMULATOR1/SCRIPT_VIDEO_H2.md) |
+| `city_2025a.wbt` | Mundo Webots con segundo display agregado | [Ver en GitHub](https://github.com/joelbecv/MNA_WORKSPACE/blob/main/NAVEGACION_AUTONOMA/semana_2/SIMULATOR1/city_2025a.wbt) |
+
+---
+
+### Mejoras aplicadas a H2
+
+H2 era el controlador base del equipo. Crasheaba cerca de los minutos 2 y 8, específicamente en cruces peatonales e intersecciones.
+
+**Causa raíz:** el pipeline en escala de grises no distingue la línea amarilla de carril de las orillas del asfalto, sombras y cebras. Cualquier borde con slope válido contaminaba el PID.
+
+**Solución definitiva — filtro HSV amarillo:**
+
+```python
+# Antes (escala de grises)
+grey = greyscale_cv2(resized_bgr)
+canny = cv2.Canny(grey, 50, 150)
+
+# Después (HSV amarillo)
+hsv  = cv2.cvtColor(resized_bgr, cv2.COLOR_BGR2HSV)
+mask = cv2.inRange(hsv, [15,80,80], [35,255,255])
+canny = cv2.Canny(mask, 50, 150)
+```
+
+Solo llegan objetos amarillos a Hough. Las cebras también son amarillas pero sus rayas son horizontales — el slope filter las descarta.
+
+**Tabla completa de cambios H2:**
+
+| # | Parámetro | Original | Nuevo | Motivo |
+|---|---|---|---|---|
+| 1 | Pipeline de visión | Escala de grises | HSV amarillo | Elimina falsos positivos |
+| 2 | `MIN_ABS_SLOPE` | 0.30 | 0.40 | Rechaza más rayas diagonales de cebra |
+| 3 | `kp` | 0.35 | 0.28 | Menos sobredisparo en curvas |
+| 4 | `ki` | 0.08 | 0.01 | Con ki=0.08 el integral saturaba en ~3 s |
+| 5 | Integral clamp | ±1.0 | ±0.5 | Evita sesgo permanente |
+| 6 | Sin línea detectada | `steering=0; integral=0` | Hold 10 frames, luego ×0.95 | No snap a recto en cebra |
+| 7 | `previous_error` sin línea | sin tocar | `= 0.0` | Evita kick de derivada al recuperar |
+| 8 | Rate limiter | no existía | 0.03 rad/frame | Protege contra detecciones espurias |
+
+**Resultado H2:** >30 minutos continuos a 50 km/h, 0 choques.
+
+---
+
+### H3 — versión para entrega
+
+H3 está construido sobre H2 y agrega el cumplimiento de la rúbrica del módulo, que requiere explícitamente el paso de escala de grises en el pipeline.
+
+**Problema:** una vez en escala de grises se pierde la información de color, así que no se puede extraer el amarillo después. Solución: hacer ambas transformaciones en paralelo y combinarlas.
+
+**Pipeline H3:**
+
+```
+Cámara BGRA
+  → BGR → escala de grises → Canny (canny_grey)    ← rubrica
+  → BGR → HSV → máscara amarilla → Canny (canny_yellow)  ← reducción de ruido
+  → bitwise_or(canny_grey, canny_yellow)
+  → ROI (fillPoly)
+  → HoughLinesP
+  → filtro slope
+  → PID
+  → SteeringAngle
+```
+
+**Cambios adicionales en H3 vs H2:**
+
+| Cambio | Descripción |
+|---|---|
+| Escala de grises restaurada | Paso explícito que alimenta Canny y el display |
+| `bitwise_or` | Combina bordes de escala de grises + bordes amarillos |
+| Display principal | Imagen de cámara en gris + líneas Hough en blanco superpuestas |
+| Velocímetro HUD | `V:50km/h` / `St:0.023r` / `E:0.12` en texto blanco |
+| Display secundario | ROI en color: azul = zona excluida, blanco = bordes que ve Hough |
+| Error normalizado | Corregido: `(center - setpoint) / setpoint` → rango [-1, 1] |
+| Comentarios | Numerados por paso para correspondencia con la rúbrica |
+
+**Segundo display en el mundo:**
+Se agregó un nodo `Display { name "display_image2" width 200 height 150 }` en `sensorsSlotTop` del vehículo en `city_2025a.wbt`. El código lo busca al iniciar — si no existe, continúa sin error.
+
+**Resultado H3:** funciona a la par de H2, cumple la secuencia del módulo, y tiene visualización diagnóstica completa en dos pantallas.
+
+---
+
+### Visualización diagnóstica — H3
+
+**Display principal (`display_image`):**
+
+| Elemento | Descripción |
+|---|---|
+| Fondo gris | Imagen de cámara en escala de grises |
+| Líneas blancas | Segmentos Hough que pasaron el slope filter — entran al PID |
+| Texto blanco `V:` | Velocidad de crucero |
+| Texto blanco `St:` | Ángulo de dirección en radianes |
+| Texto blanco `E:` | Error normalizado actual o `SIN LINEA` |
+
+**Display secundario (`display_image2`):**
+
+| Color | Zona |
+|---|---|
+| Azul | Fuera del ROI — el trapecio no considera esta zona |
+| Blanco/gris | Dentro del ROI — bordes Canny que ve HoughLinesP |
+
+---
+
+### Git — identificar qué no está en GitHub
+
+```bash
+git log --oneline origin/main..HEAD   # commits locales no pusheados
+git diff --name-only --cached          # staged sin commit
+git diff --name-only                   # modificados sin stagear
+git ls-files --others --exclude-standard  # archivos nuevos sin trackear
+```
+
+**Flujo siempre antes de terminar una sesión:**
+```bash
+git add <archivos>
+git commit -m "descripción del cambio"
+git push origin main
+```
+
+El número pequeño junto a los `.py` en VS Code es el conteo de errores o advertencias del linter. En archivos de Webots es normal ver advertencias porque `from controller import ...` no existe fuera del simulador.
