@@ -7,5 +7,6 @@ centralWidgetVisible: 1
 orthographicViewHeight: 1
 textFiles: 0 "../../../../../Applications/Webots.app/Contents/projects/humans/pedestrian/controllers/pedestrian/pedestrian.py"
 consoles: Console:All:All
-renderingDevicePerspectives: vehicle:camera;1;2.20313;0;0
-renderingDevicePerspectives: vehicle:display_image;1;1.08667;0.724801;0.0112
+renderingDevicePerspectives: vehicle:camera;1;2.03125;0.298981;0.0432
+renderingDevicePerspectives: vehicle:display_image;1;1.305;0.69309;0.008
+renderingDevicePerspectives: vehicle:display_image2;1;1;0;0
