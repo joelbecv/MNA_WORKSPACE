@@ -611,6 +611,11 @@ BmwX5 {
       width 200
       height 150
     }
+    Display {
+      name "display_image2"
+      width 200
+      height 150
+    }
     Camera {
       translation 0.72 0 -0.05
       children [
