@@ -1,0 +1,651 @@
+[ @file = "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc"; @line = 1; @symbol_importdef<0> = [Toybox,1,7,13]; @symbol_importdef<1> = [ActivityRecording,1,14,31]; ]
+import Toybox.ActivityRecording;
+[ @file = "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc"; @line = 2; @symbol_importdef<0> = [Toybox,2,7,13]; @symbol_importdef<1> = [Activity,2,14,22]; ]
+import Toybox.Activity;
+[ @file = "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc"; @line = 3; @symbol_importdef<0> = [Toybox,3,7,13]; @symbol_importdef<1> = [Sensor,3,14,20]; ]
+import Toybox.Sensor;
+[ @file = "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc"; @line = 4; @symbol_importdef<0> = [Toybox,4,7,13]; @symbol_importdef<1> = [Math,4,14,18]; ]
+import Toybox.Math;
+[ @file = "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc"; @line = 5; @symbol_importdef<0> = [Toybox,5,7,13]; @symbol_importdef<1> = [Lang,5,14,18]; ]
+import Toybox.Lang;
+[ @file = "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc"; @line = 6; @symbol_importdef<0> = [Toybox,6,7,13]; @symbol_importdef<1> = [Time,6,14,18]; ]
+import Toybox.Time;
+[ @file = "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc"; @line = 8; @symbol_classdef = [ParkourModel,8,6,18]; ]
+class ParkourModel {
+    [ @file = "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc"; @line = 8; ]
+    <init> {
+    }
+    [ @file = "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc"; @line = 8; ]
+    static
+    <init> {
+    }
+    [ @file = "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc"; @line = 10; @position = 8; @symbol_vardef = [session,10,8,15]; @symbol_type<0> = [ActivityRecording,10,19,36]; @symbol_type<1> = [Session,10,37,44]; ]
+    var session as ActivityRecording.Session or Null;
+    [ @file = "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc"; @line = 11; @position = 8; @symbol_vardef = [isRunning,11,8,17]; @symbol_type<0> = [Boolean,11,21,28]; ]
+    var isRunning as Boolean = false;
+    [ @file = "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc"; @line = 12; @position = 8; @symbol_vardef = [jumpCount,12,8,17]; @symbol_type<0> = [Number,12,21,27]; ]
+    var jumpCount as Number = 0;
+    [ @file = "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc"; @line = 15; @position = 8; @symbol_vardef = [summaryDistanceKm,15,8,25]; @symbol_type<0> = [Float,15,29,34]; ]
+    var summaryDistanceKm as Float = 0.0f;
+    [ @file = "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc"; @line = 16; @position = 8; @symbol_vardef = [summaryAvgHR,16,8,20]; @symbol_type<0> = [Number,16,24,30]; ]
+    var summaryAvgHR as Number = 0;
+    [ @file = "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc"; @line = 17; @position = 8; @symbol_vardef = [summaryMaxHR,17,8,20]; @symbol_type<0> = [Number,17,24,30]; ]
+    var summaryMaxHR as Number = 0;
+    [ @file = "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc"; @line = 18; @position = 8; @symbol_vardef = [summaryCalories,18,8,23]; @symbol_type<0> = [Number,18,27,33]; ]
+    var summaryCalories as Number = 0;
+    [ @file = "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc"; @line = 20; @position = 8; @symbol_vardef = [startTime,20,8,17]; @symbol_type<0> = [Time,20,21,25]; @symbol_type<1> = [Moment,20,26,32]; ]
+    var startTime as Time.Moment or Null;
+    [ @file = "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc"; @line = 21; @position = 8; @symbol_vardef = [finalElapsedSeconds,21,8,27]; @symbol_type<0> = [Number,21,31,37]; ]
+    var finalElapsedSeconds as Number = 0;
+    [ @file = "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc"; @line = 22; @position = 8; @symbol_vardef = [jumpCooldown,22,8,20]; @symbol_type<0> = [Number,22,24,30]; ]
+    var jumpCooldown as Number = 0;
+    [ @file = "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc"; @line = 25; @position = 18; @symbol_constdef = [JUMP_THRESHOLD,25,18,32]; @symbol_type<0> = [Float,25,36,41]; ]
+    private
+    const JUMP_THRESHOLD as Float = 3500.0f;
+    [ @file = "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc"; @line = 26; @position = 18; @symbol_constdef = [JUMP_COOLDOWN,26,18,31]; @symbol_type<0> = [Number,26,35,41]; ]
+    private
+    const JUMP_COOLDOWN as Number = 50;
+    [ @file = "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc"; @line = 28; @symbol_functiondef = [initialize,28,13,23]; ]
+    function initialize() as Void {
+    }
+    [ @file = "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc"; @line = 31; @symbol_functiondef = [startSession,31,13,25]; ]
+    function startSession() as Void {
+_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourModel_mc_31_36_49_4_start:
+[ "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" 32 8 ]
+_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourModel_mc_32_8_32_33_if_stmt:
+        symbol [ isRunning %tmp.2 32 12 21 ];
+        %tmp.2 = getv ? :isRunning;
+        bf %tmp.2 @_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourModel_mc_32_8_32_33_if_end;
+_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourModel_mc_32_8_32_33_if_true:
+_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourModel_mc_32_23_32_33_start:
+[ "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" 32 25 ]
+        ret ?;
+_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourModel_mc_32_23_32_33_stop:
+        goto @_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourModel_mc_32_8_32_33_if_end;
+_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourModel_mc_32_8_32_33_if_end:
+[ "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" 34 8 ]
+        [ "_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourModel_mc_31_36_49_4_start" "_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourModel_mc_31_36_49_4_stop" ]
+        %s.1 = local;
+        symbol [ s %s.1 34 12 13 ];
+        symbol [ ActivityRecording %tmp.3 34 16 33 ];
+        %tmp.3 = getm $.Toybox.ActivityRecording;
+        symbol [ createSession %tmp.4 34 34 47 ];
+        %tmp.4 = getv function %tmp.3 :createSession;
+        %tmp.5 = newd 3;
+        %tmp.7 = const :name;
+        symbol [ name %tmp.7 35 13 17 const ];
+        %tmp.8 = "Parkour";
+        %tmp.9 = dup %tmp.5;
+        %tmp.10 = aputv %tmp.9 %tmp.7 %tmp.8;
+        %tmp.12 = const :sport;
+        symbol [ sport %tmp.12 36 13 18 const ];
+        symbol [ ActivityRecording %tmp.13 36 22 39 ];
+        %tmp.13 = getm $.Toybox.ActivityRecording;
+        symbol [ SPORT_GENERIC %tmp.14 36 40 53 ];
+        %tmp.14 = getv %tmp.13 :SPORT_GENERIC;
+        %tmp.15 = dup %tmp.10;
+        %tmp.16 = aputv %tmp.15 %tmp.12 %tmp.14;
+        %tmp.18 = const :subSport;
+        symbol [ subSport %tmp.18 37 13 21 const ];
+        symbol [ ActivityRecording %tmp.19 37 25 42 ];
+        %tmp.19 = getm $.Toybox.ActivityRecording;
+        symbol [ SUB_SPORT_GENERIC %tmp.20 37 43 60 ];
+        %tmp.20 = getv %tmp.19 :SUB_SPORT_GENERIC;
+        %tmp.21 = dup %tmp.16;
+        %tmp.22 = aputv %tmp.21 %tmp.18 %tmp.20;
+        %tmp.23 = invoke %tmp.3 %tmp.4(%tmp.22);
+        lputv %s.1 %tmp.23;
+        symbol [ s %s.1 34 12 13 ];
+[ "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" 39 8 ]
+        %tmp.24 = lgetv %s.1;
+        symbol [ s %tmp.24 39 18 19 ];
+        symbol [ session ? 39 8 15 ];
+        putv self :session %tmp.24;
+[ "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" 40 8 ]
+        %tmp.25 = lgetv %s.1;
+        symbol [ s %tmp.25 40 8 9 ];
+        symbol [ start %tmp.26 40 10 15 ];
+        %tmp.26 = getv function %tmp.25 :start;
+        invoke %tmp.25 %tmp.26();
+[ "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" 42 8 ]
+        symbol [ Time %tmp.27 42 20 24 ];
+        %tmp.27 = getm $.Toybox.Time;
+        symbol [ now %tmp.28 42 25 28 ];
+        %tmp.28 = getv function %tmp.27 :now;
+        %tmp.29 = invoke %tmp.27 %tmp.28();
+        symbol [ startTime ? 42 8 17 ];
+        putv self :startTime %tmp.29;
+[ "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" 43 8 ]
+        %tmp.30 = true;
+        symbol [ isRunning ? 43 8 17 ];
+        putv self :isRunning %tmp.30;
+[ "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" 45 8 ]
+        symbol [ Sensor %tmp.31 45 8 14 ];
+        %tmp.31 = getm $.Toybox.Sensor;
+        symbol [ registerSensorDataListener %tmp.32 45 15 41 ];
+        %tmp.32 = getv function %tmp.31 :registerSensorDataListener;
+        %tmp.33 = self;
+        symbol [ method %tmp.34 45 42 48 ];
+        %tmp.34 = getv function %tmp.33 :method;
+        %tmp.36 = const :onSensorData;
+        symbol [ onSensorData %tmp.36 45 50 62 const ];
+        %tmp.37 = invoke %tmp.33 %tmp.34(%tmp.36);
+        %tmp.38 = newd 2;
+        %tmp.40 = const :period;
+        symbol [ period %tmp.40 46 13 19 const ];
+        %tmp.41 = 1;
+        %tmp.42 = dup %tmp.38;
+        %tmp.43 = aputv %tmp.42 %tmp.40 %tmp.41;
+        %tmp.45 = const :accelerometer;
+        symbol [ accelerometer %tmp.45 47 13 26 const ];
+        %tmp.46 = newd 2;
+        %tmp.48 = const :enabled;
+        symbol [ enabled %tmp.48 47 32 39 const ];
+        %tmp.49 = true;
+        %tmp.50 = dup %tmp.46;
+        %tmp.51 = aputv %tmp.50 %tmp.48 %tmp.49;
+        %tmp.53 = const :sampleRate;
+        symbol [ sampleRate %tmp.53 47 50 60 const ];
+        %tmp.54 = 25;
+        %tmp.55 = dup %tmp.51;
+        %tmp.56 = aputv %tmp.55 %tmp.53 %tmp.54;
+        %tmp.57 = dup %tmp.43;
+        %tmp.58 = aputv %tmp.57 %tmp.45 %tmp.56;
+        invoke %tmp.31 %tmp.32(%tmp.37, %tmp.58);
+_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourModel_mc_31_36_49_4_stop:
+    }
+    [ @file = "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc"; @line = 51; @symbol_functiondef = [stopSession,51,13,24]; ]
+    function stopSession() as Void {
+_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourModel_mc_51_35_77_4_start:
+[ "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" 52 8 ]
+_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourModel_mc_52_8_52_34_if_stmt:
+        symbol [ isRunning %tmp.2 52 13 22 ];
+        %tmp.2 = getv ? :isRunning;
+        %tmp.3 = not %tmp.2;
+        bf %tmp.3 @_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourModel_mc_52_8_52_34_if_end;
+_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourModel_mc_52_8_52_34_if_true:
+_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourModel_mc_52_24_52_34_start:
+[ "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" 52 26 ]
+        ret ?;
+_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourModel_mc_52_24_52_34_stop:
+        goto @_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourModel_mc_52_8_52_34_if_end;
+_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourModel_mc_52_8_52_34_if_end:
+[ "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" 54 8 ]
+        %tmp.4 = self;
+        symbol [ getElapsedSeconds %tmp.5 54 30 47 ];
+        %tmp.5 = getv function %tmp.4 :getElapsedSeconds;
+        %tmp.6 = invoke %tmp.4 %tmp.5();
+        symbol [ finalElapsedSeconds ? 54 8 27 ];
+        putv self :finalElapsedSeconds %tmp.6;
+[ "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" 56 8 ]
+        [ "_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourModel_mc_51_35_77_4_start" "_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourModel_mc_51_35_77_4_stop" ]
+        %info.1 = local;
+        symbol [ info %info.1 56 12 16 ];
+        symbol [ Activity %tmp.7 56 19 27 ];
+        %tmp.7 = getm $.Toybox.Activity;
+        symbol [ getActivityInfo %tmp.8 56 28 43 ];
+        %tmp.8 = getv function %tmp.7 :getActivityInfo;
+        %tmp.9 = invoke %tmp.7 %tmp.8();
+        lputv %info.1 %tmp.9;
+        symbol [ info %info.1 56 12 16 ];
+[ "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" 57 8 ]
+_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourModel_mc_57_8_66_8_if_stmt:
+        %tmp.10 = lgetv %info.1;
+        symbol [ info %tmp.10 57 12 16 ];
+        %tmp.11 = null;
+        %tmp.12 = ne %tmp.10 %tmp.11;
+        bf %tmp.12 @_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourModel_mc_57_8_66_8_if_end;
+_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourModel_mc_57_8_66_8_if_true:
+_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourModel_mc_57_26_66_8_start:
+[ "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" 58 12 ]
+        [ "_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourModel_mc_57_26_66_8_start" "_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourModel_mc_57_26_66_8_stop" ]
+        %ed.2 = local;
+        symbol [ ed %ed.2 58 16 18 ];
+        %tmp.13 = lgetv %info.1;
+        symbol [ info %tmp.13 58 21 25 ];
+        %tmp.14 = as %tmp.13 { (!Null) };
+        symbol [ elapsedDistance %tmp.15 58 26 41 ];
+        %tmp.15 = getv %tmp.14 :elapsedDistance;
+        lputv %ed.2 %tmp.15;
+        symbol [ ed %ed.2 58 16 18 ];
+[ "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" 59 12 ]
+_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourModel_mc_59_12_59_64_if_stmt:
+        %tmp.16 = lgetv %ed.2;
+        symbol [ ed %tmp.16 59 16 18 ];
+        %tmp.17 = null;
+        %tmp.18 = ne %tmp.16 %tmp.17;
+        bf %tmp.18 @_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourModel_mc_59_12_59_64_if_end;
+_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourModel_mc_59_12_59_64_if_true:
+_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourModel_mc_59_28_59_64_start:
+[ "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" 59 30 ]
+        %tmp.19 = lgetv %ed.2;
+        symbol [ ed %tmp.19 59 50 52 ];
+        %tmp.20 = as %tmp.19 { (!Null) };
+        %tmp.21 = 1000.0f;
+        %tmp.22 = div %tmp.20 %tmp.21;
+        symbol [ summaryDistanceKm ? 59 30 47 ];
+        putv self :summaryDistanceKm %tmp.22;
+_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourModel_mc_59_28_59_64_stop:
+        goto @_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourModel_mc_59_12_59_64_if_end;
+_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourModel_mc_59_12_59_64_if_end:
+[ "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" 60 12 ]
+        [ "_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourModel_mc_57_26_66_8_start" "_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourModel_mc_57_26_66_8_stop" ]
+        %avgHR.3 = local;
+        symbol [ avgHR %avgHR.3 60 16 21 ];
+        %tmp.23 = lgetv %info.1;
+        symbol [ info %tmp.23 60 24 28 ];
+        %tmp.24 = as %tmp.23 { (!Null) };
+        symbol [ averageHeartRate %tmp.25 60 29 45 ];
+        %tmp.25 = getv %tmp.24 :averageHeartRate;
+        lputv %avgHR.3 %tmp.25;
+        symbol [ avgHR %avgHR.3 60 16 21 ];
+[ "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" 61 12 ]
+_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourModel_mc_61_12_61_55_if_stmt:
+        %tmp.26 = lgetv %avgHR.3;
+        symbol [ avgHR %tmp.26 61 16 21 ];
+        %tmp.27 = null;
+        %tmp.28 = ne %tmp.26 %tmp.27;
+        bf %tmp.28 @_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourModel_mc_61_12_61_55_if_end;
+_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourModel_mc_61_12_61_55_if_true:
+_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourModel_mc_61_31_61_55_start:
+[ "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" 61 33 ]
+        %tmp.29 = lgetv %avgHR.3;
+        symbol [ avgHR %tmp.29 61 48 53 ];
+        %tmp.30 = as %tmp.29 { (!Null) };
+        symbol [ summaryAvgHR ? 61 33 45 ];
+        putv self :summaryAvgHR %tmp.30;
+_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourModel_mc_61_31_61_55_stop:
+        goto @_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourModel_mc_61_12_61_55_if_end;
+_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourModel_mc_61_12_61_55_if_end:
+[ "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" 62 12 ]
+        [ "_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourModel_mc_57_26_66_8_start" "_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourModel_mc_57_26_66_8_stop" ]
+        %maxHR.4 = local;
+        symbol [ maxHR %maxHR.4 62 16 21 ];
+        %tmp.31 = lgetv %info.1;
+        symbol [ info %tmp.31 62 24 28 ];
+        %tmp.32 = as %tmp.31 { (!Null) };
+        symbol [ maxHeartRate %tmp.33 62 29 41 ];
+        %tmp.33 = getv %tmp.32 :maxHeartRate;
+        lputv %maxHR.4 %tmp.33;
+        symbol [ maxHR %maxHR.4 62 16 21 ];
+[ "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" 63 12 ]
+_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourModel_mc_63_12_63_55_if_stmt:
+        %tmp.34 = lgetv %maxHR.4;
+        symbol [ maxHR %tmp.34 63 16 21 ];
+        %tmp.35 = null;
+        %tmp.36 = ne %tmp.34 %tmp.35;
+        bf %tmp.36 @_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourModel_mc_63_12_63_55_if_end;
+_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourModel_mc_63_12_63_55_if_true:
+_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourModel_mc_63_31_63_55_start:
+[ "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" 63 33 ]
+        %tmp.37 = lgetv %maxHR.4;
+        symbol [ maxHR %tmp.37 63 48 53 ];
+        %tmp.38 = as %tmp.37 { (!Null) };
+        symbol [ summaryMaxHR ? 63 33 45 ];
+        putv self :summaryMaxHR %tmp.38;
+_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourModel_mc_63_31_63_55_stop:
+        goto @_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourModel_mc_63_12_63_55_if_end;
+_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourModel_mc_63_12_63_55_if_end:
+[ "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" 64 12 ]
+        [ "_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourModel_mc_57_26_66_8_start" "_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourModel_mc_57_26_66_8_stop" ]
+        %cal.5 = local;
+        symbol [ cal %cal.5 64 16 19 ];
+        %tmp.39 = lgetv %info.1;
+        symbol [ info %tmp.39 64 22 26 ];
+        %tmp.40 = as %tmp.39 { (!Null) };
+        symbol [ calories %tmp.41 64 27 35 ];
+        %tmp.41 = getv %tmp.40 :calories;
+        lputv %cal.5 %tmp.41;
+        symbol [ cal %cal.5 64 16 19 ];
+[ "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" 65 12 ]
+_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourModel_mc_65_12_65_54_if_stmt:
+        %tmp.42 = lgetv %cal.5;
+        symbol [ cal %tmp.42 65 16 19 ];
+        %tmp.43 = null;
+        %tmp.44 = ne %tmp.42 %tmp.43;
+        bf %tmp.44 @_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourModel_mc_65_12_65_54_if_end;
+_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourModel_mc_65_12_65_54_if_true:
+_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourModel_mc_65_29_65_54_start:
+[ "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" 65 31 ]
+        %tmp.45 = lgetv %cal.5;
+        symbol [ cal %tmp.45 65 49 52 ];
+        %tmp.46 = as %tmp.45 { (!Null) };
+        symbol [ summaryCalories ? 65 31 46 ];
+        putv self :summaryCalories %tmp.46;
+_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourModel_mc_65_29_65_54_stop:
+        goto @_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourModel_mc_65_12_65_54_if_end;
+_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourModel_mc_65_12_65_54_if_end:
+_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourModel_mc_57_26_66_8_stop:
+        goto @_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourModel_mc_57_8_66_8_if_end;
+_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourModel_mc_57_8_66_8_if_end:
+[ "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" 68 8 ]
+        %tmp.47 = false;
+        symbol [ isRunning ? 68 8 17 ];
+        putv self :isRunning %tmp.47;
+[ "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" 69 8 ]
+        symbol [ Sensor %tmp.48 69 8 14 ];
+        %tmp.48 = getm $.Toybox.Sensor;
+        symbol [ unregisterSensorDataListener %tmp.49 69 15 43 ];
+        %tmp.49 = getv function %tmp.48 :unregisterSensorDataListener;
+        invoke %tmp.48 %tmp.49();
+[ "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" 71 8 ]
+        [ "_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourModel_mc_51_35_77_4_start" "_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourModel_mc_51_35_77_4_stop" ]
+        %sess.6 = local;
+        symbol [ sess %sess.6 71 12 16 ];
+        symbol [ session %tmp.51 71 19 26 ];
+        %tmp.51 = getv ? :session;
+        lputv %sess.6 %tmp.51;
+        symbol [ sess %sess.6 71 12 16 ];
+[ "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" 72 8 ]
+_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourModel_mc_72_8_76_8_if_stmt:
+        %tmp.52 = lgetv %sess.6;
+        symbol [ sess %tmp.52 72 12 16 ];
+        %tmp.53 = null;
+        %tmp.54 = ne %tmp.52 %tmp.53;
+        bf %tmp.54 @_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourModel_mc_72_8_76_8_if_end;
+_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourModel_mc_72_8_76_8_if_true:
+_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourModel_mc_72_26_76_8_start:
+[ "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" 73 12 ]
+        %tmp.55 = lgetv %sess.6;
+        symbol [ sess %tmp.55 73 12 16 ];
+        %tmp.56 = as %tmp.55 { (!Null) };
+        symbol [ stop %tmp.57 73 17 21 ];
+        %tmp.57 = getv function %tmp.56 :stop;
+        invoke %tmp.56 %tmp.57();
+[ "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" 74 12 ]
+        %tmp.58 = lgetv %sess.6;
+        symbol [ sess %tmp.58 74 12 16 ];
+        %tmp.59 = as %tmp.58 { (!Null) };
+        symbol [ save %tmp.60 74 17 21 ];
+        %tmp.60 = getv function %tmp.59 :save;
+        invoke %tmp.59 %tmp.60();
+[ "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" 75 12 ]
+        %tmp.61 = null;
+        symbol [ session ? 75 12 19 ];
+        putv self :session %tmp.61;
+_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourModel_mc_72_26_76_8_stop:
+        goto @_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourModel_mc_72_8_76_8_if_end;
+_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourModel_mc_72_8_76_8_if_end:
+_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourModel_mc_51_35_77_4_stop:
+    }
+    [ @file = "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc"; @line = 79; @symbol_functiondef = [getElapsedSeconds,79,13,30]; @symbol_return<0> = [Number,79,36,42]; ]
+    function getElapsedSeconds() as Number {
+_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourModel_mc_79_43_83_4_start:
+[ "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" 80 8 ]
+_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourModel_mc_80_8_80_81_if_stmt:
+_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourModel_mc_80_12_80_48_begin:
+        symbol [ isRunning %tmp.2 80 13 22 ];
+        %tmp.2 = getv ? :isRunning;
+        %tmp.3 = not %tmp.2;
+        bf %tmp.3 @_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourModel_mc_80_8_80_81_if_end;
+_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourModel_mc_80_26_80_48_true:
+        symbol [ finalElapsedSeconds %tmp.5 80 26 45 ];
+        %tmp.5 = getv ? :finalElapsedSeconds;
+        %tmp.6 = 0;
+        %tmp.7 = gt %tmp.5 %tmp.6;
+        push %tmp.7;
+_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourModel_mc_80_26_80_48_end:
+        %tmp.8 = phi [%tmp.3 @_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourModel_mc_80_12_80_48_begin] [%tmp.7 @_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourModel_mc_80_26_80_48_true] [%tmp.8 @_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourModel_mc_80_26_80_48_end];
+        bf %tmp.8 @_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourModel_mc_80_8_80_81_if_end;
+_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourModel_mc_80_8_80_81_if_true:
+_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourModel_mc_80_51_80_81_start:
+[ "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" 80 53 ]
+        symbol [ finalElapsedSeconds %tmp.10 80 60 79 ];
+        %tmp.10 = getv ? :finalElapsedSeconds;
+        ret %tmp.10;
+_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourModel_mc_80_51_80_81_stop:
+        goto @_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourModel_mc_80_8_80_81_if_end;
+_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourModel_mc_80_8_80_81_if_end:
+[ "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" 81 8 ]
+_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourModel_mc_81_8_81_43_if_stmt:
+        symbol [ startTime %tmp.12 81 12 21 ];
+        %tmp.12 = getv ? :startTime;
+        %tmp.13 = null;
+        %tmp.14 = eq %tmp.12 %tmp.13;
+        bf %tmp.14 @_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourModel_mc_81_8_81_43_if_end;
+_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourModel_mc_81_8_81_43_if_true:
+_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourModel_mc_81_31_81_43_start:
+[ "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" 81 33 ]
+        %tmp.15 = 0;
+        ret %tmp.15;
+_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourModel_mc_81_31_81_43_stop:
+        goto @_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourModel_mc_81_8_81_43_if_end;
+_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourModel_mc_81_8_81_43_if_end:
+[ "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" 82 8 ]
+        symbol [ Time %tmp.16 82 15 19 ];
+        %tmp.16 = getm $.Toybox.Time;
+        symbol [ now %tmp.17 82 20 23 ];
+        %tmp.17 = getv function %tmp.16 :now;
+        %tmp.18 = invoke %tmp.16 %tmp.17();
+        symbol [ subtract %tmp.19 82 26 34 ];
+        %tmp.19 = getv function %tmp.18 :subtract;
+        symbol [ startTime %tmp.21 82 35 44 ];
+        %tmp.21 = getv ? :startTime;
+        %tmp.22 = as %tmp.21 Time.Moment;
+        symbol [ Time %tmp.22 82 48 52 ];
+        symbol [ Moment %tmp.22 82 53 59 ];
+        %tmp.23 = invoke %tmp.18 %tmp.19(%tmp.22);
+        symbol [ value %tmp.24 82 61 66 ];
+        %tmp.24 = getv function %tmp.23 :value;
+        %tmp.25 = invoke %tmp.23 %tmp.24();
+        ret %tmp.25;
+_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourModel_mc_79_43_83_4_stop:
+    }
+    [ @file = "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc"; @line = 86; @symbol_functiondef = [onSensorData,86,13,25]; @symbol_param<0> = [data,86,26,30]; @symbol_param<0>_type<0> = [Sensor,86,34,40]; @symbol_param<0>_type<1> = [SensorData,86,41,51]; ]
+    function onSensorData(data as Sensor.SensorData) as Void {
+_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourModel_mc_86_61_111_4_start:
+[ "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" 87 8 ]
+_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourModel_mc_87_8_90_8_if_stmt:
+        symbol [ jumpCooldown %tmp.2 87 12 24 ];
+        %tmp.2 = getv ? :jumpCooldown;
+        %tmp.3 = 0;
+        %tmp.4 = gt %tmp.2 %tmp.3;
+        bf %tmp.4 @_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourModel_mc_87_8_90_8_if_end;
+_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourModel_mc_87_8_90_8_if_true:
+_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourModel_mc_87_30_90_8_start:
+[ "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" 88 12 ]
+        symbol [ jumpCooldown %tmp.7 88 12 24 ];
+        %tmp.7 = getv ? :jumpCooldown;
+        %tmp.8 = sub %tmp.7 1;
+        symbol [ jumpCooldown ? 88 12 24 ];
+        putv self :jumpCooldown dup %tmp.8;
+[ "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" 89 12 ]
+        ret ?;
+_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourModel_mc_87_30_90_8_stop:
+        goto @_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourModel_mc_87_8_90_8_if_end;
+_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourModel_mc_87_8_90_8_if_end:
+[ "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" 92 8 ]
+        [ "_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourModel_mc_86_61_111_4_start" "_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourModel_mc_86_61_111_4_stop" ]
+        %accel.1 = local;
+        symbol [ accel %accel.1 92 12 17 ];
+        %tmp.9 = lgetv %data;
+        symbol [ data %tmp.9 92 20 24 ];
+        symbol [ accelerometerData %tmp.10 92 25 42 ];
+        %tmp.10 = getv %tmp.9 :accelerometerData;
+        lputv %accel.1 %tmp.10;
+        symbol [ accel %accel.1 92 12 17 ];
+[ "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" 93 8 ]
+_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourModel_mc_93_8_93_37_if_stmt:
+        %tmp.11 = lgetv %accel.1;
+        symbol [ accel %tmp.11 93 12 17 ];
+        %tmp.12 = null;
+        %tmp.13 = eq %tmp.11 %tmp.12;
+        bf %tmp.13 @_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourModel_mc_93_8_93_37_if_end;
+_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourModel_mc_93_8_93_37_if_true:
+_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourModel_mc_93_27_93_37_start:
+[ "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" 93 29 ]
+        ret ?;
+_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourModel_mc_93_27_93_37_stop:
+        goto @_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourModel_mc_93_8_93_37_if_end;
+_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourModel_mc_93_8_93_37_if_end:
+[ "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" 95 8 ]
+        [ "_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourModel_mc_86_61_111_4_start" "_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourModel_mc_86_61_111_4_stop" ]
+        %xArr.2 = local;
+        symbol [ xArr %xArr.2 95 12 16 ];
+        %tmp.14 = lgetv %accel.1;
+        symbol [ accel %tmp.14 95 19 24 ];
+        symbol [ x %tmp.15 95 25 26 ];
+        %tmp.15 = getv %tmp.14 :x;
+        lputv %xArr.2 %tmp.15;
+        symbol [ xArr %xArr.2 95 12 16 ];
+[ "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" 96 8 ]
+        [ "_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourModel_mc_86_61_111_4_start" "_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourModel_mc_86_61_111_4_stop" ]
+        %yArr.3 = local;
+        symbol [ yArr %yArr.3 96 12 16 ];
+        %tmp.16 = lgetv %accel.1;
+        symbol [ accel %tmp.16 96 19 24 ];
+        symbol [ y %tmp.17 96 25 26 ];
+        %tmp.17 = getv %tmp.16 :y;
+        lputv %yArr.3 %tmp.17;
+        symbol [ yArr %yArr.3 96 12 16 ];
+[ "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" 97 8 ]
+        [ "_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourModel_mc_86_61_111_4_start" "_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourModel_mc_86_61_111_4_stop" ]
+        %zArr.4 = local;
+        symbol [ zArr %zArr.4 97 12 16 ];
+        %tmp.18 = lgetv %accel.1;
+        symbol [ accel %tmp.18 97 19 24 ];
+        symbol [ z %tmp.19 97 25 26 ];
+        %tmp.19 = getv %tmp.18 :z;
+        lputv %zArr.4 %tmp.19;
+        symbol [ zArr %zArr.4 97 12 16 ];
+[ "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" 98 8 ]
+_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourModel_mc_98_8_98_56_if_stmt:
+_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourModel_mc_98_12_98_43_begin:
+        %tmp.20 = lgetv %xArr.2;
+        symbol [ xArr %tmp.20 98 12 16 ];
+        %tmp.21 = null;
+        %tmp.22 = eq %tmp.20 %tmp.21;
+        bt %tmp.22 @_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourModel_mc_98_8_98_56_if_true;
+_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourModel_mc_98_28_98_43_false:
+        %tmp.23 = lgetv %xArr.2;
+        symbol [ xArr %tmp.23 98 28 32 ];
+        %tmp.24 = as %tmp.23 { (!Null) };
+        symbol [ size %tmp.25 98 33 37 ];
+        %tmp.25 = getv function %tmp.24 :size;
+        %tmp.26 = invoke %tmp.24 %tmp.25();
+        %tmp.27 = 0;
+        %tmp.28 = eq %tmp.26 %tmp.27;
+        push %tmp.28;
+_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourModel_mc_98_28_98_43_end:
+        %tmp.29 = phi [%tmp.22 @_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourModel_mc_98_12_98_43_begin] [%tmp.28 @_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourModel_mc_98_28_98_43_false] [%tmp.29 @_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourModel_mc_98_28_98_43_end];
+        bf %tmp.29 @_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourModel_mc_98_8_98_56_if_end;
+_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourModel_mc_98_8_98_56_if_true:
+_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourModel_mc_98_46_98_56_start:
+[ "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" 98 48 ]
+        ret ?;
+_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourModel_mc_98_46_98_56_stop:
+        goto @_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourModel_mc_98_8_98_56_if_end;
+_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourModel_mc_98_8_98_56_if_end:
+[ "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" 100 8 ]
+        [ "_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourModel_mc_86_61_111_4_start" "_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourModel_mc_86_61_111_4_stop" ]
+        %i.5 = local;
+        symbol [ i %i.5 100 12 13 ];
+        %tmp.30 = lgetv %xArr.2;
+        symbol [ xArr %tmp.30 100 16 20 ];
+        symbol [ size %tmp.31 100 21 25 ];
+        %tmp.31 = getv function %tmp.30 :size;
+        %tmp.32 = invoke %tmp.30 %tmp.31();
+        %tmp.33 = 1;
+        %tmp.34 = sub %tmp.32 %tmp.33;
+        lputv %i.5 %tmp.34;
+        symbol [ i %i.5 100 12 13 ];
+[ "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" 101 8 ]
+        [ "_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourModel_mc_86_61_111_4_start" "_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourModel_mc_86_61_111_4_stop" ]
+        %x.6 = local;
+        symbol [ x %x.6 101 12 13 ];
+        %tmp.35 = lgetv %xArr.2;
+        symbol [ xArr %tmp.35 101 16 20 ];
+        %tmp.36 = lgetv %i.5;
+        symbol [ i %tmp.36 101 21 22 ];
+        %tmp.37 = agetv %tmp.35 %tmp.36;
+        symbol [ toFloat %tmp.38 101 24 31 ];
+        %tmp.38 = getv function %tmp.37 :toFloat;
+        %tmp.39 = invoke %tmp.37 %tmp.38();
+        lputv %x.6 %tmp.39;
+        symbol [ x %x.6 101 12 13 ];
+[ "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" 102 8 ]
+        [ "_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourModel_mc_86_61_111_4_start" "_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourModel_mc_86_61_111_4_stop" ]
+        %y.7 = local;
+        symbol [ y %y.7 102 12 13 ];
+        %tmp.40 = lgetv %yArr.3;
+        symbol [ yArr %tmp.40 102 16 20 ];
+        %tmp.41 = lgetv %i.5;
+        symbol [ i %tmp.41 102 21 22 ];
+        %tmp.42 = agetv %tmp.40 %tmp.41;
+        symbol [ toFloat %tmp.43 102 24 31 ];
+        %tmp.43 = getv function %tmp.42 :toFloat;
+        %tmp.44 = invoke %tmp.42 %tmp.43();
+        lputv %y.7 %tmp.44;
+        symbol [ y %y.7 102 12 13 ];
+[ "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" 103 8 ]
+        [ "_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourModel_mc_86_61_111_4_start" "_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourModel_mc_86_61_111_4_stop" ]
+        %z.8 = local;
+        symbol [ z %z.8 103 12 13 ];
+        %tmp.45 = lgetv %zArr.4;
+        symbol [ zArr %tmp.45 103 16 20 ];
+        %tmp.46 = lgetv %i.5;
+        symbol [ i %tmp.46 103 21 22 ];
+        %tmp.47 = agetv %tmp.45 %tmp.46;
+        symbol [ toFloat %tmp.48 103 24 31 ];
+        %tmp.48 = getv function %tmp.47 :toFloat;
+        %tmp.49 = invoke %tmp.47 %tmp.48();
+        lputv %z.8 %tmp.49;
+        symbol [ z %z.8 103 12 13 ];
+[ "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" 105 8 ]
+        [ "_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourModel_mc_86_61_111_4_start" "_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourModel_mc_86_61_111_4_stop" ]
+        %magnitude.9 = local;
+        symbol [ magnitude %magnitude.9 105 12 21 ];
+        symbol [ Math %tmp.50 105 24 28 ];
+        %tmp.50 = getm $.Toybox.Math;
+        symbol [ sqrt %tmp.51 105 29 33 ];
+        %tmp.51 = getv function %tmp.50 :sqrt;
+        %tmp.52 = lgetv %x.6;
+        symbol [ x %tmp.52 105 34 35 ];
+        %tmp.53 = lgetv %x.6;
+        symbol [ x %tmp.53 105 38 39 ];
+        %tmp.54 = mul %tmp.52 %tmp.53;
+        %tmp.55 = lgetv %y.7;
+        symbol [ y %tmp.55 105 42 43 ];
+        %tmp.56 = lgetv %y.7;
+        symbol [ y %tmp.56 105 46 47 ];
+        %tmp.57 = mul %tmp.55 %tmp.56;
+        %tmp.58 = add %tmp.54 %tmp.57;
+        %tmp.59 = lgetv %z.8;
+        symbol [ z %tmp.59 105 50 51 ];
+        %tmp.60 = lgetv %z.8;
+        symbol [ z %tmp.60 105 54 55 ];
+        %tmp.61 = mul %tmp.59 %tmp.60;
+        %tmp.62 = add %tmp.58 %tmp.61;
+        %tmp.63 = invoke %tmp.50 %tmp.51(%tmp.62);
+        lputv %magnitude.9 %tmp.63;
+        symbol [ magnitude %magnitude.9 105 12 21 ];
+[ "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" 107 8 ]
+_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourModel_mc_107_8_110_8_if_stmt:
+        %tmp.64 = lgetv %magnitude.9;
+        symbol [ magnitude %tmp.64 107 12 21 ];
+        symbol [ JUMP_THRESHOLD %tmp.66 107 24 38 ];
+        %tmp.66 = getv ? :JUMP_THRESHOLD;
+        %tmp.67 = gt %tmp.64 %tmp.66;
+        bf %tmp.67 @_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourModel_mc_107_8_110_8_if_end;
+_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourModel_mc_107_8_110_8_if_true:
+_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourModel_mc_107_40_110_8_start:
+[ "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" 108 12 ]
+        symbol [ jumpCount %tmp.70 108 12 21 ];
+        %tmp.70 = getv ? :jumpCount;
+        %tmp.71 = add %tmp.70 1;
+        symbol [ jumpCount ? 108 12 21 ];
+        putv self :jumpCount dup %tmp.71;
+[ "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" 109 12 ]
+        symbol [ JUMP_COOLDOWN %tmp.73 109 27 40 ];
+        %tmp.73 = getv ? :JUMP_COOLDOWN;
+        symbol [ jumpCooldown ? 109 12 24 ];
+        putv self :jumpCooldown %tmp.73;
+_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourModel_mc_107_40_110_8_stop:
+        goto @_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourModel_mc_107_8_110_8_if_end;
+_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourModel_mc_107_8_110_8_if_end:
+_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourModel_mc_86_61_111_4_stop:
+    }
+}
+[ @file = "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc"; @line = 1; ]
+<init> {
+}
