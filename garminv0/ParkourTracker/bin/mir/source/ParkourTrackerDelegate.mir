@@ -1,0 +1,70 @@
+[ @file = "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerDelegate.mc"; @line = 1; @symbol_importdef<0> = [Toybox,1,7,13]; @symbol_importdef<1> = [Lang,1,14,18]; ]
+import Toybox.Lang;
+[ @file = "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerDelegate.mc"; @line = 2; @symbol_importdef<0> = [Toybox,2,7,13]; @symbol_importdef<1> = [WatchUi,2,14,21]; ]
+import Toybox.WatchUi;
+[ @file = "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerDelegate.mc"; @line = 4; @symbol_classdef = [ParkourTrackerDelegate,4,6,28]; @symbol_extends<0> = [WatchUi,4,37,44]; @symbol_extends<1> = [BehaviorDelegate,4,45,61]; ]
+class ParkourTrackerDelegate extends WatchUi.BehaviorDelegate {
+    [ @file = "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerDelegate.mc"; @line = 4; ]
+    <init> {
+    }
+    [ @file = "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerDelegate.mc"; @line = 4; ]
+    static
+    <init> {
+    }
+    [ @file = "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerDelegate.mc"; @line = 6; @symbol_functiondef = [initialize,6,13,23]; ]
+    function initialize() as Void {
+_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourTrackerDelegate_mc_6_26_8_4_start:
+[ "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerDelegate.mc" 7 8 ]
+        symbol [ BehaviorDelegate %tmp.2 7 8 24 ];
+        %tmp.2 = getv ? :BehaviorDelegate;
+        symbol [ initialize %tmp.3 7 25 35 ];
+        %tmp.3 = getv function %tmp.2 :initialize;
+        invoke %tmp.2 %tmp.3();
+_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourTrackerDelegate_mc_6_26_8_4_stop:
+    }
+    [ @file = "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerDelegate.mc"; @line = 11; @symbol_functiondef = [onBack,11,13,19]; @symbol_return<0> = [Boolean,11,25,32]; ]
+    function onBack() as Boolean {
+_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourTrackerDelegate_mc_11_33_20_4_start:
+[ "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerDelegate.mc" 12 8 ]
+        [ "_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourTrackerDelegate_mc_11_33_20_4_start" "_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourTrackerDelegate_mc_11_33_20_4_stop" ]
+        %model.1 = local;
+        symbol [ model %model.1 12 12 17 ];
+        %tmp.1 = self;
+        symbol [ getApp %tmp.2 12 20 26 ];
+        %tmp.2 = getv function %tmp.1 :getApp;
+        %tmp.3 = invoke %tmp.1 %tmp.2();
+        symbol [ model %tmp.4 12 29 34 ];
+        %tmp.4 = getv %tmp.3 :model;
+        lputv %model.1 %tmp.4;
+        symbol [ model %model.1 12 12 17 ];
+[ "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerDelegate.mc" 13 8 ]
+        %tmp.5 = lgetv %model.1;
+        symbol [ model %tmp.5 13 8 13 ];
+        symbol [ stopSession %tmp.6 13 14 25 ];
+        %tmp.6 = getv function %tmp.5 :stopSession;
+        invoke %tmp.5 %tmp.6();
+[ "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerDelegate.mc" 14 8 ]
+        symbol [ WatchUi %tmp.7 14 8 15 ];
+        %tmp.7 = getm $.Toybox.WatchUi;
+        symbol [ switchToView %tmp.8 14 16 28 ];
+        %tmp.8 = getv function %tmp.7 :switchToView;
+        symbol [ SummaryView %tmp.12 15 16 27 ];
+        %tmp.12 = getv ? :SummaryView;
+        %tmp.9 = newc %tmp.12 ();
+        symbol [ SummaryDelegate %tmp.16 16 16 31 ];
+        %tmp.16 = getv ? :SummaryDelegate;
+        %tmp.13 = newc %tmp.16 ();
+        symbol [ WatchUi %tmp.17 17 12 19 ];
+        %tmp.17 = getm $.Toybox.WatchUi;
+        symbol [ SLIDE_LEFT %tmp.18 17 20 30 ];
+        %tmp.18 = getv %tmp.17 :SLIDE_LEFT;
+        invoke %tmp.7 %tmp.8(%tmp.9, %tmp.13, %tmp.18);
+[ "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerDelegate.mc" 19 8 ]
+        %tmp.19 = true;
+        ret %tmp.19;
+_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourTrackerDelegate_mc_11_33_20_4_stop:
+    }
+}
+[ @file = "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerDelegate.mc"; @line = 1; ]
+<init> {
+}

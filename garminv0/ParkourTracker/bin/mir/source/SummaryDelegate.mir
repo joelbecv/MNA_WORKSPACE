@@ -1,0 +1,44 @@
+[ @file = "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/SummaryDelegate.mc"; @line = 1; @symbol_importdef<0> = [Toybox,1,7,13]; @symbol_importdef<1> = [Lang,1,14,18]; ]
+import Toybox.Lang;
+[ @file = "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/SummaryDelegate.mc"; @line = 2; @symbol_importdef<0> = [Toybox,2,7,13]; @symbol_importdef<1> = [WatchUi,2,14,21]; ]
+import Toybox.WatchUi;
+[ @file = "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/SummaryDelegate.mc"; @line = 3; @symbol_importdef<0> = [Toybox,3,7,13]; @symbol_importdef<1> = [System,3,14,20]; ]
+import Toybox.System;
+[ @file = "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/SummaryDelegate.mc"; @line = 5; @symbol_classdef = [SummaryDelegate,5,6,21]; @symbol_extends<0> = [WatchUi,5,30,37]; @symbol_extends<1> = [BehaviorDelegate,5,38,54]; ]
+class SummaryDelegate extends WatchUi.BehaviorDelegate {
+    [ @file = "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/SummaryDelegate.mc"; @line = 5; ]
+    <init> {
+    }
+    [ @file = "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/SummaryDelegate.mc"; @line = 5; ]
+    static
+    <init> {
+    }
+    [ @file = "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/SummaryDelegate.mc"; @line = 7; @symbol_functiondef = [initialize,7,13,23]; ]
+    function initialize() as Void {
+_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_SummaryDelegate_mc_7_26_9_4_start:
+[ "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/SummaryDelegate.mc" 8 8 ]
+        symbol [ BehaviorDelegate %tmp.2 8 8 24 ];
+        %tmp.2 = getv ? :BehaviorDelegate;
+        symbol [ initialize %tmp.3 8 25 35 ];
+        %tmp.3 = getv function %tmp.2 :initialize;
+        invoke %tmp.2 %tmp.3();
+_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_SummaryDelegate_mc_7_26_9_4_stop:
+    }
+    [ @file = "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/SummaryDelegate.mc"; @line = 11; @symbol_functiondef = [onBack,11,13,19]; @symbol_return<0> = [Boolean,11,25,32]; ]
+    function onBack() as Boolean {
+_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_SummaryDelegate_mc_11_33_14_4_start:
+[ "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/SummaryDelegate.mc" 12 8 ]
+        symbol [ System %tmp.1 12 8 14 ];
+        %tmp.1 = getm $.Toybox.System;
+        symbol [ exit %tmp.2 12 15 19 ];
+        %tmp.2 = getv function %tmp.1 :exit;
+        invoke %tmp.1 %tmp.2();
+[ "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/SummaryDelegate.mc" 13 8 ]
+        %tmp.3 = true;
+        ret %tmp.3;
+_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_SummaryDelegate_mc_11_33_14_4_stop:
+    }
+}
+[ @file = "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/SummaryDelegate.mc"; @line = 1; ]
+<init> {
+}
