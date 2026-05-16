@@ -29,6 +29,7 @@
         -->
         <iq:permissions>
             <iq:uses-permission id="fit"/>
+            <iq:uses-permission id="FitContributor"/>
             <iq:uses-permission id="sensor"/>
             <iq:uses-permission id="positioning"/>
         </iq:permissions>
