@@ -6,568 +6,798 @@ import Toybox.Graphics;
 import Toybox.WatchUi;
 [ @file = "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc"; @line = 4; @symbol_importdef<0> = [Toybox,4,7,13]; @symbol_importdef<1> = [Lang,4,14,18]; ]
 import Toybox.Lang;
-[ @file = "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc"; @line = 8; @symbol_classdef = [ParkourTrackerView,8,6,24]; @symbol_extends<0> = [WatchUi,8,33,40]; @symbol_extends<1> = [View,8,41,45]; ]
+[ @file = "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc"; @line = 5; @symbol_importdef<0> = [Toybox,5,7,13]; @symbol_importdef<1> = [Time,5,14,18]; ]
+import Toybox.Time;
+[ @file = "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc"; @line = 7; @symbol_classdef = [ParkourTrackerView,7,6,24]; @symbol_extends<0> = [WatchUi,7,33,40]; @symbol_extends<1> = [View,7,41,45]; ]
 class ParkourTrackerView extends WatchUi.View {
-    [ @file = "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc"; @line = 8; ]
+    [ @file = "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc"; @line = 7; ]
     <init> {
     }
-    [ @file = "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc"; @line = 8; ]
+    [ @file = "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc"; @line = 7; ]
     static
     <init> {
     }
-    [ @file = "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc"; @line = 10; @symbol_functiondef = [initialize,10,13,23]; ]
+    [ @file = "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc"; @line = 9; @symbol_functiondef = [initialize,9,13,23]; ]
     function initialize() as Void {
-_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourTrackerView_mc_10_26_12_4_start:
-[ "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" 11 8 ]
-        symbol [ View %tmp.2 11 8 12 ];
+_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourTrackerView_mc_9_26_11_4_start:
+[ "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" 10 8 ]
+        symbol [ View %tmp.2 10 8 12 ];
         %tmp.2 = getv ? :View;
-        symbol [ initialize %tmp.3 11 13 23 ];
+        symbol [ initialize %tmp.3 10 13 23 ];
         %tmp.3 = getv function %tmp.2 :initialize;
         invoke %tmp.2 %tmp.3();
-_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourTrackerView_mc_10_26_12_4_stop:
+_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourTrackerView_mc_9_26_11_4_stop:
     }
-    [ @file = "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc"; @line = 14; @symbol_functiondef = [onLayout,14,13,21]; @symbol_param<0> = [dc,14,22,24]; @symbol_param<0>_type<0> = [Dc,14,28,30]; ]
+    [ @file = "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc"; @line = 13; @symbol_functiondef = [onLayout,13,13,21]; @symbol_param<0> = [dc,13,22,24]; @symbol_param<0>_type<0> = [Dc,13,28,30]; ]
     function onLayout(dc as Dc) as Void {
     }
-    [ @file = "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc"; @line = 17; @symbol_functiondef = [onUpdate,17,13,21]; @symbol_param<0> = [dc,17,22,24]; @symbol_param<0>_type<0> = [Dc,17,28,30]; ]
+    [ @file = "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc"; @line = 16; @symbol_functiondef = [onUpdate,16,13,21]; @symbol_param<0> = [dc,16,22,24]; @symbol_param<0>_type<0> = [Dc,16,28,30]; ]
     function onUpdate(dc as Dc) as Void {
-_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourTrackerView_mc_17_40_72_4_start:
-[ "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" 18 8 ]
-        [ "_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourTrackerView_mc_17_40_72_4_start" "_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourTrackerView_mc_17_40_72_4_stop" ]
+_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourTrackerView_mc_16_40_90_4_start:
+[ "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" 17 8 ]
+        [ "_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourTrackerView_mc_16_40_90_4_start" "_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourTrackerView_mc_16_40_90_4_stop" ]
         %model.1 = local;
-        symbol [ model %model.1 18 12 17 ];
+        symbol [ model %model.1 17 12 17 ];
         %tmp.1 = self;
-        symbol [ getApp %tmp.2 18 20 26 ];
+        symbol [ getApp %tmp.2 17 20 26 ];
         %tmp.2 = getv function %tmp.1 :getApp;
         %tmp.3 = invoke %tmp.1 %tmp.2();
-        symbol [ model %tmp.4 18 29 34 ];
+        symbol [ model %tmp.4 17 29 34 ];
         %tmp.4 = getv %tmp.3 :model;
         lputv %model.1 %tmp.4;
-        symbol [ model %model.1 18 12 17 ];
-[ "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" 19 8 ]
-        [ "_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourTrackerView_mc_17_40_72_4_start" "_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourTrackerView_mc_17_40_72_4_stop" ]
+        symbol [ model %model.1 17 12 17 ];
+[ "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" 18 8 ]
+        [ "_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourTrackerView_mc_16_40_90_4_start" "_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourTrackerView_mc_16_40_90_4_stop" ]
         %w.2 = local;
-        symbol [ w %w.2 19 12 13 ];
+        symbol [ w %w.2 18 12 13 ];
         %tmp.5 = lgetv %dc;
-        symbol [ dc %tmp.5 19 16 18 ];
-        symbol [ getWidth %tmp.6 19 19 27 ];
+        symbol [ dc %tmp.5 18 16 18 ];
+        symbol [ getWidth %tmp.6 18 19 27 ];
         %tmp.6 = getv function %tmp.5 :getWidth;
         %tmp.7 = invoke %tmp.5 %tmp.6();
         lputv %w.2 %tmp.7;
-        symbol [ w %w.2 19 12 13 ];
-[ "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" 20 8 ]
-        [ "_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourTrackerView_mc_17_40_72_4_start" "_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourTrackerView_mc_17_40_72_4_stop" ]
+        symbol [ w %w.2 18 12 13 ];
+[ "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" 19 8 ]
+        [ "_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourTrackerView_mc_16_40_90_4_start" "_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourTrackerView_mc_16_40_90_4_stop" ]
         %cx.3 = local;
-        symbol [ cx %cx.3 20 12 14 ];
+        symbol [ cx %cx.3 19 12 14 ];
         %tmp.8 = lgetv %w.2;
-        symbol [ w %tmp.8 20 17 18 ];
+        symbol [ w %tmp.8 19 17 18 ];
         %tmp.9 = 2;
         %tmp.10 = div %tmp.8 %tmp.9;
         lputv %cx.3 %tmp.10;
-        symbol [ cx %cx.3 20 12 14 ];
-[ "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" 23 8 ]
+        symbol [ cx %cx.3 19 12 14 ];
+[ "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" 21 8 ]
         %tmp.11 = lgetv %dc;
-        symbol [ dc %tmp.11 23 8 10 ];
-        symbol [ setColor %tmp.12 23 11 19 ];
+        symbol [ dc %tmp.11 21 8 10 ];
+        symbol [ setColor %tmp.12 21 11 19 ];
         %tmp.12 = getv function %tmp.11 :setColor;
-        symbol [ Graphics %tmp.13 23 20 28 ];
+        symbol [ Graphics %tmp.13 21 20 28 ];
         %tmp.13 = getm $.Toybox.Graphics;
-        symbol [ COLOR_BLACK %tmp.14 23 29 40 ];
+        symbol [ COLOR_BLACK %tmp.14 21 29 40 ];
         %tmp.14 = getv %tmp.13 :COLOR_BLACK;
-        symbol [ Graphics %tmp.15 23 42 50 ];
+        symbol [ Graphics %tmp.15 21 42 50 ];
         %tmp.15 = getm $.Toybox.Graphics;
-        symbol [ COLOR_BLACK %tmp.16 23 51 62 ];
+        symbol [ COLOR_BLACK %tmp.16 21 51 62 ];
         %tmp.16 = getv %tmp.15 :COLOR_BLACK;
         invoke %tmp.11 %tmp.12(%tmp.14, %tmp.16);
-[ "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" 24 8 ]
+[ "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" 22 8 ]
         %tmp.17 = lgetv %dc;
-        symbol [ dc %tmp.17 24 8 10 ];
-        symbol [ clear %tmp.18 24 11 16 ];
+        symbol [ dc %tmp.17 22 8 10 ];
+        symbol [ clear %tmp.18 22 11 16 ];
         %tmp.18 = getv function %tmp.17 :clear;
         invoke %tmp.17 %tmp.18();
+[ "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" 25 8 ]
+        [ "_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourTrackerView_mc_16_40_90_4_start" "_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourTrackerView_mc_16_40_90_4_stop" ]
+        %timeInfo.4 = local;
+        symbol [ timeInfo %timeInfo.4 25 12 20 ];
+        symbol [ Time %tmp.19 25 23 27 ];
+        %tmp.19 = getm $.Toybox.Time;
+        symbol [ Gregorian %tmp.20 25 28 37 ];
+        %tmp.20 = getv %tmp.19 :Gregorian;
+        symbol [ info %tmp.21 25 38 42 ];
+        %tmp.21 = getv function %tmp.20 :info;
+        symbol [ Time %tmp.22 25 43 47 ];
+        %tmp.22 = getm $.Toybox.Time;
+        symbol [ now %tmp.23 25 48 51 ];
+        %tmp.23 = getv function %tmp.22 :now;
+        %tmp.24 = invoke %tmp.22 %tmp.23();
+        symbol [ Time %tmp.25 25 55 59 ];
+        %tmp.25 = getm $.Toybox.Time;
+        symbol [ FORMAT_SHORT %tmp.26 25 60 72 ];
+        %tmp.26 = getv %tmp.25 :FORMAT_SHORT;
+        %tmp.27 = invoke %tmp.20 %tmp.21(%tmp.24, %tmp.26);
+        lputv %timeInfo.4 %tmp.27;
+        symbol [ timeInfo %timeInfo.4 25 12 20 ];
+[ "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" 26 8 ]
+        [ "_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourTrackerView_mc_16_40_90_4_start" "_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourTrackerView_mc_16_40_90_4_stop" ]
+        %clockStr.5 = local;
+        symbol [ clockStr %clockStr.5 26 12 20 ];
+        %tmp.28 = lgetv %timeInfo.4;
+        symbol [ timeInfo %tmp.28 26 23 31 ];
+        symbol [ hour %tmp.29 26 32 36 ];
+        %tmp.29 = getv %tmp.28 :hour;
+        symbol [ format %tmp.30 26 37 43 ];
+        %tmp.30 = getv function %tmp.29 :format;
+        %tmp.31 = "%02d";
+        %tmp.32 = invoke %tmp.29 %tmp.30(%tmp.31);
+        %tmp.33 = ":";
+        %tmp.34 = add %tmp.32 %tmp.33;
+        %tmp.35 = lgetv %timeInfo.4;
+        symbol [ timeInfo %tmp.35 26 60 68 ];
+        symbol [ min %tmp.36 26 69 72 ];
+        %tmp.36 = getv %tmp.35 :min;
+        symbol [ format %tmp.37 26 73 79 ];
+        %tmp.37 = getv function %tmp.36 :format;
+        %tmp.38 = "%02d";
+        %tmp.39 = invoke %tmp.36 %tmp.37(%tmp.38);
+        %tmp.40 = add %tmp.34 %tmp.39;
+        lputv %clockStr.5 %tmp.40;
+        symbol [ clockStr %clockStr.5 26 12 20 ];
 [ "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" 27 8 ]
-        [ "_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourTrackerView_mc_17_40_72_4_start" "_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourTrackerView_mc_17_40_72_4_stop" ]
-        %info.4 = local;
-        symbol [ info %info.4 27 12 16 ];
-        symbol [ Activity %tmp.19 27 19 27 ];
-        %tmp.19 = getm $.Toybox.Activity;
-        symbol [ getActivityInfo %tmp.20 27 28 43 ];
-        %tmp.20 = getv function %tmp.19 :getActivityInfo;
-        %tmp.21 = invoke %tmp.19 %tmp.20();
-        lputv %info.4 %tmp.21;
-        symbol [ info %info.4 27 12 16 ];
+        %tmp.41 = lgetv %dc;
+        symbol [ dc %tmp.41 27 8 10 ];
+        symbol [ setColor %tmp.42 27 11 19 ];
+        %tmp.42 = getv function %tmp.41 :setColor;
+        symbol [ Graphics %tmp.43 27 20 28 ];
+        %tmp.43 = getm $.Toybox.Graphics;
+        symbol [ COLOR_LT_GRAY %tmp.44 27 29 42 ];
+        %tmp.44 = getv %tmp.43 :COLOR_LT_GRAY;
+        symbol [ Graphics %tmp.45 27 44 52 ];
+        %tmp.45 = getm $.Toybox.Graphics;
+        symbol [ COLOR_TRANSPARENT %tmp.46 27 53 70 ];
+        %tmp.46 = getv %tmp.45 :COLOR_TRANSPARENT;
+        invoke %tmp.41 %tmp.42(%tmp.44, %tmp.46);
 [ "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" 28 8 ]
-        [ "_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourTrackerView_mc_17_40_72_4_start" "_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourTrackerView_mc_17_40_72_4_stop" ]
-        %distKm.5 = local;
-        symbol [ distKm %distKm.5 28 12 18 ];
-        %tmp.22 = 0.0f;
-        lputv %distKm.5 %tmp.22;
-        symbol [ distKm %distKm.5 28 12 18 ];
-[ "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" 29 8 ]
-        [ "_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourTrackerView_mc_17_40_72_4_start" "_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourTrackerView_mc_17_40_72_4_stop" ]
-        %hr.6 = local;
-        symbol [ hr %hr.6 29 12 14 ];
-        %tmp.23 = 0;
-        lputv %hr.6 %tmp.23;
-        symbol [ hr %hr.6 29 12 14 ];
-[ "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" 30 8 ]
-_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourTrackerView_mc_30_8_35_8_if_stmt:
-        %tmp.24 = lgetv %info.4;
-        symbol [ info %tmp.24 30 12 16 ];
-        %tmp.25 = null;
-        %tmp.26 = ne %tmp.24 %tmp.25;
-        bf %tmp.26 @_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourTrackerView_mc_30_8_35_8_if_end;
-_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourTrackerView_mc_30_8_35_8_if_true:
-_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourTrackerView_mc_30_26_35_8_start:
-[ "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" 31 12 ]
-        [ "_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourTrackerView_mc_30_26_35_8_start" "_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourTrackerView_mc_30_26_35_8_stop" ]
-        %ed.7 = local;
-        symbol [ ed %ed.7 31 16 18 ];
-        %tmp.27 = lgetv %info.4;
-        symbol [ info %tmp.27 31 21 25 ];
-        %tmp.28 = as %tmp.27 { (!Null) };
-        symbol [ elapsedDistance %tmp.29 31 26 41 ];
-        %tmp.29 = getv %tmp.28 :elapsedDistance;
-        lputv %ed.7 %tmp.29;
-        symbol [ ed %ed.7 31 16 18 ];
+        %tmp.47 = lgetv %dc;
+        symbol [ dc %tmp.47 28 8 10 ];
+        symbol [ drawText %tmp.48 28 11 19 ];
+        %tmp.48 = getv function %tmp.47 :drawText;
+        %tmp.49 = lgetv %cx.3;
+        symbol [ cx %tmp.49 28 20 22 ];
+        %tmp.50 = 8;
+        symbol [ Graphics %tmp.51 28 27 35 ];
+        %tmp.51 = getm $.Toybox.Graphics;
+        symbol [ FONT_TINY %tmp.52 28 36 45 ];
+        %tmp.52 = getv %tmp.51 :FONT_TINY;
+        %tmp.53 = lgetv %clockStr.5;
+        symbol [ clockStr %tmp.53 28 47 55 ];
+        symbol [ Graphics %tmp.54 28 57 65 ];
+        %tmp.54 = getm $.Toybox.Graphics;
+        symbol [ TEXT_JUSTIFY_CENTER %tmp.55 28 66 85 ];
+        %tmp.55 = getv %tmp.54 :TEXT_JUSTIFY_CENTER;
+        invoke %tmp.47 %tmp.48(%tmp.49, %tmp.50, %tmp.52, %tmp.53, %tmp.55);
+[ "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" 31 8 ]
+_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourTrackerView_mc_31_8_37_8_if_stmt:
+_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourTrackerView_mc_31_12_31_51_begin:
+        %tmp.56 = lgetv %model.1;
+        symbol [ model %tmp.56 31 13 18 ];
+        symbol [ isRunning %tmp.57 31 19 28 ];
+        %tmp.57 = getv %tmp.56 :isRunning;
+        %tmp.58 = not %tmp.57;
+        bf %tmp.58 @_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourTrackerView_mc_31_8_37_8_if_end;
+_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourTrackerView_mc_31_32_31_51_true:
+        %tmp.59 = lgetv %model.1;
+        symbol [ model %tmp.59 31 32 37 ];
+        symbol [ startTime %tmp.60 31 38 47 ];
+        %tmp.60 = getv %tmp.59 :startTime;
+        %tmp.61 = null;
+        %tmp.62 = eq %tmp.60 %tmp.61;
+        push %tmp.62;
+_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourTrackerView_mc_31_32_31_51_end:
+        %tmp.63 = phi [%tmp.58 @_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourTrackerView_mc_31_12_31_51_begin] [%tmp.62 @_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourTrackerView_mc_31_32_31_51_true] [%tmp.63 @_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourTrackerView_mc_31_32_31_51_end];
+        bf %tmp.63 @_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourTrackerView_mc_31_8_37_8_if_end;
+_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourTrackerView_mc_31_8_37_8_if_true:
+_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourTrackerView_mc_31_57_37_8_start:
 [ "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" 32 12 ]
-_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourTrackerView_mc_32_12_32_53_if_stmt:
-        %tmp.30 = lgetv %ed.7;
-        symbol [ ed %tmp.30 32 16 18 ];
-        %tmp.31 = null;
-        %tmp.32 = ne %tmp.30 %tmp.31;
-        bf %tmp.32 @_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourTrackerView_mc_32_12_32_53_if_end;
-_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourTrackerView_mc_32_12_32_53_if_true:
-_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourTrackerView_mc_32_28_32_53_start:
-[ "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" 32 30 ]
-        %tmp.33 = lgetv %ed.7;
-        symbol [ ed %tmp.33 32 39 41 ];
-        %tmp.34 = as %tmp.33 { (!Null) };
-        %tmp.35 = 1000.0f;
-        %tmp.36 = div %tmp.34 %tmp.35;
-        lputv %distKm.5 %tmp.36;
-        symbol [ distKm %distKm.5 32 30 36 ];
-_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourTrackerView_mc_32_28_32_53_stop:
-        goto @_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourTrackerView_mc_32_12_32_53_if_end;
-_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourTrackerView_mc_32_12_32_53_if_end:
+        %tmp.64 = lgetv %dc;
+        symbol [ dc %tmp.64 32 12 14 ];
+        symbol [ setColor %tmp.65 32 15 23 ];
+        %tmp.65 = getv function %tmp.64 :setColor;
+        symbol [ Graphics %tmp.66 32 24 32 ];
+        %tmp.66 = getm $.Toybox.Graphics;
+        symbol [ COLOR_WHITE %tmp.67 32 33 44 ];
+        %tmp.67 = getv %tmp.66 :COLOR_WHITE;
+        symbol [ Graphics %tmp.68 32 46 54 ];
+        %tmp.68 = getm $.Toybox.Graphics;
+        symbol [ COLOR_TRANSPARENT %tmp.69 32 55 72 ];
+        %tmp.69 = getv %tmp.68 :COLOR_TRANSPARENT;
+        invoke %tmp.64 %tmp.65(%tmp.67, %tmp.69);
 [ "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" 33 12 ]
-        [ "_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourTrackerView_mc_30_26_35_8_start" "_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourTrackerView_mc_30_26_35_8_stop" ]
-        %hrVal.8 = local;
-        symbol [ hrVal %hrVal.8 33 16 21 ];
-        %tmp.37 = lgetv %info.4;
-        symbol [ info %tmp.37 33 24 28 ];
-        %tmp.38 = as %tmp.37 { (!Null) };
-        symbol [ currentHeartRate %tmp.39 33 29 45 ];
-        %tmp.39 = getv %tmp.38 :currentHeartRate;
-        lputv %hrVal.8 %tmp.39;
-        symbol [ hrVal %hrVal.8 33 16 21 ];
+        %tmp.70 = lgetv %dc;
+        symbol [ dc %tmp.70 33 12 14 ];
+        symbol [ drawText %tmp.71 33 15 23 ];
+        %tmp.71 = getv function %tmp.70 :drawText;
+        %tmp.72 = lgetv %cx.3;
+        symbol [ cx %tmp.72 33 24 26 ];
+        %tmp.73 = 100;
+        symbol [ Graphics %tmp.74 33 33 41 ];
+        %tmp.74 = getm $.Toybox.Graphics;
+        symbol [ FONT_MEDIUM %tmp.75 33 42 53 ];
+        %tmp.75 = getv %tmp.74 :FONT_MEDIUM;
+        %tmp.76 = "Presiona";
+        symbol [ Graphics %tmp.77 33 67 75 ];
+        %tmp.77 = getm $.Toybox.Graphics;
+        symbol [ TEXT_JUSTIFY_CENTER %tmp.78 33 76 95 ];
+        %tmp.78 = getv %tmp.77 :TEXT_JUSTIFY_CENTER;
+        invoke %tmp.70 %tmp.71(%tmp.72, %tmp.73, %tmp.75, %tmp.76, %tmp.78);
 [ "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" 34 12 ]
-_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourTrackerView_mc_34_12_34_45_if_stmt:
-        %tmp.40 = lgetv %hrVal.8;
-        symbol [ hrVal %tmp.40 34 16 21 ];
-        %tmp.41 = null;
-        %tmp.42 = ne %tmp.40 %tmp.41;
-        bf %tmp.42 @_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourTrackerView_mc_34_12_34_45_if_end;
-_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourTrackerView_mc_34_12_34_45_if_true:
-_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourTrackerView_mc_34_31_34_45_start:
-[ "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" 34 33 ]
-        %tmp.43 = lgetv %hrVal.8;
-        symbol [ hrVal %tmp.43 34 38 43 ];
-        %tmp.44 = as %tmp.43 { (!Null) };
-        lputv %hr.6 %tmp.44;
-        symbol [ hr %hr.6 34 33 35 ];
-_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourTrackerView_mc_34_31_34_45_stop:
-        goto @_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourTrackerView_mc_34_12_34_45_if_end;
-_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourTrackerView_mc_34_12_34_45_if_end:
-_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourTrackerView_mc_30_26_35_8_stop:
-        goto @_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourTrackerView_mc_30_8_35_8_if_end;
-_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourTrackerView_mc_30_8_35_8_if_end:
-[ "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" 38 8 ]
-        [ "_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourTrackerView_mc_17_40_72_4_start" "_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourTrackerView_mc_17_40_72_4_stop" ]
-        %secs.9 = local;
-        symbol [ secs %secs.9 38 12 16 ];
-        %tmp.45 = lgetv %model.1;
-        symbol [ model %tmp.45 38 19 24 ];
-        symbol [ getElapsedSeconds %tmp.46 38 25 42 ];
-        %tmp.46 = getv function %tmp.45 :getElapsedSeconds;
-        %tmp.47 = invoke %tmp.45 %tmp.46();
-        lputv %secs.9 %tmp.47;
-        symbol [ secs %secs.9 38 12 16 ];
-[ "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" 39 8 ]
-        [ "_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourTrackerView_mc_17_40_72_4_start" "_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourTrackerView_mc_17_40_72_4_stop" ]
-        %hh.10 = local;
-        symbol [ hh %hh.10 39 12 14 ];
-        %tmp.48 = lgetv %secs.9;
-        symbol [ secs %tmp.48 39 17 21 ];
-        %tmp.49 = 3600;
-        %tmp.50 = div %tmp.48 %tmp.49;
-        lputv %hh.10 %tmp.50;
-        symbol [ hh %hh.10 39 12 14 ];
+        %tmp.79 = lgetv %dc;
+        symbol [ dc %tmp.79 34 12 14 ];
+        symbol [ setColor %tmp.80 34 15 23 ];
+        %tmp.80 = getv function %tmp.79 :setColor;
+        %tmp.81 = 0x00FF88;
+        symbol [ Graphics %tmp.82 34 34 42 ];
+        %tmp.82 = getm $.Toybox.Graphics;
+        symbol [ COLOR_TRANSPARENT %tmp.83 34 43 60 ];
+        %tmp.83 = getv %tmp.82 :COLOR_TRANSPARENT;
+        invoke %tmp.79 %tmp.80(%tmp.81, %tmp.83);
+[ "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" 35 12 ]
+        %tmp.84 = lgetv %dc;
+        symbol [ dc %tmp.84 35 12 14 ];
+        symbol [ drawText %tmp.85 35 15 23 ];
+        %tmp.85 = getv function %tmp.84 :drawText;
+        %tmp.86 = lgetv %cx.3;
+        symbol [ cx %tmp.86 35 24 26 ];
+        %tmp.87 = 135;
+        symbol [ Graphics %tmp.88 35 33 41 ];
+        %tmp.88 = getm $.Toybox.Graphics;
+        symbol [ FONT_MEDIUM %tmp.89 35 42 53 ];
+        %tmp.89 = getv %tmp.88 :FONT_MEDIUM;
+        %tmp.90 = "START";
+        symbol [ Graphics %tmp.91 35 64 72 ];
+        %tmp.91 = getm $.Toybox.Graphics;
+        symbol [ TEXT_JUSTIFY_CENTER %tmp.92 35 73 92 ];
+        %tmp.92 = getv %tmp.91 :TEXT_JUSTIFY_CENTER;
+        invoke %tmp.84 %tmp.85(%tmp.86, %tmp.87, %tmp.89, %tmp.90, %tmp.92);
+[ "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" 36 12 ]
+        ret ?;
+_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourTrackerView_mc_31_57_37_8_stop:
+        goto @_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourTrackerView_mc_31_8_37_8_if_end;
+_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourTrackerView_mc_31_8_37_8_if_end:
 [ "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" 40 8 ]
-        [ "_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourTrackerView_mc_17_40_72_4_start" "_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourTrackerView_mc_17_40_72_4_stop" ]
-        %mm.11 = local;
-        symbol [ mm %mm.11 40 12 14 ];
-        %tmp.51 = lgetv %secs.9;
-        symbol [ secs %tmp.51 40 18 22 ];
-        %tmp.52 = 3600;
-        %tmp.53 = mod %tmp.51 %tmp.52;
-        %tmp.54 = 60;
-        %tmp.55 = div %tmp.53 %tmp.54;
-        lputv %mm.11 %tmp.55;
-        symbol [ mm %mm.11 40 12 14 ];
+        [ "_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourTrackerView_mc_16_40_90_4_start" "_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourTrackerView_mc_16_40_90_4_stop" ]
+        %secs.6 = local;
+        symbol [ secs %secs.6 40 12 16 ];
+        %tmp.93 = lgetv %model.1;
+        symbol [ model %tmp.93 40 19 24 ];
+        symbol [ getElapsedSeconds %tmp.94 40 25 42 ];
+        %tmp.94 = getv function %tmp.93 :getElapsedSeconds;
+        %tmp.95 = invoke %tmp.93 %tmp.94();
+        lputv %secs.6 %tmp.95;
+        symbol [ secs %secs.6 40 12 16 ];
 [ "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" 41 8 ]
-        [ "_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourTrackerView_mc_17_40_72_4_start" "_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourTrackerView_mc_17_40_72_4_stop" ]
-        %ss.12 = local;
-        symbol [ ss %ss.12 41 12 14 ];
-        %tmp.56 = lgetv %secs.9;
-        symbol [ secs %tmp.56 41 17 21 ];
-        %tmp.57 = 60;
-        %tmp.58 = mod %tmp.56 %tmp.57;
-        lputv %ss.12 %tmp.58;
-        symbol [ ss %ss.12 41 12 14 ];
+        [ "_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourTrackerView_mc_16_40_90_4_start" "_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourTrackerView_mc_16_40_90_4_stop" ]
+        %hh.7 = local;
+        symbol [ hh %hh.7 41 12 14 ];
+        %tmp.96 = lgetv %secs.6;
+        symbol [ secs %tmp.96 41 17 21 ];
+        %tmp.97 = 3600;
+        %tmp.98 = div %tmp.96 %tmp.97;
+        lputv %hh.7 %tmp.98;
+        symbol [ hh %hh.7 41 12 14 ];
 [ "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" 42 8 ]
-        [ "_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourTrackerView_mc_17_40_72_4_start" "_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourTrackerView_mc_17_40_72_4_stop" ]
-        %timeStr.13 = local;
-        symbol [ timeStr %timeStr.13 42 12 19 ];
-        %tmp.59 = lgetv %hh.10;
-        symbol [ hh %tmp.59 42 22 24 ];
-        symbol [ format %tmp.60 42 25 31 ];
-        %tmp.60 = getv function %tmp.59 :format;
-        %tmp.61 = "%02d";
-        %tmp.62 = invoke %tmp.59 %tmp.60(%tmp.61);
-        %tmp.63 = ":";
-        %tmp.64 = add %tmp.62 %tmp.63;
-        %tmp.65 = lgetv %mm.11;
-        symbol [ mm %tmp.65 42 48 50 ];
-        symbol [ format %tmp.66 42 51 57 ];
-        %tmp.66 = getv function %tmp.65 :format;
-        %tmp.67 = "%02d";
-        %tmp.68 = invoke %tmp.65 %tmp.66(%tmp.67);
-        %tmp.69 = add %tmp.64 %tmp.68;
-        %tmp.70 = ":";
-        %tmp.71 = add %tmp.69 %tmp.70;
-        %tmp.72 = lgetv %ss.12;
-        symbol [ ss %tmp.72 42 74 76 ];
-        symbol [ format %tmp.73 42 77 83 ];
-        %tmp.73 = getv function %tmp.72 :format;
-        %tmp.74 = "%02d";
-        %tmp.75 = invoke %tmp.72 %tmp.73(%tmp.74);
-        %tmp.76 = add %tmp.71 %tmp.75;
-        lputv %timeStr.13 %tmp.76;
-        symbol [ timeStr %timeStr.13 42 12 19 ];
+        [ "_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourTrackerView_mc_16_40_90_4_start" "_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourTrackerView_mc_16_40_90_4_stop" ]
+        %mm.8 = local;
+        symbol [ mm %mm.8 42 12 14 ];
+        %tmp.99 = lgetv %secs.6;
+        symbol [ secs %tmp.99 42 18 22 ];
+        %tmp.100 = 3600;
+        %tmp.101 = mod %tmp.99 %tmp.100;
+        %tmp.102 = 60;
+        %tmp.103 = div %tmp.101 %tmp.102;
+        lputv %mm.8 %tmp.103;
+        symbol [ mm %mm.8 42 12 14 ];
 [ "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" 43 8 ]
-        %tmp.77 = lgetv %dc;
-        symbol [ dc %tmp.77 43 8 10 ];
-        symbol [ setColor %tmp.78 43 11 19 ];
-        %tmp.78 = getv function %tmp.77 :setColor;
-        symbol [ Graphics %tmp.79 43 20 28 ];
-        %tmp.79 = getm $.Toybox.Graphics;
-        symbol [ COLOR_WHITE %tmp.80 43 29 40 ];
-        %tmp.80 = getv %tmp.79 :COLOR_WHITE;
-        symbol [ Graphics %tmp.81 43 42 50 ];
-        %tmp.81 = getm $.Toybox.Graphics;
-        symbol [ COLOR_TRANSPARENT %tmp.82 43 51 68 ];
-        %tmp.82 = getv %tmp.81 :COLOR_TRANSPARENT;
-        invoke %tmp.77 %tmp.78(%tmp.80, %tmp.82);
+        [ "_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourTrackerView_mc_16_40_90_4_start" "_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourTrackerView_mc_16_40_90_4_stop" ]
+        %ss.9 = local;
+        symbol [ ss %ss.9 43 12 14 ];
+        %tmp.104 = lgetv %secs.6;
+        symbol [ secs %tmp.104 43 17 21 ];
+        %tmp.105 = 60;
+        %tmp.106 = mod %tmp.104 %tmp.105;
+        lputv %ss.9 %tmp.106;
+        symbol [ ss %ss.9 43 12 14 ];
 [ "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" 44 8 ]
-        %tmp.83 = lgetv %dc;
-        symbol [ dc %tmp.83 44 8 10 ];
-        symbol [ drawText %tmp.84 44 11 19 ];
-        %tmp.84 = getv function %tmp.83 :drawText;
-        %tmp.85 = lgetv %cx.3;
-        symbol [ cx %tmp.85 44 20 22 ];
-        %tmp.86 = 28;
-        symbol [ Graphics %tmp.87 44 28 36 ];
-        %tmp.87 = getm $.Toybox.Graphics;
-        symbol [ FONT_MEDIUM %tmp.88 44 37 48 ];
-        %tmp.88 = getv %tmp.87 :FONT_MEDIUM;
-        %tmp.89 = lgetv %timeStr.13;
-        symbol [ timeStr %tmp.89 44 50 57 ];
-        symbol [ Graphics %tmp.90 44 59 67 ];
-        %tmp.90 = getm $.Toybox.Graphics;
-        symbol [ TEXT_JUSTIFY_CENTER %tmp.91 44 68 87 ];
-        %tmp.91 = getv %tmp.90 :TEXT_JUSTIFY_CENTER;
-        invoke %tmp.83 %tmp.84(%tmp.85, %tmp.86, %tmp.88, %tmp.89, %tmp.91);
-[ "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" 47 8 ]
-        %tmp.92 = lgetv %dc;
-        symbol [ dc %tmp.92 47 8 10 ];
-        symbol [ setColor %tmp.93 47 11 19 ];
-        %tmp.93 = getv function %tmp.92 :setColor;
-        %tmp.94 = 0x00AAFF;
-        symbol [ Graphics %tmp.95 47 30 38 ];
-        %tmp.95 = getm $.Toybox.Graphics;
-        symbol [ COLOR_TRANSPARENT %tmp.96 47 39 56 ];
-        %tmp.96 = getv %tmp.95 :COLOR_TRANSPARENT;
-        invoke %tmp.92 %tmp.93(%tmp.94, %tmp.96);
-[ "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" 48 8 ]
-        %tmp.97 = lgetv %dc;
-        symbol [ dc %tmp.97 48 8 10 ];
-        symbol [ drawText %tmp.98 48 11 19 ];
-        %tmp.98 = getv function %tmp.97 :drawText;
-        %tmp.99 = lgetv %cx.3;
-        symbol [ cx %tmp.99 48 20 22 ];
-        %tmp.100 = 75;
-        symbol [ Graphics %tmp.101 48 28 36 ];
-        %tmp.101 = getm $.Toybox.Graphics;
-        symbol [ FONT_LARGE %tmp.102 48 37 47 ];
-        %tmp.102 = getv %tmp.101 :FONT_LARGE;
-        %tmp.103 = lgetv %distKm.5;
-        symbol [ distKm %tmp.103 48 49 55 ];
-        symbol [ format %tmp.104 48 56 62 ];
-        %tmp.104 = getv function %tmp.103 :format;
-        %tmp.105 = "%.2f";
-        %tmp.106 = invoke %tmp.103 %tmp.104(%tmp.105);
-        %tmp.107 = " km";
-        %tmp.108 = add %tmp.106 %tmp.107;
-        symbol [ Graphics %tmp.109 48 80 88 ];
-        %tmp.109 = getm $.Toybox.Graphics;
-        symbol [ TEXT_JUSTIFY_CENTER %tmp.110 48 89 108 ];
-        %tmp.110 = getv %tmp.109 :TEXT_JUSTIFY_CENTER;
-        invoke %tmp.97 %tmp.98(%tmp.99, %tmp.100, %tmp.102, %tmp.108, %tmp.110);
-[ "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" 51 8 ]
-        %tmp.111 = lgetv %dc;
-        symbol [ dc %tmp.111 51 8 10 ];
-        symbol [ setColor %tmp.112 51 11 19 ];
-        %tmp.112 = getv function %tmp.111 :setColor;
-        symbol [ Graphics %tmp.113 51 20 28 ];
-        %tmp.113 = getm $.Toybox.Graphics;
-        symbol [ COLOR_DK_GRAY %tmp.114 51 29 42 ];
-        %tmp.114 = getv %tmp.113 :COLOR_DK_GRAY;
-        symbol [ Graphics %tmp.115 51 44 52 ];
-        %tmp.115 = getm $.Toybox.Graphics;
-        symbol [ COLOR_TRANSPARENT %tmp.116 51 53 70 ];
-        %tmp.116 = getv %tmp.115 :COLOR_TRANSPARENT;
-        invoke %tmp.111 %tmp.112(%tmp.114, %tmp.116);
-[ "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" 52 8 ]
-        %tmp.117 = lgetv %dc;
-        symbol [ dc %tmp.117 52 8 10 ];
-        symbol [ drawLine %tmp.118 52 11 19 ];
-        %tmp.118 = getv function %tmp.117 :drawLine;
-        %tmp.119 = 45;
-        %tmp.120 = 140;
-        %tmp.121 = lgetv %w.2;
-        symbol [ w %tmp.121 52 29 30 ];
-        %tmp.122 = 45;
-        %tmp.123 = sub %tmp.121 %tmp.122;
-        %tmp.124 = 140;
-        invoke %tmp.117 %tmp.118(%tmp.119, %tmp.120, %tmp.123, %tmp.124);
-[ "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" 55 8 ]
-        [ "_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourTrackerView_mc_17_40_72_4_start" "_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourTrackerView_mc_17_40_72_4_stop" ]
-        %hrStr.14 = local;
-        symbol [ hrStr %hrStr.14 55 12 17 ];
-_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourTrackerView_mc_55_20_55_45_begin:
-        %tmp.125 = lgetv %hr.6;
-        symbol [ hr %tmp.125 55 20 22 ];
-        %tmp.126 = 0;
-        %tmp.127 = gt %tmp.125 %tmp.126;
-        bf %tmp.127 @_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourTrackerView_mc_55_20_55_45_else_false;
-_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourTrackerView_mc_55_20_55_45_true:
-        %tmp.128 = lgetv %hr.6;
-        symbol [ hr %tmp.128 55 29 31 ];
-        symbol [ toString %tmp.129 55 32 40 ];
-        %tmp.129 = getv function %tmp.128 :toString;
-        %tmp.130 = invoke %tmp.128 %tmp.129();
-        push %tmp.130;
-        goto @_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourTrackerView_mc_55_20_55_45_end;
-_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourTrackerView_mc_55_20_55_45_else_false:
-        %tmp.131 = "--";
-        push %tmp.131;
-_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourTrackerView_mc_55_20_55_45_end:
-        %tmp.132 = phi [%tmp.127 @_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourTrackerView_mc_55_20_55_45_begin] [%tmp.130 @_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourTrackerView_mc_55_20_55_45_true] [%tmp.131 @_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourTrackerView_mc_55_20_55_45_else_false] [%tmp.132 @_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourTrackerView_mc_55_20_55_45_end];
-        lputv %hrStr.14 %tmp.132;
-        symbol [ hrStr %hrStr.14 55 12 17 ];
-[ "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" 56 8 ]
-        %tmp.133 = lgetv %dc;
-        symbol [ dc %tmp.133 56 8 10 ];
-        symbol [ setColor %tmp.134 56 11 19 ];
-        %tmp.134 = getv function %tmp.133 :setColor;
-        symbol [ Graphics %tmp.135 56 20 28 ];
+        [ "_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourTrackerView_mc_16_40_90_4_start" "_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourTrackerView_mc_16_40_90_4_stop" ]
+        %timerStr.10 = local;
+        symbol [ timerStr %timerStr.10 44 12 20 ];
+        %tmp.107 = lgetv %hh.7;
+        symbol [ hh %tmp.107 44 23 25 ];
+        symbol [ format %tmp.108 44 26 32 ];
+        %tmp.108 = getv function %tmp.107 :format;
+        %tmp.109 = "%02d";
+        %tmp.110 = invoke %tmp.107 %tmp.108(%tmp.109);
+        %tmp.111 = ":";
+        %tmp.112 = add %tmp.110 %tmp.111;
+        %tmp.113 = lgetv %mm.8;
+        symbol [ mm %tmp.113 44 49 51 ];
+        symbol [ format %tmp.114 44 52 58 ];
+        %tmp.114 = getv function %tmp.113 :format;
+        %tmp.115 = "%02d";
+        %tmp.116 = invoke %tmp.113 %tmp.114(%tmp.115);
+        %tmp.117 = add %tmp.112 %tmp.116;
+        %tmp.118 = ":";
+        %tmp.119 = add %tmp.117 %tmp.118;
+        %tmp.120 = lgetv %ss.9;
+        symbol [ ss %tmp.120 44 75 77 ];
+        symbol [ format %tmp.121 44 78 84 ];
+        %tmp.121 = getv function %tmp.120 :format;
+        %tmp.122 = "%02d";
+        %tmp.123 = invoke %tmp.120 %tmp.121(%tmp.122);
+        %tmp.124 = add %tmp.119 %tmp.123;
+        lputv %timerStr.10 %tmp.124;
+        symbol [ timerStr %timerStr.10 44 12 20 ];
+[ "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" 45 8 ]
+        %tmp.125 = lgetv %dc;
+        symbol [ dc %tmp.125 45 8 10 ];
+        symbol [ setColor %tmp.126 45 11 19 ];
+        %tmp.126 = getv function %tmp.125 :setColor;
+        symbol [ Graphics %tmp.127 45 20 28 ];
+        %tmp.127 = getm $.Toybox.Graphics;
+        symbol [ COLOR_WHITE %tmp.128 45 29 40 ];
+        %tmp.128 = getv %tmp.127 :COLOR_WHITE;
+        symbol [ Graphics %tmp.129 45 42 50 ];
+        %tmp.129 = getm $.Toybox.Graphics;
+        symbol [ COLOR_TRANSPARENT %tmp.130 45 51 68 ];
+        %tmp.130 = getv %tmp.129 :COLOR_TRANSPARENT;
+        invoke %tmp.125 %tmp.126(%tmp.128, %tmp.130);
+[ "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" 46 8 ]
+        %tmp.131 = lgetv %dc;
+        symbol [ dc %tmp.131 46 8 10 ];
+        symbol [ drawText %tmp.132 46 11 19 ];
+        %tmp.132 = getv function %tmp.131 :drawText;
+        %tmp.133 = lgetv %cx.3;
+        symbol [ cx %tmp.133 46 20 22 ];
+        %tmp.134 = 28;
+        symbol [ Graphics %tmp.135 46 28 36 ];
         %tmp.135 = getm $.Toybox.Graphics;
-        symbol [ COLOR_RED %tmp.136 56 29 38 ];
-        %tmp.136 = getv %tmp.135 :COLOR_RED;
-        symbol [ Graphics %tmp.137 56 40 48 ];
-        %tmp.137 = getm $.Toybox.Graphics;
-        symbol [ COLOR_TRANSPARENT %tmp.138 56 49 66 ];
-        %tmp.138 = getv %tmp.137 :COLOR_TRANSPARENT;
-        invoke %tmp.133 %tmp.134(%tmp.136, %tmp.138);
-[ "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" 57 8 ]
-        %tmp.139 = lgetv %dc;
-        symbol [ dc %tmp.139 57 8 10 ];
-        symbol [ drawText %tmp.140 57 11 19 ];
-        %tmp.140 = getv function %tmp.139 :drawText;
-        %tmp.141 = 65;
-        %tmp.142 = 150;
-        symbol [ Graphics %tmp.143 57 29 37 ];
-        %tmp.143 = getm $.Toybox.Graphics;
-        symbol [ FONT_MEDIUM %tmp.144 57 38 49 ];
-        %tmp.144 = getv %tmp.143 :FONT_MEDIUM;
-        %tmp.145 = lgetv %hrStr.14;
-        symbol [ hrStr %tmp.145 57 51 56 ];
-        symbol [ Graphics %tmp.146 57 58 66 ];
+        symbol [ FONT_MEDIUM %tmp.136 46 37 48 ];
+        %tmp.136 = getv %tmp.135 :FONT_MEDIUM;
+        %tmp.137 = lgetv %timerStr.10;
+        symbol [ timerStr %tmp.137 46 50 58 ];
+        symbol [ Graphics %tmp.138 46 60 68 ];
+        %tmp.138 = getm $.Toybox.Graphics;
+        symbol [ TEXT_JUSTIFY_CENTER %tmp.139 46 69 88 ];
+        %tmp.139 = getv %tmp.138 :TEXT_JUSTIFY_CENTER;
+        invoke %tmp.131 %tmp.132(%tmp.133, %tmp.134, %tmp.136, %tmp.137, %tmp.139);
+[ "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" 49 8 ]
+        [ "_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourTrackerView_mc_16_40_90_4_start" "_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourTrackerView_mc_16_40_90_4_stop" ]
+        %distKm.11 = local;
+        symbol [ distKm %distKm.11 49 12 18 ];
+        %tmp.140 = lgetv %model.1;
+        symbol [ model %tmp.140 49 21 26 ];
+        symbol [ getDistanceKm %tmp.141 49 27 40 ];
+        %tmp.141 = getv function %tmp.140 :getDistanceKm;
+        %tmp.142 = invoke %tmp.140 %tmp.141();
+        lputv %distKm.11 %tmp.142;
+        symbol [ distKm %distKm.11 49 12 18 ];
+[ "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" 50 8 ]
+        %tmp.143 = lgetv %dc;
+        symbol [ dc %tmp.143 50 8 10 ];
+        symbol [ setColor %tmp.144 50 11 19 ];
+        %tmp.144 = getv function %tmp.143 :setColor;
+        %tmp.145 = 0x00AAFF;
+        symbol [ Graphics %tmp.146 50 30 38 ];
         %tmp.146 = getm $.Toybox.Graphics;
-        symbol [ TEXT_JUSTIFY_CENTER %tmp.147 57 67 86 ];
-        %tmp.147 = getv %tmp.146 :TEXT_JUSTIFY_CENTER;
-        invoke %tmp.139 %tmp.140(%tmp.141, %tmp.142, %tmp.144, %tmp.145, %tmp.147);
-[ "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" 58 8 ]
+        symbol [ COLOR_TRANSPARENT %tmp.147 50 39 56 ];
+        %tmp.147 = getv %tmp.146 :COLOR_TRANSPARENT;
+        invoke %tmp.143 %tmp.144(%tmp.145, %tmp.147);
+[ "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" 51 8 ]
         %tmp.148 = lgetv %dc;
-        symbol [ dc %tmp.148 58 8 10 ];
-        symbol [ setColor %tmp.149 58 11 19 ];
-        %tmp.149 = getv function %tmp.148 :setColor;
-        symbol [ Graphics %tmp.150 58 20 28 ];
-        %tmp.150 = getm $.Toybox.Graphics;
-        symbol [ COLOR_LT_GRAY %tmp.151 58 29 42 ];
-        %tmp.151 = getv %tmp.150 :COLOR_LT_GRAY;
-        symbol [ Graphics %tmp.152 58 44 52 ];
+        symbol [ dc %tmp.148 51 8 10 ];
+        symbol [ drawText %tmp.149 51 11 19 ];
+        %tmp.149 = getv function %tmp.148 :drawText;
+        %tmp.150 = lgetv %cx.3;
+        symbol [ cx %tmp.150 51 20 22 ];
+        %tmp.151 = 75;
+        symbol [ Graphics %tmp.152 51 28 36 ];
         %tmp.152 = getm $.Toybox.Graphics;
-        symbol [ COLOR_TRANSPARENT %tmp.153 58 53 70 ];
-        %tmp.153 = getv %tmp.152 :COLOR_TRANSPARENT;
-        invoke %tmp.148 %tmp.149(%tmp.151, %tmp.153);
+        symbol [ FONT_LARGE %tmp.153 51 37 47 ];
+        %tmp.153 = getv %tmp.152 :FONT_LARGE;
+        %tmp.154 = lgetv %distKm.11;
+        symbol [ distKm %tmp.154 51 49 55 ];
+        symbol [ format %tmp.155 51 56 62 ];
+        %tmp.155 = getv function %tmp.154 :format;
+        %tmp.156 = "%.2f";
+        %tmp.157 = invoke %tmp.154 %tmp.155(%tmp.156);
+        %tmp.158 = " km";
+        %tmp.159 = add %tmp.157 %tmp.158;
+        symbol [ Graphics %tmp.160 51 80 88 ];
+        %tmp.160 = getm $.Toybox.Graphics;
+        symbol [ TEXT_JUSTIFY_CENTER %tmp.161 51 89 108 ];
+        %tmp.161 = getv %tmp.160 :TEXT_JUSTIFY_CENTER;
+        invoke %tmp.148 %tmp.149(%tmp.150, %tmp.151, %tmp.153, %tmp.159, %tmp.161);
+[ "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" 54 8 ]
+        %tmp.162 = lgetv %dc;
+        symbol [ dc %tmp.162 54 8 10 ];
+        symbol [ setColor %tmp.163 54 11 19 ];
+        %tmp.163 = getv function %tmp.162 :setColor;
+        symbol [ Graphics %tmp.164 54 20 28 ];
+        %tmp.164 = getm $.Toybox.Graphics;
+        symbol [ COLOR_DK_GRAY %tmp.165 54 29 42 ];
+        %tmp.165 = getv %tmp.164 :COLOR_DK_GRAY;
+        symbol [ Graphics %tmp.166 54 44 52 ];
+        %tmp.166 = getm $.Toybox.Graphics;
+        symbol [ COLOR_TRANSPARENT %tmp.167 54 53 70 ];
+        %tmp.167 = getv %tmp.166 :COLOR_TRANSPARENT;
+        invoke %tmp.162 %tmp.163(%tmp.165, %tmp.167);
+[ "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" 55 8 ]
+        %tmp.168 = lgetv %dc;
+        symbol [ dc %tmp.168 55 8 10 ];
+        symbol [ drawLine %tmp.169 55 11 19 ];
+        %tmp.169 = getv function %tmp.168 :drawLine;
+        %tmp.170 = 45;
+        %tmp.171 = 140;
+        %tmp.172 = lgetv %w.2;
+        symbol [ w %tmp.172 55 29 30 ];
+        %tmp.173 = 45;
+        %tmp.174 = sub %tmp.172 %tmp.173;
+        %tmp.175 = 140;
+        invoke %tmp.168 %tmp.169(%tmp.170, %tmp.171, %tmp.174, %tmp.175);
+[ "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" 58 8 ]
+        [ "_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourTrackerView_mc_16_40_90_4_start" "_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourTrackerView_mc_16_40_90_4_stop" ]
+        %hr.12 = local;
+        symbol [ hr %hr.12 58 12 14 ];
+        %tmp.176 = 0;
+        lputv %hr.12 %tmp.176;
+        symbol [ hr %hr.12 58 12 14 ];
 [ "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" 59 8 ]
-        %tmp.154 = lgetv %dc;
-        symbol [ dc %tmp.154 59 8 10 ];
-        symbol [ drawText %tmp.155 59 11 19 ];
-        %tmp.155 = getv function %tmp.154 :drawText;
-        %tmp.156 = 65;
-        %tmp.157 = 182;
-        symbol [ Graphics %tmp.158 59 29 37 ];
-        %tmp.158 = getm $.Toybox.Graphics;
-        symbol [ FONT_TINY %tmp.159 59 38 47 ];
-        %tmp.159 = getv %tmp.158 :FONT_TINY;
-        %tmp.160 = "bpm";
-        symbol [ Graphics %tmp.161 59 56 64 ];
-        %tmp.161 = getm $.Toybox.Graphics;
-        symbol [ TEXT_JUSTIFY_CENTER %tmp.162 59 65 84 ];
-        %tmp.162 = getv %tmp.161 :TEXT_JUSTIFY_CENTER;
-        invoke %tmp.154 %tmp.155(%tmp.156, %tmp.157, %tmp.159, %tmp.160, %tmp.162);
-[ "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" 62 8 ]
-        %tmp.163 = lgetv %dc;
-        symbol [ dc %tmp.163 62 8 10 ];
-        symbol [ setColor %tmp.164 62 11 19 ];
-        %tmp.164 = getv function %tmp.163 :setColor;
-        symbol [ Graphics %tmp.165 62 20 28 ];
-        %tmp.165 = getm $.Toybox.Graphics;
-        symbol [ COLOR_GREEN %tmp.166 62 29 40 ];
-        %tmp.166 = getv %tmp.165 :COLOR_GREEN;
-        symbol [ Graphics %tmp.167 62 42 50 ];
-        %tmp.167 = getm $.Toybox.Graphics;
-        symbol [ COLOR_TRANSPARENT %tmp.168 62 51 68 ];
-        %tmp.168 = getv %tmp.167 :COLOR_TRANSPARENT;
-        invoke %tmp.163 %tmp.164(%tmp.166, %tmp.168);
-[ "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" 63 8 ]
-        %tmp.169 = lgetv %dc;
-        symbol [ dc %tmp.169 63 8 10 ];
-        symbol [ drawText %tmp.170 63 11 19 ];
-        %tmp.170 = getv function %tmp.169 :drawText;
-        %tmp.171 = 195;
-        %tmp.172 = 150;
-        symbol [ Graphics %tmp.173 63 30 38 ];
-        %tmp.173 = getm $.Toybox.Graphics;
-        symbol [ FONT_MEDIUM %tmp.174 63 39 50 ];
-        %tmp.174 = getv %tmp.173 :FONT_MEDIUM;
-        %tmp.175 = lgetv %model.1;
-        symbol [ model %tmp.175 63 52 57 ];
-        symbol [ jumpCount %tmp.176 63 58 67 ];
-        %tmp.176 = getv %tmp.175 :jumpCount;
-        symbol [ toString %tmp.177 63 68 76 ];
-        %tmp.177 = getv function %tmp.176 :toString;
-        %tmp.178 = invoke %tmp.176 %tmp.177();
-        symbol [ Graphics %tmp.179 63 80 88 ];
-        %tmp.179 = getm $.Toybox.Graphics;
-        symbol [ TEXT_JUSTIFY_CENTER %tmp.180 63 89 108 ];
-        %tmp.180 = getv %tmp.179 :TEXT_JUSTIFY_CENTER;
-        invoke %tmp.169 %tmp.170(%tmp.171, %tmp.172, %tmp.174, %tmp.178, %tmp.180);
+        [ "_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourTrackerView_mc_16_40_90_4_start" "_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourTrackerView_mc_16_40_90_4_stop" ]
+        %info.13 = local;
+        symbol [ info %info.13 59 12 16 ];
+        symbol [ Activity %tmp.177 59 19 27 ];
+        %tmp.177 = getm $.Toybox.Activity;
+        symbol [ getActivityInfo %tmp.178 59 28 43 ];
+        %tmp.178 = getv function %tmp.177 :getActivityInfo;
+        %tmp.179 = invoke %tmp.177 %tmp.178();
+        lputv %info.13 %tmp.179;
+        symbol [ info %info.13 59 12 16 ];
+[ "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" 60 8 ]
+_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourTrackerView_mc_60_8_63_8_if_stmt:
+        %tmp.180 = lgetv %info.13;
+        symbol [ info %tmp.180 60 12 16 ];
+        %tmp.181 = null;
+        %tmp.182 = ne %tmp.180 %tmp.181;
+        bf %tmp.182 @_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourTrackerView_mc_60_8_63_8_if_end;
+_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourTrackerView_mc_60_8_63_8_if_true:
+_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourTrackerView_mc_60_26_63_8_start:
+[ "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" 61 12 ]
+        [ "_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourTrackerView_mc_60_26_63_8_start" "_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourTrackerView_mc_60_26_63_8_stop" ]
+        %hrVal.14 = local;
+        symbol [ hrVal %hrVal.14 61 16 21 ];
+        %tmp.183 = lgetv %info.13;
+        symbol [ info %tmp.183 61 24 28 ];
+        %tmp.184 = as %tmp.183 { (!Null) };
+        symbol [ currentHeartRate %tmp.185 61 29 45 ];
+        %tmp.185 = getv %tmp.184 :currentHeartRate;
+        lputv %hrVal.14 %tmp.185;
+        symbol [ hrVal %hrVal.14 61 16 21 ];
+[ "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" 62 12 ]
+_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourTrackerView_mc_62_12_62_45_if_stmt:
+        %tmp.186 = lgetv %hrVal.14;
+        symbol [ hrVal %tmp.186 62 16 21 ];
+        %tmp.187 = null;
+        %tmp.188 = ne %tmp.186 %tmp.187;
+        bf %tmp.188 @_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourTrackerView_mc_62_12_62_45_if_end;
+_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourTrackerView_mc_62_12_62_45_if_true:
+_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourTrackerView_mc_62_31_62_45_start:
+[ "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" 62 33 ]
+        %tmp.189 = lgetv %hrVal.14;
+        symbol [ hrVal %tmp.189 62 38 43 ];
+        %tmp.190 = as %tmp.189 { (!Null) };
+        lputv %hr.12 %tmp.190;
+        symbol [ hr %hr.12 62 33 35 ];
+_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourTrackerView_mc_62_31_62_45_stop:
+        goto @_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourTrackerView_mc_62_12_62_45_if_end;
+_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourTrackerView_mc_62_12_62_45_if_end:
+_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourTrackerView_mc_60_26_63_8_stop:
+        goto @_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourTrackerView_mc_60_8_63_8_if_end;
+_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourTrackerView_mc_60_8_63_8_if_end:
 [ "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" 64 8 ]
-        %tmp.181 = lgetv %dc;
-        symbol [ dc %tmp.181 64 8 10 ];
-        symbol [ setColor %tmp.182 64 11 19 ];
-        %tmp.182 = getv function %tmp.181 :setColor;
-        symbol [ Graphics %tmp.183 64 20 28 ];
-        %tmp.183 = getm $.Toybox.Graphics;
-        symbol [ COLOR_LT_GRAY %tmp.184 64 29 42 ];
-        %tmp.184 = getv %tmp.183 :COLOR_LT_GRAY;
-        symbol [ Graphics %tmp.185 64 44 52 ];
-        %tmp.185 = getm $.Toybox.Graphics;
-        symbol [ COLOR_TRANSPARENT %tmp.186 64 53 70 ];
-        %tmp.186 = getv %tmp.185 :COLOR_TRANSPARENT;
-        invoke %tmp.181 %tmp.182(%tmp.184, %tmp.186);
+        [ "_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourTrackerView_mc_16_40_90_4_start" "_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourTrackerView_mc_16_40_90_4_stop" ]
+        %hrStr.15 = local;
+        symbol [ hrStr %hrStr.15 64 12 17 ];
+_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourTrackerView_mc_64_20_64_45_begin:
+        %tmp.191 = lgetv %hr.12;
+        symbol [ hr %tmp.191 64 20 22 ];
+        %tmp.192 = 0;
+        %tmp.193 = gt %tmp.191 %tmp.192;
+        bf %tmp.193 @_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourTrackerView_mc_64_20_64_45_else_false;
+_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourTrackerView_mc_64_20_64_45_true:
+        %tmp.194 = lgetv %hr.12;
+        symbol [ hr %tmp.194 64 29 31 ];
+        symbol [ toString %tmp.195 64 32 40 ];
+        %tmp.195 = getv function %tmp.194 :toString;
+        %tmp.196 = invoke %tmp.194 %tmp.195();
+        push %tmp.196;
+        goto @_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourTrackerView_mc_64_20_64_45_end;
+_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourTrackerView_mc_64_20_64_45_else_false:
+        %tmp.197 = "--";
+        push %tmp.197;
+_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourTrackerView_mc_64_20_64_45_end:
+        %tmp.198 = phi [%tmp.193 @_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourTrackerView_mc_64_20_64_45_begin] [%tmp.196 @_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourTrackerView_mc_64_20_64_45_true] [%tmp.197 @_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourTrackerView_mc_64_20_64_45_else_false] [%tmp.198 @_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourTrackerView_mc_64_20_64_45_end];
+        lputv %hrStr.15 %tmp.198;
+        symbol [ hrStr %hrStr.15 64 12 17 ];
 [ "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" 65 8 ]
-        %tmp.187 = lgetv %dc;
-        symbol [ dc %tmp.187 65 8 10 ];
-        symbol [ drawText %tmp.188 65 11 19 ];
-        %tmp.188 = getv function %tmp.187 :drawText;
-        %tmp.189 = 195;
-        %tmp.190 = 182;
-        symbol [ Graphics %tmp.191 65 30 38 ];
-        %tmp.191 = getm $.Toybox.Graphics;
-        symbol [ FONT_TINY %tmp.192 65 39 48 ];
-        %tmp.192 = getv %tmp.191 :FONT_TINY;
-        %tmp.193 = "saltos";
-        symbol [ Graphics %tmp.194 65 60 68 ];
-        %tmp.194 = getm $.Toybox.Graphics;
-        symbol [ TEXT_JUSTIFY_CENTER %tmp.195 65 69 88 ];
-        %tmp.195 = getv %tmp.194 :TEXT_JUSTIFY_CENTER;
-        invoke %tmp.187 %tmp.188(%tmp.189, %tmp.190, %tmp.192, %tmp.193, %tmp.195);
+        %tmp.199 = lgetv %dc;
+        symbol [ dc %tmp.199 65 8 10 ];
+        symbol [ setColor %tmp.200 65 11 19 ];
+        %tmp.200 = getv function %tmp.199 :setColor;
+        symbol [ Graphics %tmp.201 65 20 28 ];
+        %tmp.201 = getm $.Toybox.Graphics;
+        symbol [ COLOR_RED %tmp.202 65 29 38 ];
+        %tmp.202 = getv %tmp.201 :COLOR_RED;
+        symbol [ Graphics %tmp.203 65 40 48 ];
+        %tmp.203 = getm $.Toybox.Graphics;
+        symbol [ COLOR_TRANSPARENT %tmp.204 65 49 66 ];
+        %tmp.204 = getv %tmp.203 :COLOR_TRANSPARENT;
+        invoke %tmp.199 %tmp.200(%tmp.202, %tmp.204);
+[ "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" 66 8 ]
+        %tmp.205 = lgetv %dc;
+        symbol [ dc %tmp.205 66 8 10 ];
+        symbol [ drawText %tmp.206 66 11 19 ];
+        %tmp.206 = getv function %tmp.205 :drawText;
+        %tmp.207 = 65;
+        %tmp.208 = 150;
+        symbol [ Graphics %tmp.209 66 29 37 ];
+        %tmp.209 = getm $.Toybox.Graphics;
+        symbol [ FONT_MEDIUM %tmp.210 66 38 49 ];
+        %tmp.210 = getv %tmp.209 :FONT_MEDIUM;
+        %tmp.211 = lgetv %hrStr.15;
+        symbol [ hrStr %tmp.211 66 51 56 ];
+        symbol [ Graphics %tmp.212 66 58 66 ];
+        %tmp.212 = getm $.Toybox.Graphics;
+        symbol [ TEXT_JUSTIFY_CENTER %tmp.213 66 67 86 ];
+        %tmp.213 = getv %tmp.212 :TEXT_JUSTIFY_CENTER;
+        invoke %tmp.205 %tmp.206(%tmp.207, %tmp.208, %tmp.210, %tmp.211, %tmp.213);
+[ "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" 67 8 ]
+        %tmp.214 = lgetv %dc;
+        symbol [ dc %tmp.214 67 8 10 ];
+        symbol [ setColor %tmp.215 67 11 19 ];
+        %tmp.215 = getv function %tmp.214 :setColor;
+        symbol [ Graphics %tmp.216 67 20 28 ];
+        %tmp.216 = getm $.Toybox.Graphics;
+        symbol [ COLOR_LT_GRAY %tmp.217 67 29 42 ];
+        %tmp.217 = getv %tmp.216 :COLOR_LT_GRAY;
+        symbol [ Graphics %tmp.218 67 44 52 ];
+        %tmp.218 = getm $.Toybox.Graphics;
+        symbol [ COLOR_TRANSPARENT %tmp.219 67 53 70 ];
+        %tmp.219 = getv %tmp.218 :COLOR_TRANSPARENT;
+        invoke %tmp.214 %tmp.215(%tmp.217, %tmp.219);
 [ "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" 68 8 ]
-        %tmp.196 = lgetv %dc;
-        symbol [ dc %tmp.196 68 8 10 ];
-        symbol [ setColor %tmp.197 68 11 19 ];
-        %tmp.197 = getv function %tmp.196 :setColor;
-        symbol [ Graphics %tmp.198 68 20 28 ];
-        %tmp.198 = getm $.Toybox.Graphics;
-        symbol [ COLOR_RED %tmp.199 68 29 38 ];
-        %tmp.199 = getv %tmp.198 :COLOR_RED;
-        symbol [ Graphics %tmp.200 68 40 48 ];
-        %tmp.200 = getm $.Toybox.Graphics;
-        symbol [ COLOR_TRANSPARENT %tmp.201 68 49 66 ];
-        %tmp.201 = getv %tmp.200 :COLOR_TRANSPARENT;
-        invoke %tmp.196 %tmp.197(%tmp.199, %tmp.201);
-[ "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" 69 8 ]
-        %tmp.202 = lgetv %dc;
-        symbol [ dc %tmp.202 69 8 10 ];
-        symbol [ fillCircle %tmp.203 69 11 21 ];
-        %tmp.203 = getv function %tmp.202 :fillCircle;
-        %tmp.204 = lgetv %cx.3;
-        symbol [ cx %tmp.204 69 22 24 ];
-        %tmp.205 = 22;
-        %tmp.206 = sub %tmp.204 %tmp.205;
-        %tmp.207 = 220;
-        %tmp.208 = 5;
-        invoke %tmp.202 %tmp.203(%tmp.206, %tmp.207, %tmp.208);
-[ "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" 70 8 ]
-        %tmp.209 = lgetv %dc;
-        symbol [ dc %tmp.209 70 8 10 ];
-        symbol [ setColor %tmp.210 70 11 19 ];
-        %tmp.210 = getv function %tmp.209 :setColor;
-        symbol [ Graphics %tmp.211 70 20 28 ];
-        %tmp.211 = getm $.Toybox.Graphics;
-        symbol [ COLOR_WHITE %tmp.212 70 29 40 ];
-        %tmp.212 = getv %tmp.211 :COLOR_WHITE;
-        symbol [ Graphics %tmp.213 70 42 50 ];
-        %tmp.213 = getm $.Toybox.Graphics;
-        symbol [ COLOR_TRANSPARENT %tmp.214 70 51 68 ];
-        %tmp.214 = getv %tmp.213 :COLOR_TRANSPARENT;
-        invoke %tmp.209 %tmp.210(%tmp.212, %tmp.214);
-[ "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" 71 8 ]
-        %tmp.215 = lgetv %dc;
-        symbol [ dc %tmp.215 71 8 10 ];
-        symbol [ drawText %tmp.216 71 11 19 ];
-        %tmp.216 = getv function %tmp.215 :drawText;
-        %tmp.217 = lgetv %cx.3;
-        symbol [ cx %tmp.217 71 20 22 ];
-        %tmp.218 = 8;
-        %tmp.219 = sub %tmp.217 %tmp.218;
-        %tmp.220 = 213;
-        symbol [ Graphics %tmp.221 71 33 41 ];
-        %tmp.221 = getm $.Toybox.Graphics;
-        symbol [ FONT_TINY %tmp.222 71 42 51 ];
-        %tmp.222 = getv %tmp.221 :FONT_TINY;
-        %tmp.223 = "REC";
-        symbol [ Graphics %tmp.224 71 60 68 ];
+        %tmp.220 = lgetv %dc;
+        symbol [ dc %tmp.220 68 8 10 ];
+        symbol [ drawText %tmp.221 68 11 19 ];
+        %tmp.221 = getv function %tmp.220 :drawText;
+        %tmp.222 = 65;
+        %tmp.223 = 182;
+        symbol [ Graphics %tmp.224 68 29 37 ];
         %tmp.224 = getm $.Toybox.Graphics;
-        symbol [ TEXT_JUSTIFY_LEFT %tmp.225 71 69 86 ];
-        %tmp.225 = getv %tmp.224 :TEXT_JUSTIFY_LEFT;
-        invoke %tmp.215 %tmp.216(%tmp.219, %tmp.220, %tmp.222, %tmp.223, %tmp.225);
-_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourTrackerView_mc_17_40_72_4_stop:
+        symbol [ FONT_TINY %tmp.225 68 38 47 ];
+        %tmp.225 = getv %tmp.224 :FONT_TINY;
+        %tmp.226 = "bpm";
+        symbol [ Graphics %tmp.227 68 56 64 ];
+        %tmp.227 = getm $.Toybox.Graphics;
+        symbol [ TEXT_JUSTIFY_CENTER %tmp.228 68 65 84 ];
+        %tmp.228 = getv %tmp.227 :TEXT_JUSTIFY_CENTER;
+        invoke %tmp.220 %tmp.221(%tmp.222, %tmp.223, %tmp.225, %tmp.226, %tmp.228);
+[ "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" 71 8 ]
+        %tmp.229 = lgetv %dc;
+        symbol [ dc %tmp.229 71 8 10 ];
+        symbol [ setColor %tmp.230 71 11 19 ];
+        %tmp.230 = getv function %tmp.229 :setColor;
+        symbol [ Graphics %tmp.231 71 20 28 ];
+        %tmp.231 = getm $.Toybox.Graphics;
+        symbol [ COLOR_GREEN %tmp.232 71 29 40 ];
+        %tmp.232 = getv %tmp.231 :COLOR_GREEN;
+        symbol [ Graphics %tmp.233 71 42 50 ];
+        %tmp.233 = getm $.Toybox.Graphics;
+        symbol [ COLOR_TRANSPARENT %tmp.234 71 51 68 ];
+        %tmp.234 = getv %tmp.233 :COLOR_TRANSPARENT;
+        invoke %tmp.229 %tmp.230(%tmp.232, %tmp.234);
+[ "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" 72 8 ]
+        %tmp.235 = lgetv %dc;
+        symbol [ dc %tmp.235 72 8 10 ];
+        symbol [ drawText %tmp.236 72 11 19 ];
+        %tmp.236 = getv function %tmp.235 :drawText;
+        %tmp.237 = 195;
+        %tmp.238 = 150;
+        symbol [ Graphics %tmp.239 72 30 38 ];
+        %tmp.239 = getm $.Toybox.Graphics;
+        symbol [ FONT_MEDIUM %tmp.240 72 39 50 ];
+        %tmp.240 = getv %tmp.239 :FONT_MEDIUM;
+        %tmp.241 = lgetv %model.1;
+        symbol [ model %tmp.241 72 52 57 ];
+        symbol [ jumpCount %tmp.242 72 58 67 ];
+        %tmp.242 = getv %tmp.241 :jumpCount;
+        symbol [ toString %tmp.243 72 68 76 ];
+        %tmp.243 = getv function %tmp.242 :toString;
+        %tmp.244 = invoke %tmp.242 %tmp.243();
+        symbol [ Graphics %tmp.245 72 80 88 ];
+        %tmp.245 = getm $.Toybox.Graphics;
+        symbol [ TEXT_JUSTIFY_CENTER %tmp.246 72 89 108 ];
+        %tmp.246 = getv %tmp.245 :TEXT_JUSTIFY_CENTER;
+        invoke %tmp.235 %tmp.236(%tmp.237, %tmp.238, %tmp.240, %tmp.244, %tmp.246);
+[ "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" 73 8 ]
+        %tmp.247 = lgetv %dc;
+        symbol [ dc %tmp.247 73 8 10 ];
+        symbol [ setColor %tmp.248 73 11 19 ];
+        %tmp.248 = getv function %tmp.247 :setColor;
+        symbol [ Graphics %tmp.249 73 20 28 ];
+        %tmp.249 = getm $.Toybox.Graphics;
+        symbol [ COLOR_LT_GRAY %tmp.250 73 29 42 ];
+        %tmp.250 = getv %tmp.249 :COLOR_LT_GRAY;
+        symbol [ Graphics %tmp.251 73 44 52 ];
+        %tmp.251 = getm $.Toybox.Graphics;
+        symbol [ COLOR_TRANSPARENT %tmp.252 73 53 70 ];
+        %tmp.252 = getv %tmp.251 :COLOR_TRANSPARENT;
+        invoke %tmp.247 %tmp.248(%tmp.250, %tmp.252);
+[ "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" 74 8 ]
+        %tmp.253 = lgetv %dc;
+        symbol [ dc %tmp.253 74 8 10 ];
+        symbol [ drawText %tmp.254 74 11 19 ];
+        %tmp.254 = getv function %tmp.253 :drawText;
+        %tmp.255 = 195;
+        %tmp.256 = 182;
+        symbol [ Graphics %tmp.257 74 30 38 ];
+        %tmp.257 = getm $.Toybox.Graphics;
+        symbol [ FONT_TINY %tmp.258 74 39 48 ];
+        %tmp.258 = getv %tmp.257 :FONT_TINY;
+        %tmp.259 = "saltos";
+        symbol [ Graphics %tmp.260 74 60 68 ];
+        %tmp.260 = getm $.Toybox.Graphics;
+        symbol [ TEXT_JUSTIFY_CENTER %tmp.261 74 69 88 ];
+        %tmp.261 = getv %tmp.260 :TEXT_JUSTIFY_CENTER;
+        invoke %tmp.253 %tmp.254(%tmp.255, %tmp.256, %tmp.258, %tmp.259, %tmp.261);
+[ "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" 77 8 ]
+_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourTrackerView_mc_77_8_89_8_if_stmt:
+        %tmp.262 = lgetv %model.1;
+        symbol [ model %tmp.262 77 12 17 ];
+        symbol [ isRunning %tmp.263 77 18 27 ];
+        %tmp.263 = getv %tmp.262 :isRunning;
+        bf %tmp.263 @_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourTrackerView_mc_77_8_89_8_if_end;
+_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourTrackerView_mc_77_8_89_8_if_true:
+_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourTrackerView_mc_77_29_89_8_start:
+[ "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" 78 12 ]
+_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourTrackerView_mc_78_12_88_12_if_stmt:
+        %tmp.264 = lgetv %model.1;
+        symbol [ model %tmp.264 78 16 21 ];
+        symbol [ isPaused %tmp.265 78 22 30 ];
+        %tmp.265 = getv %tmp.264 :isPaused;
+        bf %tmp.265 @_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourTrackerView_mc_78_12_88_12_if_else_false;
+_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourTrackerView_mc_78_12_88_12_if_true:
+_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourTrackerView_mc_78_32_83_12_start:
+[ "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" 79 16 ]
+        %tmp.266 = lgetv %dc;
+        symbol [ dc %tmp.266 79 16 18 ];
+        symbol [ setColor %tmp.267 79 19 27 ];
+        %tmp.267 = getv function %tmp.266 :setColor;
+        symbol [ Graphics %tmp.268 79 28 36 ];
+        %tmp.268 = getm $.Toybox.Graphics;
+        symbol [ COLOR_YELLOW %tmp.269 79 37 49 ];
+        %tmp.269 = getv %tmp.268 :COLOR_YELLOW;
+        symbol [ Graphics %tmp.270 79 51 59 ];
+        %tmp.270 = getm $.Toybox.Graphics;
+        symbol [ COLOR_TRANSPARENT %tmp.271 79 60 77 ];
+        %tmp.271 = getv %tmp.270 :COLOR_TRANSPARENT;
+        invoke %tmp.266 %tmp.267(%tmp.269, %tmp.271);
+[ "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" 80 16 ]
+        %tmp.272 = lgetv %dc;
+        symbol [ dc %tmp.272 80 16 18 ];
+        symbol [ fillCircle %tmp.273 80 19 29 ];
+        %tmp.273 = getv function %tmp.272 :fillCircle;
+        %tmp.274 = lgetv %cx.3;
+        symbol [ cx %tmp.274 80 30 32 ];
+        %tmp.275 = 28;
+        %tmp.276 = sub %tmp.274 %tmp.275;
+        %tmp.277 = 220;
+        %tmp.278 = 5;
+        invoke %tmp.272 %tmp.273(%tmp.276, %tmp.277, %tmp.278);
+[ "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" 81 16 ]
+        %tmp.279 = lgetv %dc;
+        symbol [ dc %tmp.279 81 16 18 ];
+        symbol [ setColor %tmp.280 81 19 27 ];
+        %tmp.280 = getv function %tmp.279 :setColor;
+        symbol [ Graphics %tmp.281 81 28 36 ];
+        %tmp.281 = getm $.Toybox.Graphics;
+        symbol [ COLOR_WHITE %tmp.282 81 37 48 ];
+        %tmp.282 = getv %tmp.281 :COLOR_WHITE;
+        symbol [ Graphics %tmp.283 81 50 58 ];
+        %tmp.283 = getm $.Toybox.Graphics;
+        symbol [ COLOR_TRANSPARENT %tmp.284 81 59 76 ];
+        %tmp.284 = getv %tmp.283 :COLOR_TRANSPARENT;
+        invoke %tmp.279 %tmp.280(%tmp.282, %tmp.284);
+[ "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" 82 16 ]
+        %tmp.285 = lgetv %dc;
+        symbol [ dc %tmp.285 82 16 18 ];
+        symbol [ drawText %tmp.286 82 19 27 ];
+        %tmp.286 = getv function %tmp.285 :drawText;
+        %tmp.287 = lgetv %cx.3;
+        symbol [ cx %tmp.287 82 28 30 ];
+        %tmp.288 = 14;
+        %tmp.289 = sub %tmp.287 %tmp.288;
+        %tmp.290 = 213;
+        symbol [ Graphics %tmp.291 82 42 50 ];
+        %tmp.291 = getm $.Toybox.Graphics;
+        symbol [ FONT_TINY %tmp.292 82 51 60 ];
+        %tmp.292 = getv %tmp.291 :FONT_TINY;
+        %tmp.293 = "PAUSA";
+        symbol [ Graphics %tmp.294 82 71 79 ];
+        %tmp.294 = getm $.Toybox.Graphics;
+        symbol [ TEXT_JUSTIFY_LEFT %tmp.295 82 80 97 ];
+        %tmp.295 = getv %tmp.294 :TEXT_JUSTIFY_LEFT;
+        invoke %tmp.285 %tmp.286(%tmp.289, %tmp.290, %tmp.292, %tmp.293, %tmp.295);
+_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourTrackerView_mc_78_32_83_12_stop:
+        goto @_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourTrackerView_mc_78_12_88_12_if_end;
+_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourTrackerView_mc_78_12_88_12_if_else_false:
+_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourTrackerView_mc_83_19_88_12_start:
+[ "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" 84 16 ]
+        %tmp.296 = lgetv %dc;
+        symbol [ dc %tmp.296 84 16 18 ];
+        symbol [ setColor %tmp.297 84 19 27 ];
+        %tmp.297 = getv function %tmp.296 :setColor;
+        symbol [ Graphics %tmp.298 84 28 36 ];
+        %tmp.298 = getm $.Toybox.Graphics;
+        symbol [ COLOR_RED %tmp.299 84 37 46 ];
+        %tmp.299 = getv %tmp.298 :COLOR_RED;
+        symbol [ Graphics %tmp.300 84 48 56 ];
+        %tmp.300 = getm $.Toybox.Graphics;
+        symbol [ COLOR_TRANSPARENT %tmp.301 84 57 74 ];
+        %tmp.301 = getv %tmp.300 :COLOR_TRANSPARENT;
+        invoke %tmp.296 %tmp.297(%tmp.299, %tmp.301);
+[ "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" 85 16 ]
+        %tmp.302 = lgetv %dc;
+        symbol [ dc %tmp.302 85 16 18 ];
+        symbol [ fillCircle %tmp.303 85 19 29 ];
+        %tmp.303 = getv function %tmp.302 :fillCircle;
+        %tmp.304 = lgetv %cx.3;
+        symbol [ cx %tmp.304 85 30 32 ];
+        %tmp.305 = 22;
+        %tmp.306 = sub %tmp.304 %tmp.305;
+        %tmp.307 = 220;
+        %tmp.308 = 5;
+        invoke %tmp.302 %tmp.303(%tmp.306, %tmp.307, %tmp.308);
+[ "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" 86 16 ]
+        %tmp.309 = lgetv %dc;
+        symbol [ dc %tmp.309 86 16 18 ];
+        symbol [ setColor %tmp.310 86 19 27 ];
+        %tmp.310 = getv function %tmp.309 :setColor;
+        symbol [ Graphics %tmp.311 86 28 36 ];
+        %tmp.311 = getm $.Toybox.Graphics;
+        symbol [ COLOR_WHITE %tmp.312 86 37 48 ];
+        %tmp.312 = getv %tmp.311 :COLOR_WHITE;
+        symbol [ Graphics %tmp.313 86 50 58 ];
+        %tmp.313 = getm $.Toybox.Graphics;
+        symbol [ COLOR_TRANSPARENT %tmp.314 86 59 76 ];
+        %tmp.314 = getv %tmp.313 :COLOR_TRANSPARENT;
+        invoke %tmp.309 %tmp.310(%tmp.312, %tmp.314);
+[ "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" 87 16 ]
+        %tmp.315 = lgetv %dc;
+        symbol [ dc %tmp.315 87 16 18 ];
+        symbol [ drawText %tmp.316 87 19 27 ];
+        %tmp.316 = getv function %tmp.315 :drawText;
+        %tmp.317 = lgetv %cx.3;
+        symbol [ cx %tmp.317 87 28 30 ];
+        %tmp.318 = 8;
+        %tmp.319 = sub %tmp.317 %tmp.318;
+        %tmp.320 = 213;
+        symbol [ Graphics %tmp.321 87 41 49 ];
+        %tmp.321 = getm $.Toybox.Graphics;
+        symbol [ FONT_TINY %tmp.322 87 50 59 ];
+        %tmp.322 = getv %tmp.321 :FONT_TINY;
+        %tmp.323 = "REC";
+        symbol [ Graphics %tmp.324 87 68 76 ];
+        %tmp.324 = getm $.Toybox.Graphics;
+        symbol [ TEXT_JUSTIFY_LEFT %tmp.325 87 77 94 ];
+        %tmp.325 = getv %tmp.324 :TEXT_JUSTIFY_LEFT;
+        invoke %tmp.315 %tmp.316(%tmp.319, %tmp.320, %tmp.322, %tmp.323, %tmp.325);
+_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourTrackerView_mc_83_19_88_12_stop:
+_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourTrackerView_mc_78_12_88_12_if_end:
+_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourTrackerView_mc_77_29_89_8_stop:
+        goto @_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourTrackerView_mc_77_8_89_8_if_end;
+_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourTrackerView_mc_77_8_89_8_if_end:
+_Users_joelbecerril_MNA_WORKSPACE_garminv0_ParkourTracker_source_ParkourTrackerView_mc_16_40_90_4_stop:
     }
 }
 [ @file = "/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc"; @line = 1; ]

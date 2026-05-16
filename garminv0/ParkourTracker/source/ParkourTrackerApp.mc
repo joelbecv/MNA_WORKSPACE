@@ -12,11 +12,13 @@ class ParkourTrackerApp extends Application.AppBase {
     }
 
     function onStart(state as Dictionary?) as Void {
-        model.startSession();
+        // La sesión arranca cuando el usuario presiona START/STOP
     }
 
     function onStop(state as Dictionary?) as Void {
         model.stopSession();
+        // Si el usuario cerró la app sin pasar por el menú, guardar automáticamente
+        model.saveSession();
     }
 
     function getInitialView() as [Views] or [Views, InputDelegates] {
