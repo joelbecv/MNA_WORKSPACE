@@ -1,6 +1,9 @@
 # Ignorar todas las carpetas de datos
 data/
 
+# Datasets de imágenes (demasiado pesados para git)
+**/human detection dataset/
+
 # Ignorar todos los archivos CSV
 *.csv
 
