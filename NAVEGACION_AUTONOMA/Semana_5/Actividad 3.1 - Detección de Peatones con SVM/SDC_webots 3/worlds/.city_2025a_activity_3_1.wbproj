@@ -8,4 +8,4 @@ orthographicViewHeight: 1
 textFiles: -1
 consoles: Console:All:All
 renderingDevicePerspectives: vehicle:camera;1;1;0;0
-renderingDevicePerspectives: vehicle:display_image;1;0.74855;0.659079;0
+renderingDevicePerspectives: vehicle:display_image;1;1.35;0.772396;0
