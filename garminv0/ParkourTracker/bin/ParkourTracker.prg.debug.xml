@@ -2,301 +2,334 @@
 <debugInfo>
     <manifest filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/manifest.xml"/>
     <pcToLineNum>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerMenuDelegate.mc" id="1" lineNum="5" parent="globals/ParkourTrackerMenuDelegate" pc="268435460" symbol="&lt;init&gt;"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" id="2" lineNum="7" parent="globals/ParkourTrackerView" pc="268435472" symbol="&lt;init&gt;"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerApp.mc" id="3" lineNum="30" parent="globals" pc="268435484" symbol="getApp"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerApp.mc" id="3" lineNum="31" parent="globals" pc="268435494" symbol="getApp"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/bin/gen/006-B3906-00/source/Rez.mcgen" id="4" lineNum="7" parent="globals/Rez" pc="268435505" symbol="&lt;init&gt;"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerApp.mc" id="5" lineNum="5" parent="globals/ParkourTrackerApp" pc="268435525" symbol="&lt;init&gt;"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/SummaryDelegate.mc" id="6" lineNum="22" parent="globals/SaveMenuDelegate" pc="268435537" symbol="&lt;init&gt;"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/SummaryDelegate.mc" id="7" lineNum="5" parent="globals/SummaryDelegate" pc="268435549" symbol="&lt;init&gt;"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/SummaryView.mc" id="8" lineNum="6" parent="globals/SummaryView" pc="268435561" symbol="&lt;init&gt;"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerDelegate.mc" id="9" lineNum="4" parent="globals/ParkourTrackerDelegate" pc="268435573" symbol="&lt;init&gt;"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerMenuDelegate.mc" id="10" lineNum="11" parent="globals/ParkourTrackerMenuDelegate" pc="268435585" symbol="onMenuItem"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerMenuDelegate.mc" id="10" lineNum="12" parent="globals/ParkourTrackerMenuDelegate" pc="268435587" symbol="onMenuItem"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerMenuDelegate.mc" id="10" lineNum="13" parent="globals/ParkourTrackerMenuDelegate" pc="268435598" symbol="onMenuItem"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerMenuDelegate.mc" id="10" lineNum="14" parent="globals/ParkourTrackerMenuDelegate" pc="268435619" symbol="onMenuItem"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerMenuDelegate.mc" id="10" lineNum="15" parent="globals/ParkourTrackerMenuDelegate" pc="268435630" symbol="onMenuItem"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerMenuDelegate.mc" id="11" lineNum="7" parent="globals/ParkourTrackerMenuDelegate" pc="268435652" symbol="initialize"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerMenuDelegate.mc" id="11" lineNum="8" parent="globals/ParkourTrackerMenuDelegate" pc="268435654" symbol="initialize"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" id="12" lineNum="13" parent="globals/ParkourTrackerView" pc="268435667" symbol="onLayout"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" id="13" lineNum="9" parent="globals/ParkourTrackerView" pc="268435670" symbol="initialize"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" id="13" lineNum="10" parent="globals/ParkourTrackerView" pc="268435672" symbol="initialize"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" id="14" lineNum="16" parent="globals/ParkourTrackerView" pc="268435685" symbol="onUpdate"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" id="14" lineNum="17" parent="globals/ParkourTrackerView" pc="268435688" symbol="onUpdate"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" id="14" lineNum="18" parent="globals/ParkourTrackerView" pc="268435701" symbol="onUpdate"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" id="14" lineNum="19" parent="globals/ParkourTrackerView" pc="268435710" symbol="onUpdate"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" id="14" lineNum="21" parent="globals/ParkourTrackerView" pc="268435717" symbol="onUpdate"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" id="14" lineNum="22" parent="globals/ParkourTrackerView" pc="268435729" symbol="onUpdate"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" id="14" lineNum="25" parent="globals/ParkourTrackerView" pc="268435737" symbol="onUpdate"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" id="14" lineNum="26" parent="globals/ParkourTrackerView" pc="268435762" symbol="onUpdate"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" id="14" lineNum="27" parent="globals/ParkourTrackerView" pc="268435809" symbol="onUpdate"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" id="14" lineNum="28" parent="globals/ParkourTrackerView" pc="268435826" symbol="onUpdate"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" id="14" lineNum="31" parent="globals/ParkourTrackerView" pc="268435846" symbol="onUpdate"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" id="14" lineNum="32" parent="globals/ParkourTrackerView" pc="268435866" symbol="onUpdate"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" id="14" lineNum="33" parent="globals/ParkourTrackerView" pc="268435883" symbol="onUpdate"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" id="14" lineNum="34" parent="globals/ParkourTrackerView" pc="268435906" symbol="onUpdate"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" id="14" lineNum="35" parent="globals/ParkourTrackerView" pc="268435922" symbol="onUpdate"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" id="14" lineNum="36" parent="globals/ParkourTrackerView" pc="268435946" symbol="onUpdate"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" id="14" lineNum="40" parent="globals/ParkourTrackerView" pc="268435950" symbol="onUpdate"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" id="14" lineNum="41" parent="globals/ParkourTrackerView" pc="268435959" symbol="onUpdate"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" id="14" lineNum="42" parent="globals/ParkourTrackerView" pc="268435967" symbol="onUpdate"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" id="14" lineNum="43" parent="globals/ParkourTrackerView" pc="268435978" symbol="onUpdate"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" id="14" lineNum="44" parent="globals/ParkourTrackerView" pc="268435985" symbol="onUpdate"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" id="14" lineNum="45" parent="globals/ParkourTrackerView" pc="268436043" symbol="onUpdate"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" id="14" lineNum="46" parent="globals/ParkourTrackerView" pc="268436060" symbol="onUpdate"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" id="14" lineNum="49" parent="globals/ParkourTrackerView" pc="268436080" symbol="onUpdate"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" id="14" lineNum="50" parent="globals/ParkourTrackerView" pc="268436089" symbol="onUpdate"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" id="14" lineNum="51" parent="globals/ParkourTrackerView" pc="268436105" symbol="onUpdate"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" id="14" lineNum="54" parent="globals/ParkourTrackerView" pc="268436143" symbol="onUpdate"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" id="14" lineNum="55" parent="globals/ParkourTrackerView" pc="268436159" symbol="onUpdate"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" id="14" lineNum="58" parent="globals/ParkourTrackerView" pc="268436182" symbol="onUpdate"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" id="14" lineNum="59" parent="globals/ParkourTrackerView" pc="268436185" symbol="onUpdate"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" id="14" lineNum="60" parent="globals/ParkourTrackerView" pc="268436197" symbol="onUpdate"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" id="14" lineNum="61" parent="globals/ParkourTrackerView" pc="268436203" symbol="onUpdate"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" id="14" lineNum="62" parent="globals/ParkourTrackerView" pc="268436212" symbol="onUpdate"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" id="14" lineNum="62" parent="globals/ParkourTrackerView" pc="268436218" symbol="onUpdate"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" id="14" lineNum="64" parent="globals/ParkourTrackerView" pc="268436228" symbol="onUpdate"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" id="14" lineNum="65" parent="globals/ParkourTrackerView" pc="268436252" symbol="onUpdate"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" id="14" lineNum="66" parent="globals/ParkourTrackerView" pc="268436269" symbol="onUpdate"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" id="14" lineNum="67" parent="globals/ParkourTrackerView" pc="268436290" symbol="onUpdate"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" id="14" lineNum="68" parent="globals/ParkourTrackerView" pc="268436307" symbol="onUpdate"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" id="14" lineNum="71" parent="globals/ParkourTrackerView" pc="268436331" symbol="onUpdate"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" id="14" lineNum="72" parent="globals/ParkourTrackerView" pc="268436347" symbol="onUpdate"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" id="14" lineNum="73" parent="globals/ParkourTrackerView" pc="268436379" symbol="onUpdate"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" id="14" lineNum="74" parent="globals/ParkourTrackerView" pc="268436396" symbol="onUpdate"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" id="14" lineNum="77" parent="globals/ParkourTrackerView" pc="268436421" symbol="onUpdate"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" id="14" lineNum="78" parent="globals/ParkourTrackerView" pc="268436430" symbol="onUpdate"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" id="14" lineNum="79" parent="globals/ParkourTrackerView" pc="268436439" symbol="onUpdate"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" id="14" lineNum="80" parent="globals/ParkourTrackerView" pc="268436456" symbol="onUpdate"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" id="14" lineNum="81" parent="globals/ParkourTrackerView" pc="268436476" symbol="onUpdate"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" id="14" lineNum="82" parent="globals/ParkourTrackerView" pc="268436493" symbol="onUpdate"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" id="14" lineNum="84" parent="globals/ParkourTrackerView" pc="268436523" symbol="onUpdate"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" id="14" lineNum="85" parent="globals/ParkourTrackerView" pc="268436540" symbol="onUpdate"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" id="14" lineNum="86" parent="globals/ParkourTrackerView" pc="268436560" symbol="onUpdate"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" id="14" lineNum="87" parent="globals/ParkourTrackerView" pc="268436577" symbol="onUpdate"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="15" lineNum="157" parent="globals/ParkourModel" pc="268436608" symbol="onTick"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="15" lineNum="158" parent="globals/ParkourModel" pc="268436610" symbol="onTick"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="16" lineNum="87" parent="globals/ParkourModel" pc="268436622" symbol="stopSession"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="16" lineNum="88" parent="globals/ParkourModel" pc="268436625" symbol="stopSession"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="16" lineNum="88" parent="globals/ParkourModel" pc="268436634" symbol="stopSession"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="16" lineNum="90" parent="globals/ParkourModel" pc="268436638" symbol="stopSession"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="16" lineNum="92" parent="globals/ParkourModel" pc="268436651" symbol="stopSession"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="16" lineNum="93" parent="globals/ParkourModel" pc="268436663" symbol="stopSession"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="16" lineNum="94" parent="globals/ParkourModel" pc="268436669" symbol="stopSession"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="16" lineNum="95" parent="globals/ParkourModel" pc="268436678" symbol="stopSession"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="16" lineNum="96" parent="globals/ParkourModel" pc="268436691" symbol="stopSession"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="16" lineNum="98" parent="globals/ParkourModel" pc="268436709" symbol="stopSession"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="16" lineNum="100" parent="globals/ParkourModel" pc="268436722" symbol="stopSession"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="16" lineNum="101" parent="globals/ParkourModel" pc="268436731" symbol="stopSession"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="16" lineNum="101" parent="globals/ParkourModel" pc="268436737" symbol="stopSession"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="16" lineNum="102" parent="globals/ParkourModel" pc="268436749" symbol="stopSession"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="16" lineNum="103" parent="globals/ParkourModel" pc="268436758" symbol="stopSession"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="16" lineNum="103" parent="globals/ParkourModel" pc="268436764" symbol="stopSession"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="16" lineNum="104" parent="globals/ParkourModel" pc="268436776" symbol="stopSession"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="16" lineNum="105" parent="globals/ParkourModel" pc="268436785" symbol="stopSession"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="16" lineNum="105" parent="globals/ParkourModel" pc="268436791" symbol="stopSession"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="16" lineNum="108" parent="globals/ParkourModel" pc="268436806" symbol="stopSession"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="16" lineNum="109" parent="globals/ParkourModel" pc="268436814" symbol="stopSession"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="16" lineNum="111" parent="globals/ParkourModel" pc="268436822" symbol="stopSession"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="16" lineNum="112" parent="globals/ParkourModel" pc="268436831" symbol="stopSession"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="16" lineNum="113" parent="globals/ParkourModel" pc="268436843" symbol="stopSession"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="16" lineNum="116" parent="globals/ParkourModel" pc="268436854" symbol="stopSession"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="16" lineNum="118" parent="globals/ParkourModel" pc="268436865" symbol="stopSession"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="16" lineNum="119" parent="globals/ParkourModel" pc="268436872" symbol="stopSession"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="16" lineNum="120" parent="globals/ParkourModel" pc="268436878" symbol="stopSession"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="16" lineNum="123" parent="globals/ParkourModel" pc="268436890" symbol="stopSession"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="17" lineNum="142" parent="globals/ParkourModel" pc="268436899" symbol="getElapsedSeconds"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="17" lineNum="143" parent="globals/ParkourModel" pc="268436901" symbol="getElapsedSeconds"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="17" lineNum="143" parent="globals/ParkourModel" pc="268436920" symbol="getElapsedSeconds"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="17" lineNum="144" parent="globals/ParkourModel" pc="268436929" symbol="getElapsedSeconds"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="17" lineNum="144" parent="globals/ParkourModel" pc="268436937" symbol="getElapsedSeconds"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="17" lineNum="145" parent="globals/ParkourModel" pc="268436946" symbol="getElapsedSeconds"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="17" lineNum="145" parent="globals/ParkourModel" pc="268436955" symbol="getElapsedSeconds"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="17" lineNum="146" parent="globals/ParkourModel" pc="268436964" symbol="getElapsedSeconds"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="18" lineNum="74" parent="globals/ParkourModel" pc="268437000" symbol="pauseSession"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="18" lineNum="75" parent="globals/ParkourModel" pc="268437002" symbol="pauseSession"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="18" lineNum="75" parent="globals/ParkourModel" pc="268437019" symbol="pauseSession"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="18" lineNum="76" parent="globals/ParkourModel" pc="268437023" symbol="pauseSession"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="18" lineNum="77" parent="globals/ParkourModel" pc="268437036" symbol="pauseSession"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="19" lineNum="149" parent="globals/ParkourModel" pc="268437045" symbol="getDistanceKm"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="19" lineNum="150" parent="globals/ParkourModel" pc="268437048" symbol="getDistanceKm"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="19" lineNum="151" parent="globals/ParkourModel" pc="268437060" symbol="getDistanceKm"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="19" lineNum="151" parent="globals/ParkourModel" pc="268437066" symbol="getDistanceKm"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="19" lineNum="152" parent="globals/ParkourModel" pc="268437071" symbol="getDistanceKm"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="19" lineNum="153" parent="globals/ParkourModel" pc="268437079" symbol="getDistanceKm"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="19" lineNum="153" parent="globals/ParkourModel" pc="268437092" symbol="getDistanceKm"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="19" lineNum="154" parent="globals/ParkourModel" pc="268437104" symbol="getDistanceKm"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="20" lineNum="81" parent="globals/ParkourModel" pc="268437106" symbol="resumeSession"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="20" lineNum="82" parent="globals/ParkourModel" pc="268437108" symbol="resumeSession"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="20" lineNum="82" parent="globals/ParkourModel" pc="268437126" symbol="resumeSession"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="20" lineNum="83" parent="globals/ParkourModel" pc="268437130" symbol="resumeSession"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="20" lineNum="84" parent="globals/ParkourModel" pc="268437147" symbol="resumeSession"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="21" lineNum="37" parent="globals/ParkourModel" pc="268437156" symbol="startSession"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="21" lineNum="38" parent="globals/ParkourModel" pc="268437159" symbol="startSession"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="21" lineNum="38" parent="globals/ParkourModel" pc="268437167" symbol="startSession"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="21" lineNum="40" parent="globals/ParkourModel" pc="268437171" symbol="startSession"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="21" lineNum="45" parent="globals/ParkourModel" pc="268437215" symbol="startSession"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="21" lineNum="48" parent="globals/ParkourModel" pc="268437224" symbol="startSession"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="21" lineNum="55" parent="globals/ParkourModel" pc="268437272" symbol="startSession"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="21" lineNum="57" parent="globals/ParkourModel" pc="268437280" symbol="startSession"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="21" lineNum="58" parent="globals/ParkourModel" pc="268437297" symbol="startSession"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="21" lineNum="59" parent="globals/ParkourModel" pc="268437305" symbol="startSession"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="21" lineNum="60" parent="globals/ParkourModel" pc="268437313" symbol="startSession"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="21" lineNum="61" parent="globals/ParkourModel" pc="268437321" symbol="startSession"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="21" lineNum="62" parent="globals/ParkourModel" pc="268437329" symbol="startSession"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="21" lineNum="64" parent="globals/ParkourModel" pc="268437337" symbol="startSession"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="21" lineNum="70" parent="globals/ParkourModel" pc="268437402" symbol="startSession"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="21" lineNum="71" parent="globals/ParkourModel" pc="268437431" symbol="startSession"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="22" lineNum="161" parent="globals/ParkourModel" pc="268437463" symbol="onSensorData"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="22" lineNum="162" parent="globals/ParkourModel" pc="268437466" symbol="onSensorData"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="22" lineNum="163" parent="globals/ParkourModel" pc="268437476" symbol="onSensorData"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="22" lineNum="164" parent="globals/ParkourModel" pc="268437491" symbol="onSensorData"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="22" lineNum="167" parent="globals/ParkourModel" pc="268437495" symbol="onSensorData"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="22" lineNum="168" parent="globals/ParkourModel" pc="268437503" symbol="onSensorData"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="22" lineNum="168" parent="globals/ParkourModel" pc="268437509" symbol="onSensorData"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="22" lineNum="170" parent="globals/ParkourModel" pc="268437513" symbol="onSensorData"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="22" lineNum="171" parent="globals/ParkourModel" pc="268437521" symbol="onSensorData"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="22" lineNum="172" parent="globals/ParkourModel" pc="268437529" symbol="onSensorData"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="22" lineNum="173" parent="globals/ParkourModel" pc="268437537" symbol="onSensorData"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="22" lineNum="173" parent="globals/ParkourModel" pc="268437556" symbol="onSensorData"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="22" lineNum="175" parent="globals/ParkourModel" pc="268437560" symbol="onSensorData"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="22" lineNum="176" parent="globals/ParkourModel" pc="268437572" symbol="onSensorData"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="22" lineNum="177" parent="globals/ParkourModel" pc="268437585" symbol="onSensorData"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="22" lineNum="178" parent="globals/ParkourModel" pc="268437598" symbol="onSensorData"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="22" lineNum="180" parent="globals/ParkourModel" pc="268437611" symbol="onSensorData"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="22" lineNum="182" parent="globals/ParkourModel" pc="268437642" symbol="onSensorData"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="22" lineNum="183" parent="globals/ParkourModel" pc="268437653" symbol="onSensorData"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="22" lineNum="184" parent="globals/ParkourModel" pc="268437668" symbol="onSensorData"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="22" lineNum="186" parent="globals/ParkourModel" pc="268437677" symbol="onSensorData"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="22" lineNum="187" parent="globals/ParkourModel" pc="268437684" symbol="onSensorData"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="22" lineNum="187" parent="globals/ParkourModel" pc="268437690" symbol="onSensorData"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="23" lineNum="126" parent="globals/ParkourModel" pc="268437713" symbol="saveSession"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="23" lineNum="127" parent="globals/ParkourModel" pc="268437716" symbol="saveSession"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="23" lineNum="128" parent="globals/ParkourModel" pc="268437723" symbol="saveSession"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="23" lineNum="129" parent="globals/ParkourModel" pc="268437729" symbol="saveSession"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="23" lineNum="130" parent="globals/ParkourModel" pc="268437738" symbol="saveSession"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="24" lineNum="134" parent="globals/ParkourModel" pc="268437750" symbol="discardSession"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="24" lineNum="135" parent="globals/ParkourModel" pc="268437753" symbol="discardSession"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="24" lineNum="136" parent="globals/ParkourModel" pc="268437760" symbol="discardSession"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="24" lineNum="137" parent="globals/ParkourModel" pc="268437766" symbol="discardSession"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="24" lineNum="138" parent="globals/ParkourModel" pc="268437775" symbol="discardSession"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerApp.mc" id="26" lineNum="14" parent="globals/ParkourTrackerApp" pc="268437787" symbol="onStart"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerApp.mc" id="27" lineNum="24" parent="globals/ParkourTrackerApp" pc="268437790" symbol="getInitialView"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerApp.mc" id="27" lineNum="25" parent="globals/ParkourTrackerApp" pc="268437792" symbol="getInitialView"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerApp.mc" id="28" lineNum="9" parent="globals/ParkourTrackerApp" pc="268437839" symbol="initialize"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerApp.mc" id="28" lineNum="10" parent="globals/ParkourTrackerApp" pc="268437841" symbol="initialize"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerApp.mc" id="28" lineNum="11" parent="globals/ParkourTrackerApp" pc="268437853" symbol="initialize"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerApp.mc" id="29" lineNum="18" parent="globals/ParkourTrackerApp" pc="268437879" symbol="onStop"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerApp.mc" id="29" lineNum="19" parent="globals/ParkourTrackerApp" pc="268437881" symbol="onStop"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerApp.mc" id="29" lineNum="21" parent="globals/ParkourTrackerApp" pc="268437893" symbol="onStop"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/SummaryDelegate.mc" id="30" lineNum="39" parent="globals/SaveMenuDelegate" pc="268437906" symbol="onBack"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/SummaryDelegate.mc" id="30" lineNum="40" parent="globals/SaveMenuDelegate" pc="268437908" symbol="onBack"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/SummaryDelegate.mc" id="31" lineNum="24" parent="globals/SaveMenuDelegate" pc="268437924" symbol="initialize"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/SummaryDelegate.mc" id="31" lineNum="25" parent="globals/SaveMenuDelegate" pc="268437926" symbol="initialize"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/SummaryDelegate.mc" id="32" lineNum="28" parent="globals/SaveMenuDelegate" pc="268437939" symbol="onSelect"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/SummaryDelegate.mc" id="32" lineNum="29" parent="globals/SaveMenuDelegate" pc="268437942" symbol="onSelect"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/SummaryDelegate.mc" id="32" lineNum="30" parent="globals/SaveMenuDelegate" pc="268437955" symbol="onSelect"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/SummaryDelegate.mc" id="32" lineNum="31" parent="globals/SaveMenuDelegate" pc="268437971" symbol="onSelect"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/SummaryDelegate.mc" id="32" lineNum="33" parent="globals/SaveMenuDelegate" pc="268437982" symbol="onSelect"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/SummaryDelegate.mc" id="32" lineNum="35" parent="globals/SaveMenuDelegate" pc="268437990" symbol="onSelect"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/SummaryDelegate.mc" id="33" lineNum="12" parent="globals/SummaryDelegate" pc="268438002" symbol="onBack"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/SummaryDelegate.mc" id="33" lineNum="13" parent="globals/SummaryDelegate" pc="268438005" symbol="onBack"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/SummaryDelegate.mc" id="33" lineNum="14" parent="globals/SummaryDelegate" pc="268438045" symbol="onBack"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/SummaryDelegate.mc" id="33" lineNum="15" parent="globals/SummaryDelegate" pc="268438090" symbol="onBack"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/SummaryDelegate.mc" id="33" lineNum="16" parent="globals/SummaryDelegate" pc="268438135" symbol="onBack"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/SummaryDelegate.mc" id="33" lineNum="17" parent="globals/SummaryDelegate" pc="268438170" symbol="onBack"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/SummaryDelegate.mc" id="34" lineNum="7" parent="globals/SummaryDelegate" pc="268438172" symbol="initialize"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/SummaryDelegate.mc" id="34" lineNum="8" parent="globals/SummaryDelegate" pc="268438174" symbol="initialize"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/SummaryView.mc" id="35" lineNum="12" parent="globals/SummaryView" pc="268438187" symbol="onLayout"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/SummaryView.mc" id="36" lineNum="8" parent="globals/SummaryView" pc="268438190" symbol="initialize"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/SummaryView.mc" id="36" lineNum="9" parent="globals/SummaryView" pc="268438192" symbol="initialize"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/SummaryView.mc" id="37" lineNum="15" parent="globals/SummaryView" pc="268438205" symbol="onUpdate"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/SummaryView.mc" id="37" lineNum="16" parent="globals/SummaryView" pc="268438208" symbol="onUpdate"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/SummaryView.mc" id="37" lineNum="17" parent="globals/SummaryView" pc="268438221" symbol="onUpdate"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/SummaryView.mc" id="37" lineNum="18" parent="globals/SummaryView" pc="268438230" symbol="onUpdate"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/SummaryView.mc" id="37" lineNum="20" parent="globals/SummaryView" pc="268438237" symbol="onUpdate"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/SummaryView.mc" id="37" lineNum="21" parent="globals/SummaryView" pc="268438249" symbol="onUpdate"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/SummaryView.mc" id="37" lineNum="24" parent="globals/SummaryView" pc="268438257" symbol="onUpdate"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/SummaryView.mc" id="37" lineNum="25" parent="globals/SummaryView" pc="268438273" symbol="onUpdate"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/SummaryView.mc" id="37" lineNum="28" parent="globals/SummaryView" pc="268438296" symbol="onUpdate"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/SummaryView.mc" id="37" lineNum="29" parent="globals/SummaryView" pc="268438305" symbol="onUpdate"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/SummaryView.mc" id="37" lineNum="30" parent="globals/SummaryView" pc="268438313" symbol="onUpdate"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/SummaryView.mc" id="37" lineNum="31" parent="globals/SummaryView" pc="268438324" symbol="onUpdate"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/SummaryView.mc" id="37" lineNum="32" parent="globals/SummaryView" pc="268438331" symbol="onUpdate"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/SummaryView.mc" id="37" lineNum="33" parent="globals/SummaryView" pc="268438389" symbol="onUpdate"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/SummaryView.mc" id="37" lineNum="34" parent="globals/SummaryView" pc="268438406" symbol="onUpdate"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/SummaryView.mc" id="37" lineNum="37" parent="globals/SummaryView" pc="268438426" symbol="onUpdate"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/SummaryView.mc" id="37" lineNum="38" parent="globals/SummaryView" pc="268438442" symbol="onUpdate"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/SummaryView.mc" id="37" lineNum="43" parent="globals/SummaryView" pc="268438485" symbol="onUpdate"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/SummaryView.mc" id="37" lineNum="44" parent="globals/SummaryView" pc="268438501" symbol="onUpdate"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/SummaryView.mc" id="37" lineNum="49" parent="globals/SummaryView" pc="268438537" symbol="onUpdate"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/SummaryView.mc" id="37" lineNum="50" parent="globals/SummaryView" pc="268438554" symbol="onUpdate"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/SummaryView.mc" id="37" lineNum="55" parent="globals/SummaryView" pc="268438610" symbol="onUpdate"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/SummaryView.mc" id="37" lineNum="56" parent="globals/SummaryView" pc="268438627" symbol="onUpdate"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/SummaryView.mc" id="37" lineNum="61" parent="globals/SummaryView" pc="268438664" symbol="onUpdate"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/SummaryView.mc" id="37" lineNum="62" parent="globals/SummaryView" pc="268438680" symbol="onUpdate"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerDelegate.mc" id="38" lineNum="25" parent="globals/ParkourTrackerDelegate" pc="268438705" symbol="onBack"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerDelegate.mc" id="38" lineNum="26" parent="globals/ParkourTrackerDelegate" pc="268438708" symbol="onBack"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerDelegate.mc" id="38" lineNum="27" parent="globals/ParkourTrackerDelegate" pc="268438721" symbol="onBack"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerDelegate.mc" id="38" lineNum="28" parent="globals/ParkourTrackerDelegate" pc="268438730" symbol="onBack"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerDelegate.mc" id="38" lineNum="30" parent="globals/ParkourTrackerDelegate" pc="268438741" symbol="onBack"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerDelegate.mc" id="38" lineNum="35" parent="globals/ParkourTrackerDelegate" pc="268438792" symbol="onBack"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerDelegate.mc" id="39" lineNum="6" parent="globals/ParkourTrackerDelegate" pc="268438794" symbol="initialize"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerDelegate.mc" id="39" lineNum="7" parent="globals/ParkourTrackerDelegate" pc="268438796" symbol="initialize"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerDelegate.mc" id="40" lineNum="11" parent="globals/ParkourTrackerDelegate" pc="268438809" symbol="onSelect"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerDelegate.mc" id="40" lineNum="12" parent="globals/ParkourTrackerDelegate" pc="268438812" symbol="onSelect"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerDelegate.mc" id="40" lineNum="13" parent="globals/ParkourTrackerDelegate" pc="268438825" symbol="onSelect"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerDelegate.mc" id="40" lineNum="14" parent="globals/ParkourTrackerDelegate" pc="268438835" symbol="onSelect"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerDelegate.mc" id="40" lineNum="15" parent="globals/ParkourTrackerDelegate" pc="268438846" symbol="onSelect"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerDelegate.mc" id="40" lineNum="16" parent="globals/ParkourTrackerDelegate" pc="268438856" symbol="onSelect"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerDelegate.mc" id="40" lineNum="18" parent="globals/ParkourTrackerDelegate" pc="268438867" symbol="onSelect"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerDelegate.mc" id="40" lineNum="20" parent="globals/ParkourTrackerDelegate" pc="268438875" symbol="onSelect"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerDelegate.mc" id="40" lineNum="21" parent="globals/ParkourTrackerDelegate" pc="268438886" symbol="onSelect"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/bin/gen/006-B3906-00/source/Rez.mcgen" id="41" lineNum="13" parent="globals/Rez/Layouts" pc="268438888" symbol="MainLayout"/>
-        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/bin/gen/006-B3906-00/source/Rez.mcgen" id="41" lineNum="14" parent="globals/Rez/Layouts" pc="268438898" symbol="MainLayout"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerMenuDelegate.mc" id="1" lineNum="5" parent="globals/ParkourTrackerMenuDelegate" pc="268435457" symbol="&lt;init&gt;"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" id="2" lineNum="7" parent="globals/ParkourTrackerView" pc="268435469" symbol="&lt;init&gt;"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerApp.mc" id="3" lineNum="30" parent="globals" pc="268435481" symbol="getApp"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerApp.mc" id="3" lineNum="31" parent="globals" pc="268435491" symbol="getApp"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/bin/gen/006-B3906-00/source/Rez.mcgen" id="4" lineNum="7" parent="globals/Rez" pc="268435502" symbol="&lt;init&gt;"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerApp.mc" id="5" lineNum="5" parent="globals/ParkourTrackerApp" pc="268435522" symbol="&lt;init&gt;"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/SummaryDelegate.mc" id="6" lineNum="22" parent="globals/SaveMenuDelegate" pc="268435534" symbol="&lt;init&gt;"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/SummaryDelegate.mc" id="7" lineNum="5" parent="globals/SummaryDelegate" pc="268435546" symbol="&lt;init&gt;"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/SummaryView.mc" id="8" lineNum="6" parent="globals/SummaryView" pc="268435558" symbol="&lt;init&gt;"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerDelegate.mc" id="9" lineNum="4" parent="globals/ParkourTrackerDelegate" pc="268435570" symbol="&lt;init&gt;"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerMenuDelegate.mc" id="10" lineNum="11" parent="globals/ParkourTrackerMenuDelegate" pc="268435582" symbol="onMenuItem"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerMenuDelegate.mc" id="10" lineNum="12" parent="globals/ParkourTrackerMenuDelegate" pc="268435584" symbol="onMenuItem"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerMenuDelegate.mc" id="10" lineNum="13" parent="globals/ParkourTrackerMenuDelegate" pc="268435595" symbol="onMenuItem"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerMenuDelegate.mc" id="10" lineNum="14" parent="globals/ParkourTrackerMenuDelegate" pc="268435614" symbol="onMenuItem"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerMenuDelegate.mc" id="10" lineNum="15" parent="globals/ParkourTrackerMenuDelegate" pc="268435625" symbol="onMenuItem"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerMenuDelegate.mc" id="11" lineNum="7" parent="globals/ParkourTrackerMenuDelegate" pc="268435644" symbol="initialize"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerMenuDelegate.mc" id="11" lineNum="8" parent="globals/ParkourTrackerMenuDelegate" pc="268435646" symbol="initialize"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" id="13" lineNum="9" parent="globals/ParkourTrackerView" pc="268435659" symbol="initialize"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" id="13" lineNum="10" parent="globals/ParkourTrackerView" pc="268435661" symbol="initialize"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" id="14" lineNum="16" parent="globals/ParkourTrackerView" pc="268435674" symbol="onUpdate"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" id="14" lineNum="17" parent="globals/ParkourTrackerView" pc="268435677" symbol="onUpdate"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" id="14" lineNum="18" parent="globals/ParkourTrackerView" pc="268435690" symbol="onUpdate"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" id="14" lineNum="19" parent="globals/ParkourTrackerView" pc="268435699" symbol="onUpdate"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" id="14" lineNum="21" parent="globals/ParkourTrackerView" pc="268435706" symbol="onUpdate"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" id="14" lineNum="22" parent="globals/ParkourTrackerView" pc="268435718" symbol="onUpdate"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" id="14" lineNum="25" parent="globals/ParkourTrackerView" pc="268435726" symbol="onUpdate"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" id="14" lineNum="26" parent="globals/ParkourTrackerView" pc="268435751" symbol="onUpdate"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" id="14" lineNum="27" parent="globals/ParkourTrackerView" pc="268435798" symbol="onUpdate"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" id="14" lineNum="28" parent="globals/ParkourTrackerView" pc="268435815" symbol="onUpdate"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" id="14" lineNum="31" parent="globals/ParkourTrackerView" pc="268435835" symbol="onUpdate"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" id="14" lineNum="32" parent="globals/ParkourTrackerView" pc="268435855" symbol="onUpdate"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" id="14" lineNum="33" parent="globals/ParkourTrackerView" pc="268435872" symbol="onUpdate"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" id="14" lineNum="34" parent="globals/ParkourTrackerView" pc="268435895" symbol="onUpdate"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" id="14" lineNum="35" parent="globals/ParkourTrackerView" pc="268435911" symbol="onUpdate"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" id="14" lineNum="36" parent="globals/ParkourTrackerView" pc="268435935" symbol="onUpdate"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" id="14" lineNum="40" parent="globals/ParkourTrackerView" pc="268435936" symbol="onUpdate"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" id="14" lineNum="41" parent="globals/ParkourTrackerView" pc="268435945" symbol="onUpdate"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" id="14" lineNum="42" parent="globals/ParkourTrackerView" pc="268435953" symbol="onUpdate"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" id="14" lineNum="43" parent="globals/ParkourTrackerView" pc="268435964" symbol="onUpdate"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" id="14" lineNum="44" parent="globals/ParkourTrackerView" pc="268435971" symbol="onUpdate"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" id="14" lineNum="45" parent="globals/ParkourTrackerView" pc="268436029" symbol="onUpdate"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" id="14" lineNum="46" parent="globals/ParkourTrackerView" pc="268436046" symbol="onUpdate"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" id="14" lineNum="49" parent="globals/ParkourTrackerView" pc="268436066" symbol="onUpdate"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" id="14" lineNum="50" parent="globals/ParkourTrackerView" pc="268436075" symbol="onUpdate"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" id="14" lineNum="51" parent="globals/ParkourTrackerView" pc="268436091" symbol="onUpdate"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" id="14" lineNum="53" parent="globals/ParkourTrackerView" pc="268436129" symbol="onUpdate"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" id="14" lineNum="54" parent="globals/ParkourTrackerView" pc="268436138" symbol="onUpdate"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" id="14" lineNum="55" parent="globals/ParkourTrackerView" pc="268436154" symbol="onUpdate"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" id="14" lineNum="58" parent="globals/ParkourTrackerView" pc="268436185" symbol="onUpdate"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" id="14" lineNum="59" parent="globals/ParkourTrackerView" pc="268436201" symbol="onUpdate"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" id="14" lineNum="62" parent="globals/ParkourTrackerView" pc="268436224" symbol="onUpdate"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" id="14" lineNum="63" parent="globals/ParkourTrackerView" pc="268436227" symbol="onUpdate"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" id="14" lineNum="64" parent="globals/ParkourTrackerView" pc="268436239" symbol="onUpdate"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" id="14" lineNum="65" parent="globals/ParkourTrackerView" pc="268436245" symbol="onUpdate"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" id="14" lineNum="66" parent="globals/ParkourTrackerView" pc="268436254" symbol="onUpdate"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" id="14" lineNum="66" parent="globals/ParkourTrackerView" pc="268436260" symbol="onUpdate"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" id="14" lineNum="68" parent="globals/ParkourTrackerView" pc="268436264" symbol="onUpdate"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" id="14" lineNum="69" parent="globals/ParkourTrackerView" pc="268436288" symbol="onUpdate"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" id="14" lineNum="70" parent="globals/ParkourTrackerView" pc="268436305" symbol="onUpdate"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" id="14" lineNum="71" parent="globals/ParkourTrackerView" pc="268436326" symbol="onUpdate"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" id="14" lineNum="72" parent="globals/ParkourTrackerView" pc="268436343" symbol="onUpdate"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" id="14" lineNum="75" parent="globals/ParkourTrackerView" pc="268436367" symbol="onUpdate"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" id="14" lineNum="76" parent="globals/ParkourTrackerView" pc="268436383" symbol="onUpdate"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" id="14" lineNum="77" parent="globals/ParkourTrackerView" pc="268436415" symbol="onUpdate"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" id="14" lineNum="78" parent="globals/ParkourTrackerView" pc="268436432" symbol="onUpdate"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" id="14" lineNum="81" parent="globals/ParkourTrackerView" pc="268436457" symbol="onUpdate"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" id="14" lineNum="82" parent="globals/ParkourTrackerView" pc="268436466" symbol="onUpdate"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" id="14" lineNum="83" parent="globals/ParkourTrackerView" pc="268436475" symbol="onUpdate"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" id="14" lineNum="84" parent="globals/ParkourTrackerView" pc="268436492" symbol="onUpdate"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" id="14" lineNum="85" parent="globals/ParkourTrackerView" pc="268436512" symbol="onUpdate"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" id="14" lineNum="86" parent="globals/ParkourTrackerView" pc="268436529" symbol="onUpdate"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" id="14" lineNum="88" parent="globals/ParkourTrackerView" pc="268436557" symbol="onUpdate"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" id="14" lineNum="89" parent="globals/ParkourTrackerView" pc="268436574" symbol="onUpdate"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" id="14" lineNum="90" parent="globals/ParkourTrackerView" pc="268436594" symbol="onUpdate"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerView.mc" id="14" lineNum="91" parent="globals/ParkourTrackerView" pc="268436611" symbol="onUpdate"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="15" lineNum="191" parent="globals/ParkourModel" pc="268436639" symbol="onTick"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="15" lineNum="192" parent="globals/ParkourModel" pc="268436641" symbol="onTick"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="16" lineNum="105" parent="globals/ParkourModel" pc="268436653" symbol="stopSession"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="16" lineNum="106" parent="globals/ParkourModel" pc="268436656" symbol="stopSession"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="16" lineNum="106" parent="globals/ParkourModel" pc="268436665" symbol="stopSession"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="16" lineNum="108" parent="globals/ParkourModel" pc="268436666" symbol="stopSession"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="16" lineNum="110" parent="globals/ParkourModel" pc="268436679" symbol="stopSession"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="16" lineNum="111" parent="globals/ParkourModel" pc="268436691" symbol="stopSession"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="16" lineNum="112" parent="globals/ParkourModel" pc="268436697" symbol="stopSession"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="16" lineNum="113" parent="globals/ParkourModel" pc="268436706" symbol="stopSession"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="16" lineNum="114" parent="globals/ParkourModel" pc="268436719" symbol="stopSession"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="16" lineNum="116" parent="globals/ParkourModel" pc="268436737" symbol="stopSession"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="16" lineNum="118" parent="globals/ParkourModel" pc="268436750" symbol="stopSession"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="16" lineNum="119" parent="globals/ParkourModel" pc="268436759" symbol="stopSession"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="16" lineNum="119" parent="globals/ParkourModel" pc="268436765" symbol="stopSession"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="16" lineNum="120" parent="globals/ParkourModel" pc="268436774" symbol="stopSession"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="16" lineNum="121" parent="globals/ParkourModel" pc="268436783" symbol="stopSession"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="16" lineNum="121" parent="globals/ParkourModel" pc="268436789" symbol="stopSession"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="16" lineNum="122" parent="globals/ParkourModel" pc="268436798" symbol="stopSession"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="16" lineNum="123" parent="globals/ParkourModel" pc="268436807" symbol="stopSession"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="16" lineNum="123" parent="globals/ParkourModel" pc="268436813" symbol="stopSession"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="16" lineNum="126" parent="globals/ParkourModel" pc="268436822" symbol="stopSession"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="16" lineNum="127" parent="globals/ParkourModel" pc="268436830" symbol="stopSession"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="16" lineNum="129" parent="globals/ParkourModel" pc="268436838" symbol="stopSession"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="16" lineNum="130" parent="globals/ParkourModel" pc="268436847" symbol="stopSession"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="16" lineNum="131" parent="globals/ParkourModel" pc="268436859" symbol="stopSession"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="16" lineNum="134" parent="globals/ParkourModel" pc="268436867" symbol="stopSession"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="16" lineNum="136" parent="globals/ParkourModel" pc="268436878" symbol="stopSession"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="16" lineNum="137" parent="globals/ParkourModel" pc="268436885" symbol="stopSession"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="16" lineNum="138" parent="globals/ParkourModel" pc="268436891" symbol="stopSession"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="16" lineNum="141" parent="globals/ParkourModel" pc="268436900" symbol="stopSession"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="17" lineNum="160" parent="globals/ParkourModel" pc="268436909" symbol="getElapsedSeconds"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="17" lineNum="161" parent="globals/ParkourModel" pc="268436911" symbol="getElapsedSeconds"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="17" lineNum="161" parent="globals/ParkourModel" pc="268436930" symbol="getElapsedSeconds"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="17" lineNum="162" parent="globals/ParkourModel" pc="268436936" symbol="getElapsedSeconds"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="17" lineNum="162" parent="globals/ParkourModel" pc="268436944" symbol="getElapsedSeconds"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="17" lineNum="163" parent="globals/ParkourModel" pc="268436950" symbol="getElapsedSeconds"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="17" lineNum="163" parent="globals/ParkourModel" pc="268436959" symbol="getElapsedSeconds"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="17" lineNum="164" parent="globals/ParkourModel" pc="268436965" symbol="getElapsedSeconds"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="18" lineNum="92" parent="globals/ParkourModel" pc="268437001" symbol="pauseSession"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="18" lineNum="93" parent="globals/ParkourModel" pc="268437003" symbol="pauseSession"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="18" lineNum="93" parent="globals/ParkourModel" pc="268437020" symbol="pauseSession"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="18" lineNum="94" parent="globals/ParkourModel" pc="268437021" symbol="pauseSession"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="18" lineNum="95" parent="globals/ParkourModel" pc="268437034" symbol="pauseSession"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="19" lineNum="167" parent="globals/ParkourModel" pc="268437043" symbol="getDistanceKm"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="19" lineNum="168" parent="globals/ParkourModel" pc="268437046" symbol="getDistanceKm"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="19" lineNum="169" parent="globals/ParkourModel" pc="268437058" symbol="getDistanceKm"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="19" lineNum="171" parent="globals/ParkourModel" pc="268437064" symbol="getDistanceKm"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="19" lineNum="172" parent="globals/ParkourModel" pc="268437073" symbol="getDistanceKm"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="19" lineNum="172" parent="globals/ParkourModel" pc="268437086" symbol="getDistanceKm"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="19" lineNum="175" parent="globals/ParkourModel" pc="268437095" symbol="getDistanceKm"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="19" lineNum="176" parent="globals/ParkourModel" pc="268437103" symbol="getDistanceKm"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="19" lineNum="177" parent="globals/ParkourModel" pc="268437110" symbol="getDistanceKm"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="19" lineNum="179" parent="globals/ParkourModel" pc="268437125" symbol="getDistanceKm"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="20" lineNum="99" parent="globals/ParkourModel" pc="268437127" symbol="resumeSession"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="20" lineNum="100" parent="globals/ParkourModel" pc="268437129" symbol="resumeSession"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="20" lineNum="100" parent="globals/ParkourModel" pc="268437147" symbol="resumeSession"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="20" lineNum="101" parent="globals/ParkourModel" pc="268437148" symbol="resumeSession"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="20" lineNum="102" parent="globals/ParkourModel" pc="268437165" symbol="resumeSession"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="21" lineNum="49" parent="globals/ParkourModel" pc="268437174" symbol="startSession"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="21" lineNum="50" parent="globals/ParkourModel" pc="268437177" symbol="startSession"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="21" lineNum="50" parent="globals/ParkourModel" pc="268437185" symbol="startSession"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="21" lineNum="52" parent="globals/ParkourModel" pc="268437186" symbol="startSession"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="21" lineNum="57" parent="globals/ParkourModel" pc="268437230" symbol="startSession"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="21" lineNum="60" parent="globals/ParkourModel" pc="268437239" symbol="startSession"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="21" lineNum="67" parent="globals/ParkourModel" pc="268437287" symbol="startSession"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="21" lineNum="69" parent="globals/ParkourModel" pc="268437295" symbol="startSession"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="21" lineNum="70" parent="globals/ParkourModel" pc="268437312" symbol="startSession"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="21" lineNum="71" parent="globals/ParkourModel" pc="268437320" symbol="startSession"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="21" lineNum="72" parent="globals/ParkourModel" pc="268437328" symbol="startSession"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="21" lineNum="73" parent="globals/ParkourModel" pc="268437336" symbol="startSession"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="21" lineNum="74" parent="globals/ParkourModel" pc="268437344" symbol="startSession"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="21" lineNum="75" parent="globals/ParkourModel" pc="268437352" symbol="startSession"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="21" lineNum="76" parent="globals/ParkourModel" pc="268437360" symbol="startSession"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="21" lineNum="77" parent="globals/ParkourModel" pc="268437372" symbol="startSession"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="21" lineNum="79" parent="globals/ParkourModel" pc="268437380" symbol="startSession"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="21" lineNum="80" parent="globals/ParkourModel" pc="268437392" symbol="startSession"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="21" lineNum="82" parent="globals/ParkourModel" pc="268437427" symbol="startSession"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="21" lineNum="88" parent="globals/ParkourModel" pc="268437492" symbol="startSession"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="21" lineNum="89" parent="globals/ParkourModel" pc="268437521" symbol="startSession"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="22" lineNum="195" parent="globals/ParkourModel" pc="268437553" symbol="onSensorData"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="22" lineNum="196" parent="globals/ParkourModel" pc="268437556" symbol="onSensorData"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="22" lineNum="197" parent="globals/ParkourModel" pc="268437564" symbol="onSensorData"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="22" lineNum="197" parent="globals/ParkourModel" pc="268437570" symbol="onSensorData"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="22" lineNum="199" parent="globals/ParkourModel" pc="268437571" symbol="onSensorData"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="22" lineNum="200" parent="globals/ParkourModel" pc="268437579" symbol="onSensorData"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="22" lineNum="201" parent="globals/ParkourModel" pc="268437587" symbol="onSensorData"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="22" lineNum="202" parent="globals/ParkourModel" pc="268437595" symbol="onSensorData"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="22" lineNum="202" parent="globals/ParkourModel" pc="268437614" symbol="onSensorData"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="22" lineNum="205" parent="globals/ParkourModel" pc="268437615" symbol="onSensorData"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="22" lineNum="206" parent="globals/ParkourModel" pc="268437624" symbol="onSensorData"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="22" lineNum="207" parent="globals/ParkourModel" pc="268437635" symbol="onSensorData"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="22" lineNum="208" parent="globals/ParkourModel" pc="268437648" symbol="onSensorData"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="22" lineNum="209" parent="globals/ParkourModel" pc="268437661" symbol="onSensorData"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="22" lineNum="210" parent="globals/ParkourModel" pc="268437674" symbol="onSensorData"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="23" lineNum="182" parent="globals/ParkourModel" pc="268437723" symbol="getStepCount"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="23" lineNum="183" parent="globals/ParkourModel" pc="268437726" symbol="getStepCount"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="23" lineNum="184" parent="globals/ParkourModel" pc="268437738" symbol="getStepCount"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="23" lineNum="184" parent="globals/ParkourModel" pc="268437744" symbol="getStepCount"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="23" lineNum="185" parent="globals/ParkourModel" pc="268437746" symbol="getStepCount"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="23" lineNum="186" parent="globals/ParkourModel" pc="268437754" symbol="getStepCount"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="23" lineNum="186" parent="globals/ParkourModel" pc="268437760" symbol="getStepCount"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="23" lineNum="187" parent="globals/ParkourModel" pc="268437762" symbol="getStepCount"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="23" lineNum="188" parent="globals/ParkourModel" pc="268437772" symbol="getStepCount"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="24" lineNum="144" parent="globals/ParkourModel" pc="268437786" symbol="saveSession"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="24" lineNum="145" parent="globals/ParkourModel" pc="268437789" symbol="saveSession"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="24" lineNum="146" parent="globals/ParkourModel" pc="268437796" symbol="saveSession"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="24" lineNum="147" parent="globals/ParkourModel" pc="268437802" symbol="saveSession"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="24" lineNum="148" parent="globals/ParkourModel" pc="268437811" symbol="saveSession"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="25" lineNum="152" parent="globals/ParkourModel" pc="268437820" symbol="discardSession"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="25" lineNum="153" parent="globals/ParkourModel" pc="268437823" symbol="discardSession"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="25" lineNum="154" parent="globals/ParkourModel" pc="268437830" symbol="discardSession"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="25" lineNum="155" parent="globals/ParkourModel" pc="268437836" symbol="discardSession"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="25" lineNum="156" parent="globals/ParkourModel" pc="268437845" symbol="discardSession"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="26" lineNum="215" parent="globals/ParkourModel" pc="268437854" symbol="&lt;globals/ParkourModel/&lt;&gt;_processSample&gt;"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="26" lineNum="216" parent="globals/ParkourModel" pc="268437857" symbol="&lt;globals/ParkourModel/&lt;&gt;_processSample&gt;"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="26" lineNum="217" parent="globals/ParkourModel" pc="268437867" symbol="&lt;globals/ParkourModel/&lt;&gt;_processSample&gt;"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="26" lineNum="218" parent="globals/ParkourModel" pc="268437882" symbol="&lt;globals/ParkourModel/&lt;&gt;_processSample&gt;"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="26" lineNum="221" parent="globals/ParkourModel" pc="268437883" symbol="&lt;globals/ParkourModel/&lt;&gt;_processSample&gt;"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="26" lineNum="222" parent="globals/ParkourModel" pc="268437897" symbol="&lt;globals/ParkourModel/&lt;&gt;_processSample&gt;"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="26" lineNum="223" parent="globals/ParkourModel" pc="268437908" symbol="&lt;globals/ParkourModel/&lt;&gt;_processSample&gt;"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="26" lineNum="225" parent="globals/ParkourModel" pc="268437923" symbol="&lt;globals/ParkourModel/&lt;&gt;_processSample&gt;"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="26" lineNum="226" parent="globals/ParkourModel" pc="268437934" symbol="&lt;globals/ParkourModel/&lt;&gt;_processSample&gt;"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="26" lineNum="229" parent="globals/ParkourModel" pc="268437947" symbol="&lt;globals/ParkourModel/&lt;&gt;_processSample&gt;"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="26" lineNum="232" parent="globals/ParkourModel" pc="268437956" symbol="&lt;globals/ParkourModel/&lt;&gt;_processSample&gt;"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="26" lineNum="234" parent="globals/ParkourModel" pc="268437967" symbol="&lt;globals/ParkourModel/&lt;&gt;_processSample&gt;"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="26" lineNum="235" parent="globals/ParkourModel" pc="268437982" symbol="&lt;globals/ParkourModel/&lt;&gt;_processSample&gt;"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="26" lineNum="236" parent="globals/ParkourModel" pc="268437994" symbol="&lt;globals/ParkourModel/&lt;&gt;_processSample&gt;"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="26" lineNum="237" parent="globals/ParkourModel" pc="268438002" symbol="&lt;globals/ParkourModel/&lt;&gt;_processSample&gt;"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="26" lineNum="238" parent="globals/ParkourModel" pc="268438011" symbol="&lt;globals/ParkourModel/&lt;&gt;_processSample&gt;"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="26" lineNum="239" parent="globals/ParkourModel" pc="268438018" symbol="&lt;globals/ParkourModel/&lt;&gt;_processSample&gt;"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="26" lineNum="239" parent="globals/ParkourModel" pc="268438024" symbol="&lt;globals/ParkourModel/&lt;&gt;_processSample&gt;"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="26" lineNum="240" parent="globals/ParkourModel" pc="268438041" symbol="&lt;globals/ParkourModel/&lt;&gt;_processSample&gt;"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="26" lineNum="242" parent="globals/ParkourModel" pc="268438052" symbol="&lt;globals/ParkourModel/&lt;&gt;_processSample&gt;"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourModel.mc" id="26" lineNum="243" parent="globals/ParkourModel" pc="268438064" symbol="&lt;globals/ParkourModel/&lt;&gt;_processSample&gt;"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerApp.mc" id="29" lineNum="24" parent="globals/ParkourTrackerApp" pc="268438073" symbol="getInitialView"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerApp.mc" id="29" lineNum="25" parent="globals/ParkourTrackerApp" pc="268438075" symbol="getInitialView"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerApp.mc" id="30" lineNum="9" parent="globals/ParkourTrackerApp" pc="268438122" symbol="initialize"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerApp.mc" id="30" lineNum="10" parent="globals/ParkourTrackerApp" pc="268438124" symbol="initialize"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerApp.mc" id="30" lineNum="11" parent="globals/ParkourTrackerApp" pc="268438136" symbol="initialize"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerApp.mc" id="31" lineNum="18" parent="globals/ParkourTrackerApp" pc="268438162" symbol="onStop"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerApp.mc" id="31" lineNum="19" parent="globals/ParkourTrackerApp" pc="268438164" symbol="onStop"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerApp.mc" id="31" lineNum="21" parent="globals/ParkourTrackerApp" pc="268438176" symbol="onStop"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/SummaryDelegate.mc" id="32" lineNum="39" parent="globals/SaveMenuDelegate" pc="268438189" symbol="onBack"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/SummaryDelegate.mc" id="32" lineNum="40" parent="globals/SaveMenuDelegate" pc="268438191" symbol="onBack"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/SummaryDelegate.mc" id="33" lineNum="24" parent="globals/SaveMenuDelegate" pc="268438207" symbol="initialize"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/SummaryDelegate.mc" id="33" lineNum="25" parent="globals/SaveMenuDelegate" pc="268438209" symbol="initialize"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/SummaryDelegate.mc" id="34" lineNum="28" parent="globals/SaveMenuDelegate" pc="268438222" symbol="onSelect"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/SummaryDelegate.mc" id="34" lineNum="29" parent="globals/SaveMenuDelegate" pc="268438225" symbol="onSelect"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/SummaryDelegate.mc" id="34" lineNum="30" parent="globals/SaveMenuDelegate" pc="268438238" symbol="onSelect"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/SummaryDelegate.mc" id="34" lineNum="31" parent="globals/SaveMenuDelegate" pc="268438254" symbol="onSelect"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/SummaryDelegate.mc" id="34" lineNum="33" parent="globals/SaveMenuDelegate" pc="268438265" symbol="onSelect"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/SummaryDelegate.mc" id="34" lineNum="35" parent="globals/SaveMenuDelegate" pc="268438273" symbol="onSelect"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/SummaryDelegate.mc" id="35" lineNum="12" parent="globals/SummaryDelegate" pc="268438285" symbol="onBack"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/SummaryDelegate.mc" id="35" lineNum="13" parent="globals/SummaryDelegate" pc="268438288" symbol="onBack"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/SummaryDelegate.mc" id="35" lineNum="14" parent="globals/SummaryDelegate" pc="268438328" symbol="onBack"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/SummaryDelegate.mc" id="35" lineNum="15" parent="globals/SummaryDelegate" pc="268438373" symbol="onBack"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/SummaryDelegate.mc" id="35" lineNum="16" parent="globals/SummaryDelegate" pc="268438418" symbol="onBack"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/SummaryDelegate.mc" id="35" lineNum="17" parent="globals/SummaryDelegate" pc="268438453" symbol="onBack"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/SummaryDelegate.mc" id="36" lineNum="7" parent="globals/SummaryDelegate" pc="268438455" symbol="initialize"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/SummaryDelegate.mc" id="36" lineNum="8" parent="globals/SummaryDelegate" pc="268438457" symbol="initialize"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/SummaryView.mc" id="38" lineNum="8" parent="globals/SummaryView" pc="268438470" symbol="initialize"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/SummaryView.mc" id="38" lineNum="9" parent="globals/SummaryView" pc="268438472" symbol="initialize"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/SummaryView.mc" id="39" lineNum="15" parent="globals/SummaryView" pc="268438485" symbol="onUpdate"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/SummaryView.mc" id="39" lineNum="16" parent="globals/SummaryView" pc="268438488" symbol="onUpdate"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/SummaryView.mc" id="39" lineNum="17" parent="globals/SummaryView" pc="268438501" symbol="onUpdate"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/SummaryView.mc" id="39" lineNum="18" parent="globals/SummaryView" pc="268438510" symbol="onUpdate"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/SummaryView.mc" id="39" lineNum="20" parent="globals/SummaryView" pc="268438517" symbol="onUpdate"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/SummaryView.mc" id="39" lineNum="21" parent="globals/SummaryView" pc="268438529" symbol="onUpdate"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/SummaryView.mc" id="39" lineNum="24" parent="globals/SummaryView" pc="268438537" symbol="onUpdate"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/SummaryView.mc" id="39" lineNum="25" parent="globals/SummaryView" pc="268438553" symbol="onUpdate"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/SummaryView.mc" id="39" lineNum="28" parent="globals/SummaryView" pc="268438576" symbol="onUpdate"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/SummaryView.mc" id="39" lineNum="29" parent="globals/SummaryView" pc="268438585" symbol="onUpdate"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/SummaryView.mc" id="39" lineNum="30" parent="globals/SummaryView" pc="268438593" symbol="onUpdate"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/SummaryView.mc" id="39" lineNum="31" parent="globals/SummaryView" pc="268438604" symbol="onUpdate"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/SummaryView.mc" id="39" lineNum="32" parent="globals/SummaryView" pc="268438611" symbol="onUpdate"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/SummaryView.mc" id="39" lineNum="33" parent="globals/SummaryView" pc="268438669" symbol="onUpdate"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/SummaryView.mc" id="39" lineNum="34" parent="globals/SummaryView" pc="268438686" symbol="onUpdate"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/SummaryView.mc" id="39" lineNum="37" parent="globals/SummaryView" pc="268438706" symbol="onUpdate"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/SummaryView.mc" id="39" lineNum="38" parent="globals/SummaryView" pc="268438722" symbol="onUpdate"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/SummaryView.mc" id="39" lineNum="43" parent="globals/SummaryView" pc="268438765" symbol="onUpdate"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/SummaryView.mc" id="39" lineNum="44" parent="globals/SummaryView" pc="268438781" symbol="onUpdate"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/SummaryView.mc" id="39" lineNum="49" parent="globals/SummaryView" pc="268438817" symbol="onUpdate"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/SummaryView.mc" id="39" lineNum="50" parent="globals/SummaryView" pc="268438834" symbol="onUpdate"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/SummaryView.mc" id="39" lineNum="55" parent="globals/SummaryView" pc="268438890" symbol="onUpdate"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/SummaryView.mc" id="39" lineNum="56" parent="globals/SummaryView" pc="268438907" symbol="onUpdate"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/SummaryView.mc" id="39" lineNum="61" parent="globals/SummaryView" pc="268438944" symbol="onUpdate"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/SummaryView.mc" id="39" lineNum="62" parent="globals/SummaryView" pc="268438960" symbol="onUpdate"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerDelegate.mc" id="40" lineNum="25" parent="globals/ParkourTrackerDelegate" pc="268438985" symbol="onBack"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerDelegate.mc" id="40" lineNum="26" parent="globals/ParkourTrackerDelegate" pc="268438988" symbol="onBack"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerDelegate.mc" id="40" lineNum="27" parent="globals/ParkourTrackerDelegate" pc="268439001" symbol="onBack"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerDelegate.mc" id="40" lineNum="28" parent="globals/ParkourTrackerDelegate" pc="268439010" symbol="onBack"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerDelegate.mc" id="40" lineNum="30" parent="globals/ParkourTrackerDelegate" pc="268439018" symbol="onBack"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerDelegate.mc" id="40" lineNum="35" parent="globals/ParkourTrackerDelegate" pc="268439069" symbol="onBack"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerDelegate.mc" id="41" lineNum="6" parent="globals/ParkourTrackerDelegate" pc="268439071" symbol="initialize"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerDelegate.mc" id="41" lineNum="7" parent="globals/ParkourTrackerDelegate" pc="268439073" symbol="initialize"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerDelegate.mc" id="42" lineNum="11" parent="globals/ParkourTrackerDelegate" pc="268439086" symbol="onSelect"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerDelegate.mc" id="42" lineNum="12" parent="globals/ParkourTrackerDelegate" pc="268439089" symbol="onSelect"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerDelegate.mc" id="42" lineNum="13" parent="globals/ParkourTrackerDelegate" pc="268439102" symbol="onSelect"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerDelegate.mc" id="42" lineNum="14" parent="globals/ParkourTrackerDelegate" pc="268439112" symbol="onSelect"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerDelegate.mc" id="42" lineNum="15" parent="globals/ParkourTrackerDelegate" pc="268439123" symbol="onSelect"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerDelegate.mc" id="42" lineNum="16" parent="globals/ParkourTrackerDelegate" pc="268439133" symbol="onSelect"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerDelegate.mc" id="42" lineNum="18" parent="globals/ParkourTrackerDelegate" pc="268439144" symbol="onSelect"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerDelegate.mc" id="42" lineNum="20" parent="globals/ParkourTrackerDelegate" pc="268439152" symbol="onSelect"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/source/ParkourTrackerDelegate.mc" id="42" lineNum="21" parent="globals/ParkourTrackerDelegate" pc="268439163" symbol="onSelect"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/bin/gen/006-B3906-00/source/Rez.mcgen" id="43" lineNum="13" parent="globals/Rez/Layouts" pc="268439165" symbol="MainLayout"/>
+        <entry filename="/Users/joelbecerril/MNA_WORKSPACE/garminv0/ParkourTracker/bin/gen/006-B3906-00/source/Rez.mcgen" id="43" lineNum="14" parent="globals/Rez/Layouts" pc="268439175" symbol="MainLayout"/>
     </pcToLineNum>
     <symbolTable>
         <entry id="8388639" module="true" symbol="Graphics"/>
         <entry id="10" object="true" symbol="ParkourTrackerView"/>
-        <entry field="true" id="23" symbol="isRunning"/>
+        <entry field="true" id="29" symbol="isRunning"/>
         <entry id="8388632" method="true" symbol="&lt;init&gt;"/>
         <entry id="8389849" symbol="units"/>
         <entry field="true" id="8388731" symbol="startTime"/>
         <entry id="8388638" module="true" symbol="ActivityRecording"/>
-        <entry id="40" method="true" symbol="MainLayout"/>
+        <entry id="46" method="true" symbol="MainLayout"/>
         <entry field="true" id="8388890" symbol="sport"/>
-        <entry id="32" method="true" symbol="startSession"/>
-        <entry field="true" id="22" symbol="isPaused"/>
+        <entry id="38" method="true" symbol="startSession"/>
+        <entry field="true" id="28" symbol="isPaused"/>
         <entry field="true" id="8388611" module="true" symbol="Toybox"/>
-        <entry id="26" method="true" symbol="onSensorData"/>
-        <entry field="true" id="41" symbol="AppName"/>
-        <entry id="33" method="true" symbol="stopSession"/>
+        <entry id="32" method="true" symbol="onSensorData"/>
+        <entry field="true" id="47" symbol="AppName"/>
+        <entry id="8388633" module="true" symbol="ActivityMonitor"/>
+        <entry id="39" method="true" symbol="stopSession"/>
         <entry id="5" module="true" symbol="globals/Rez/Strings"/>
         <entry id="8388631" module="true" symbol="Activity"/>
-        <entry field="true" id="36" symbol="summaryDistanceKm"/>
+        <entry field="true" id="42" symbol="summaryDistanceKm"/>
         <entry id="8388648" module="true" symbol="WatchUi"/>
         <entry id="8389081" method="true" symbol="onBack"/>
         <entry id="2" module="true" symbol="globals/Rez"/>
         <entry id="8388883" method="true" symbol="discard"/>
         <entry id="8389124" method="true" symbol="onUpdate"/>
-        <entry id="28" method="true" symbol="pauseSession"/>
-        <entry field="true" id="16" symbol="&lt;globals/ParkourModel/&lt;&gt;_jumpField&gt;"/>
+        <entry id="34" method="true" symbol="pauseSession"/>
+        <entry field="true" id="17" symbol="&lt;globals/ParkourModel/&lt;&gt;_jumpField&gt;"/>
         <entry id="8388771" module="true" object="true" symbol="Drawables"/>
-        <entry id="43" symbol="item_2"/>
-        <entry id="42" symbol="item_1"/>
+        <entry id="49" symbol="item_2"/>
+        <entry id="48" symbol="item_1"/>
         <entry id="8389275" method="true" symbol="getApp"/>
-        <entry field="true" id="34" symbol="summaryAvgHR"/>
+        <entry field="true" id="40" symbol="summaryAvgHR"/>
         <entry id="4" module="true" symbol="globals/Rez/Layouts"/>
+        <entry field="true" id="21" symbol="&lt;globals/ParkourModel/&lt;&gt;_startSteps&gt;"/>
         <entry id="8389122" method="true" symbol="onLayout"/>
-        <entry field="true" id="19" symbol="finalElapsedSeconds"/>
+        <entry field="true" id="24" symbol="finalElapsedSeconds"/>
         <entry field="true" id="8390134" symbol="sampleRate"/>
         <entry id="8390648" symbol="accelerometer"/>
         <entry id="8388882" method="true" symbol="save"/>
         <entry id="9" object="true" symbol="ParkourTrackerMenuDelegate"/>
+        <entry id="27" method="true" symbol="getStepCount"/>
+        <entry id="20" method="true" symbol="&lt;globals/ParkourModel/&lt;&gt;_processSample&gt;"/>
         <entry id="3" module="true" symbol="globals/Rez/Drawables"/>
-        <entry field="true" id="37" symbol="summaryMaxHR"/>
-        <entry field="true" id="35" symbol="summaryCalories"/>
+        <entry field="true" id="43" symbol="summaryMaxHR"/>
+        <entry field="true" id="41" symbol="summaryCalories"/>
         <entry id="11" object="true" symbol="SaveMenuDelegate"/>
         <entry id="13" object="true" symbol="SummaryView"/>
         <entry field="true" id="8390438" symbol="enabled"/>
@@ -304,100 +337,102 @@
         <entry id="8389619" method="true" symbol="onSelect"/>
         <entry id="8388645" module="true" symbol="Time"/>
         <entry id="8388769" module="true" object="true" symbol="Rez"/>
-        <entry field="true" id="24" symbol="jumpCooldown"/>
+        <entry field="true" id="30" symbol="jumpCooldown"/>
         <entry id="8388640" module="true" symbol="Lang"/>
-        <entry field="true" id="39" symbol="LauncherIcon"/>
+        <entry field="true" id="45" symbol="LauncherIcon"/>
         <entry id="8388610" symbol="statics"/>
-        <entry field="true" id="17" symbol="&lt;globals/ParkourModel/&lt;&gt;_timer&gt;"/>
+        <entry field="true" id="22" symbol="&lt;globals/ParkourModel/&lt;&gt;_timer&gt;"/>
         <entry id="8388643" module="true" symbol="Sensor"/>
         <entry id="12" object="true" symbol="SummaryDelegate"/>
         <entry id="8389350" module="true" symbol="globals"/>
         <entry id="8388770" module="true" object="true" symbol="Strings"/>
-        <entry id="29" method="true" symbol="resumeSession"/>
-        <entry id="27" method="true" symbol="onTick"/>
+        <entry id="35" method="true" symbol="resumeSession"/>
+        <entry id="33" method="true" symbol="onTick"/>
         <entry id="8388702" method="true" symbol="initialize"/>
-        <entry field="true" id="38" symbol="model"/>
+        <entry field="true" id="44" symbol="model"/>
         <entry id="8389279" method="true" symbol="onStart"/>
         <entry field="true" id="8388891" symbol="subSport"/>
         <entry id="8389780" module="true" symbol="FitContributor"/>
         <entry field="true" id="8388892" symbol="name"/>
         <entry id="8389808" symbol="period"/>
         <entry id="8388641" module="true" symbol="Math"/>
-        <entry field="true" id="25" symbol="jumpCount"/>
+        <entry field="true" id="31" symbol="jumpCount"/>
         <entry id="6" object="true" symbol="ParkourModel"/>
         <entry id="8389280" method="true" symbol="getInitialView"/>
         <entry id="8389281" method="true" symbol="onStop"/>
         <entry id="8389109" method="true" symbol="onMenuItem"/>
         <entry id="8389847" symbol="mesgType"/>
         <entry field="true" id="15" symbol="&lt;globals/ParkourModel/&lt;&gt;_accumulatedSeconds&gt;"/>
+        <entry field="true" id="16" symbol="&lt;globals/ParkourModel/&lt;&gt;_airborneSamples&gt;"/>
         <entry id="7" object="true" symbol="ParkourTrackerApp"/>
         <entry id="8388646" module="true" object="true" symbol="Timer"/>
         <entry id="14" module="true" symbol="Layouts"/>
-        <entry id="30" method="true" symbol="saveSession"/>
-        <entry id="20" method="true" symbol="getDistanceKm"/>
+        <entry id="19" symbol="grounded"/>
+        <entry id="36" method="true" symbol="saveSession"/>
+        <entry id="50" symbol="airborne"/>
+        <entry id="25" method="true" symbol="getDistanceKm"/>
         <entry id="8" object="true" symbol="ParkourTrackerDelegate"/>
-        <entry field="true" id="31" symbol="session"/>
-        <entry id="21" method="true" symbol="getElapsedSeconds"/>
-        <entry id="18" method="true" symbol="discardSession"/>
+        <entry field="true" id="18" symbol="&lt;globals/ParkourModel/&lt;&gt;_jumpState&gt;"/>
+        <entry field="true" id="37" symbol="session"/>
+        <entry id="26" method="true" symbol="getElapsedSeconds"/>
+        <entry id="23" method="true" symbol="discardSession"/>
         <entry id="8388635" module="true" symbol="Application"/>
         <entry field="true" id="8389642" symbol="title"/>
     </symbolTable>
     <localVars>
-        <entry arg="true" endPc="268435651" name="item" stackId="1" startPc="268435585"/>
-        <entry arg="true" endPc="268436607" name="dc" stackId="1" startPc="268435685"/>
-        <entry endPc="268436606" name="model" stackId="2" startPc="268435688"/>
-        <entry endPc="268436606" name="w" stackId="3" startPc="268435688"/>
-        <entry endPc="268436606" name="cx" stackId="4" startPc="268435688"/>
-        <entry endPc="268436606" name="timeInfo" stackId="5" startPc="268435688"/>
-        <entry endPc="268436606" name="clockStr" stackId="6" startPc="268435688"/>
-        <entry endPc="268436606" name="secs" stackId="7" startPc="268435688"/>
-        <entry endPc="268436606" name="hh" stackId="8" startPc="268435688"/>
-        <entry endPc="268436606" name="mm" stackId="9" startPc="268435688"/>
-        <entry endPc="268436606" name="ss" stackId="10" startPc="268435688"/>
-        <entry endPc="268436606" name="timerStr" stackId="11" startPc="268435688"/>
-        <entry endPc="268436606" name="distKm" stackId="12" startPc="268435688"/>
-        <entry endPc="268436606" name="hr" stackId="13" startPc="268435688"/>
-        <entry endPc="268436606" name="info" stackId="14" startPc="268435688"/>
-        <entry endPc="268436224" name="hrVal" stackId="15" startPc="268436203"/>
-        <entry endPc="268436606" name="hrStr" stackId="16" startPc="268435688"/>
-        <entry endPc="268436897" name="info" stackId="1" startPc="268436625"/>
-        <entry endPc="268436802" name="ed" stackId="2" startPc="268436669"/>
-        <entry endPc="268436802" name="avgHR" stackId="3" startPc="268436669"/>
-        <entry endPc="268436802" name="maxHR" stackId="4" startPc="268436669"/>
-        <entry endPc="268436802" name="cal" stackId="5" startPc="268436669"/>
-        <entry endPc="268436897" name="sess" stackId="6" startPc="268436625"/>
-        <entry endPc="268437105" name="info" stackId="1" startPc="268437048"/>
-        <entry endPc="268437105" name="ed" stackId="2" startPc="268437048"/>
-        <entry endPc="268437461" name="s" stackId="1" startPc="268437159"/>
-        <entry arg="true" endPc="268437712" name="data" stackId="1" startPc="268437463"/>
-        <entry endPc="268437711" name="accel" stackId="2" startPc="268437466"/>
-        <entry endPc="268437711" name="xArr" stackId="3" startPc="268437466"/>
-        <entry endPc="268437711" name="yArr" stackId="4" startPc="268437466"/>
-        <entry endPc="268437711" name="zArr" stackId="5" startPc="268437466"/>
-        <entry endPc="268437711" name="i" stackId="6" startPc="268437466"/>
-        <entry endPc="268437711" name="x" stackId="7" startPc="268437466"/>
-        <entry endPc="268437711" name="y" stackId="8" startPc="268437466"/>
-        <entry endPc="268437711" name="z" stackId="9" startPc="268437466"/>
-        <entry endPc="268437711" name="magnitude" stackId="10" startPc="268437466"/>
-        <entry endPc="268437708" name="jf" stackId="11" startPc="268437653"/>
-        <entry endPc="268437748" name="sess" stackId="1" startPc="268437716"/>
-        <entry endPc="268437785" name="sess" stackId="1" startPc="268437753"/>
-        <entry arg="true" endPc="268437905" name="state" stackId="1" startPc="268437879"/>
-        <entry arg="true" endPc="268438001" name="item" stackId="1" startPc="268437939"/>
-        <entry endPc="268438000" name="model" stackId="2" startPc="268437942"/>
-        <entry endPc="268438171" name="menu" stackId="1" startPc="268438005"/>
-        <entry arg="true" endPc="268438704" name="dc" stackId="1" startPc="268438205"/>
-        <entry endPc="268438703" name="model" stackId="2" startPc="268438208"/>
-        <entry endPc="268438703" name="w" stackId="3" startPc="268438208"/>
-        <entry endPc="268438703" name="cx" stackId="4" startPc="268438208"/>
-        <entry endPc="268438703" name="secs" stackId="5" startPc="268438208"/>
-        <entry endPc="268438703" name="hh" stackId="6" startPc="268438208"/>
-        <entry endPc="268438703" name="mm" stackId="7" startPc="268438208"/>
-        <entry endPc="268438703" name="ss" stackId="8" startPc="268438208"/>
-        <entry endPc="268438703" name="timeStr" stackId="9" startPc="268438208"/>
-        <entry endPc="268438793" name="model" stackId="1" startPc="268438708"/>
-        <entry endPc="268438887" name="model" stackId="1" startPc="268438812"/>
-        <entry arg="true" endPc="268438900" name="dc" stackId="1" startPc="268438888"/>
+        <entry arg="true" endPc="268435643" name="item" stackId="1" startPc="268435582"/>
+        <entry arg="true" endPc="268436638" name="dc" stackId="1" startPc="268435674"/>
+        <entry endPc="268436637" name="model" stackId="2" startPc="268435677"/>
+        <entry endPc="268436637" name="w" stackId="3" startPc="268435677"/>
+        <entry endPc="268436637" name="cx" stackId="4" startPc="268435677"/>
+        <entry endPc="268436637" name="timeInfo" stackId="5" startPc="268435677"/>
+        <entry endPc="268436637" name="clockStr" stackId="6" startPc="268435677"/>
+        <entry endPc="268436637" name="secs" stackId="7" startPc="268435677"/>
+        <entry endPc="268436637" name="hh" stackId="8" startPc="268435677"/>
+        <entry endPc="268436637" name="mm" stackId="9" startPc="268435677"/>
+        <entry endPc="268436637" name="ss" stackId="10" startPc="268435677"/>
+        <entry endPc="268436637" name="timerStr" stackId="11" startPc="268435677"/>
+        <entry endPc="268436637" name="distKm" stackId="12" startPc="268435677"/>
+        <entry endPc="268436637" name="steps" stackId="13" startPc="268435677"/>
+        <entry endPc="268436637" name="hr" stackId="14" startPc="268435677"/>
+        <entry endPc="268436637" name="info" stackId="15" startPc="268435677"/>
+        <entry endPc="268436263" name="hrVal" stackId="16" startPc="268436245"/>
+        <entry endPc="268436637" name="hrStr" stackId="17" startPc="268435677"/>
+        <entry endPc="268436907" name="info" stackId="1" startPc="268436656"/>
+        <entry endPc="268436821" name="ed" stackId="2" startPc="268436697"/>
+        <entry endPc="268436821" name="avgHR" stackId="3" startPc="268436697"/>
+        <entry endPc="268436821" name="maxHR" stackId="4" startPc="268436697"/>
+        <entry endPc="268436821" name="cal" stackId="5" startPc="268436697"/>
+        <entry endPc="268436907" name="sess" stackId="6" startPc="268436656"/>
+        <entry endPc="268437551" name="s" stackId="1" startPc="268437177"/>
+        <entry endPc="268437551" name="ami" stackId="2" startPc="268437177"/>
+        <entry arg="true" endPc="268437722" name="data" stackId="1" startPc="268437553"/>
+        <entry endPc="268437721" name="accel" stackId="2" startPc="268437556"/>
+        <entry endPc="268437721" name="xArr" stackId="3" startPc="268437556"/>
+        <entry endPc="268437721" name="yArr" stackId="4" startPc="268437556"/>
+        <entry endPc="268437721" name="zArr" stackId="5" startPc="268437556"/>
+        <entry endPc="268437721" name="count" stackId="6" startPc="268437556"/>
+        <entry endPc="268437721" name="i" stackId="7" startPc="268437635"/>
+        <entry endPc="268437711" name="x" stackId="8" startPc="268437635"/>
+        <entry endPc="268437711" name="y" stackId="9" startPc="268437635"/>
+        <entry endPc="268437711" name="z" stackId="10" startPc="268437635"/>
+        <entry endPc="268437818" name="sess" stackId="1" startPc="268437789"/>
+        <entry endPc="268437852" name="sess" stackId="1" startPc="268437823"/>
+        <entry arg="true" endPc="268438072" name="mag" stackId="1" startPc="268437854"/>
+        <entry endPc="268438039" name="jf" stackId="2" startPc="268437967"/>
+        <entry arg="true" endPc="268438188" name="state" stackId="1" startPc="268438162"/>
+        <entry arg="true" endPc="268438284" name="item" stackId="1" startPc="268438222"/>
+        <entry endPc="268438283" name="model" stackId="2" startPc="268438225"/>
+        <entry arg="true" endPc="268438984" name="dc" stackId="1" startPc="268438485"/>
+        <entry endPc="268438983" name="model" stackId="2" startPc="268438488"/>
+        <entry endPc="268438983" name="w" stackId="3" startPc="268438488"/>
+        <entry endPc="268438983" name="cx" stackId="4" startPc="268438488"/>
+        <entry endPc="268438983" name="secs" stackId="5" startPc="268438488"/>
+        <entry endPc="268438983" name="hh" stackId="6" startPc="268438488"/>
+        <entry endPc="268438983" name="mm" stackId="7" startPc="268438488"/>
+        <entry endPc="268438983" name="ss" stackId="8" startPc="268438488"/>
+        <entry endPc="268438983" name="timeStr" stackId="9" startPc="268438488"/>
+        <entry arg="true" endPc="268439177" name="dc" stackId="1" startPc="268439165"/>
     </localVars>
     <deviceInfo deviceVersion="45fe3cbb0de8ea0a70e12628d2697915f1272301" partNumber="006-B3906-00"/>
     <annotations>
@@ -410,61 +445,61 @@
         <dataEntry label="globals/ParkourTrackerView" offset="232" parentId="globals" symbolId="ParkourTrackerView" type="class"/>
         <dataEntry label="globals/Rez" offset="294" parentId="globals" symbolId="Rez" type="module"/>
         <dataEntry label="globals/ParkourModel" offset="347" parentId="globals" symbolId="ParkourModel" type="class"/>
-        <dataEntry label="globals/ParkourTrackerApp" offset="607" parentId="globals" symbolId="ParkourTrackerApp" type="class"/>
-        <dataEntry label="globals/SaveMenuDelegate" offset="687" parentId="globals" symbolId="SaveMenuDelegate" type="class"/>
-        <dataEntry label="globals/SummaryDelegate" offset="749" parentId="globals" symbolId="SummaryDelegate" type="class"/>
-        <dataEntry label="globals/SummaryView" offset="802" parentId="globals" symbolId="SummaryView" type="class"/>
-        <dataEntry label="globals/ParkourTrackerDelegate" offset="864" parentId="globals" symbolId="ParkourTrackerDelegate" type="class"/>
-        <dataEntry label="globals/Rez/Drawables" offset="926" parentId="Rez" symbolId="Drawables" type="module"/>
-        <dataEntry label="globals/Rez/Layouts" offset="961" parentId="Rez" symbolId="Layouts" type="module"/>
-        <dataEntry label="globals/Rez/Strings" offset="996" parentId="Rez" symbolId="Strings" type="module"/>
+        <dataEntry label="globals/ParkourTrackerApp" offset="652" parentId="globals" symbolId="ParkourTrackerApp" type="class"/>
+        <dataEntry label="globals/SaveMenuDelegate" offset="732" parentId="globals" symbolId="SaveMenuDelegate" type="class"/>
+        <dataEntry label="globals/SummaryDelegate" offset="794" parentId="globals" symbolId="SummaryDelegate" type="class"/>
+        <dataEntry label="globals/SummaryView" offset="847" parentId="globals" symbolId="SummaryView" type="class"/>
+        <dataEntry label="globals/ParkourTrackerDelegate" offset="909" parentId="globals" symbolId="ParkourTrackerDelegate" type="class"/>
+        <dataEntry label="globals/Rez/Drawables" offset="971" parentId="Rez" symbolId="Drawables" type="module"/>
+        <dataEntry label="globals/Rez/Layouts" offset="1006" parentId="Rez" symbolId="Layouts" type="module"/>
+        <dataEntry label="globals/Rez/Strings" offset="1041" parentId="Rez" symbolId="Strings" type="module"/>
     </dataEntryOffsetMappings>
     <functions>
-        <functionEntry accessMode="public" endPc="268435471" name="&lt;init&gt;" parent="ParkourTrackerMenuDelegate" startPc="268435460">
+        <functionEntry accessMode="public" endPc="268435468" name="&lt;init&gt;" parent="ParkourTrackerMenuDelegate" startPc="268435457">
             <documentation/>
         </functionEntry>
-        <functionEntry accessMode="public" endPc="268435483" name="&lt;init&gt;" parent="ParkourTrackerView" startPc="268435472">
+        <functionEntry accessMode="public" endPc="268435480" name="&lt;init&gt;" parent="ParkourTrackerView" startPc="268435469">
             <documentation/>
         </functionEntry>
-        <functionEntry accessMode="public" endPc="268435504" name="getApp" startPc="268435484">
+        <functionEntry accessMode="public" endPc="268435501" name="getApp" startPc="268435481">
             <documentation/>
         </functionEntry>
-        <functionEntry accessMode="public" endPc="268435524" name="&lt;init&gt;" parent="Rez" startPc="268435505">
+        <functionEntry accessMode="public" endPc="268435521" name="&lt;init&gt;" parent="Rez" startPc="268435502">
             <documentation/>
         </functionEntry>
         <functionEntry accessMode="public" name="&lt;init&gt;" parent="ParkourModel">
             <documentation/>
         </functionEntry>
-        <functionEntry accessMode="public" endPc="268435536" name="&lt;init&gt;" parent="ParkourTrackerApp" startPc="268435525">
+        <functionEntry accessMode="public" endPc="268435533" name="&lt;init&gt;" parent="ParkourTrackerApp" startPc="268435522">
             <documentation/>
         </functionEntry>
-        <functionEntry accessMode="public" endPc="268435548" name="&lt;init&gt;" parent="SaveMenuDelegate" startPc="268435537">
+        <functionEntry accessMode="public" endPc="268435545" name="&lt;init&gt;" parent="SaveMenuDelegate" startPc="268435534">
             <documentation/>
         </functionEntry>
-        <functionEntry accessMode="public" endPc="268435560" name="&lt;init&gt;" parent="SummaryDelegate" startPc="268435549">
+        <functionEntry accessMode="public" endPc="268435557" name="&lt;init&gt;" parent="SummaryDelegate" startPc="268435546">
             <documentation/>
         </functionEntry>
-        <functionEntry accessMode="public" endPc="268435572" name="&lt;init&gt;" parent="SummaryView" startPc="268435561">
+        <functionEntry accessMode="public" endPc="268435569" name="&lt;init&gt;" parent="SummaryView" startPc="268435558">
             <documentation/>
         </functionEntry>
-        <functionEntry accessMode="public" endPc="268435584" name="&lt;init&gt;" parent="ParkourTrackerDelegate" startPc="268435573">
+        <functionEntry accessMode="public" endPc="268435581" name="&lt;init&gt;" parent="ParkourTrackerDelegate" startPc="268435570">
             <documentation/>
         </functionEntry>
-        <functionEntry accessMode="public" endPc="268435651" name="onMenuItem" parent="ParkourTrackerMenuDelegate" startPc="268435585">
+        <functionEntry accessMode="public" endPc="268435643" name="onMenuItem" parent="ParkourTrackerMenuDelegate" startPc="268435582">
             <param id="item"/>
             <documentation/>
         </functionEntry>
-        <functionEntry accessMode="public" endPc="268435666" name="initialize" parent="ParkourTrackerMenuDelegate" startPc="268435652">
+        <functionEntry accessMode="public" endPc="268435658" name="initialize" parent="ParkourTrackerMenuDelegate" startPc="268435644">
             <documentation/>
         </functionEntry>
-        <functionEntry accessMode="public" endPc="268435669" name="onLayout" parent="ParkourTrackerView" startPc="268435667">
+        <functionEntry accessMode="public" name="onLayout" parent="ParkourTrackerView">
             <param id="dc"/>
             <documentation/>
         </functionEntry>
-        <functionEntry accessMode="public" endPc="268435684" name="initialize" parent="ParkourTrackerView" startPc="268435670">
+        <functionEntry accessMode="public" endPc="268435673" name="initialize" parent="ParkourTrackerView" startPc="268435659">
             <documentation/>
         </functionEntry>
-        <functionEntry accessMode="public" endPc="268436607" name="onUpdate" parent="ParkourTrackerView" startPc="268435685">
+        <functionEntry accessMode="public" endPc="268436638" name="onUpdate" parent="ParkourTrackerView" startPc="268435674">
             <param id="dc"/>
             <documentation/>
         </functionEntry>
@@ -477,91 +512,98 @@
         <functionEntry accessMode="public" name="&lt;init&gt;" parent="Strings">
             <documentation/>
         </functionEntry>
-        <functionEntry accessMode="public" endPc="268436621" name="onTick" parent="ParkourModel" startPc="268436608">
+        <functionEntry accessMode="public" endPc="268436652" name="onTick" parent="ParkourModel" startPc="268436639">
             <documentation/>
         </functionEntry>
-        <functionEntry accessMode="public" endPc="268436898" name="stopSession" parent="ParkourModel" startPc="268436622">
+        <functionEntry accessMode="public" endPc="268436908" name="stopSession" parent="ParkourModel" startPc="268436653">
             <documentation/>
         </functionEntry>
-        <functionEntry accessMode="public" endPc="268436999" name="getElapsedSeconds" parent="ParkourModel" startPc="268436899">
+        <functionEntry accessMode="public" endPc="268437000" name="getElapsedSeconds" parent="ParkourModel" startPc="268436909">
             <documentation/>
         </functionEntry>
-        <functionEntry accessMode="public" endPc="268437044" name="pauseSession" parent="ParkourModel" startPc="268437000">
+        <functionEntry accessMode="public" endPc="268437042" name="pauseSession" parent="ParkourModel" startPc="268437001">
             <documentation/>
         </functionEntry>
-        <functionEntry accessMode="public" endPc="268437105" name="getDistanceKm" parent="ParkourModel" startPc="268437045">
+        <functionEntry accessMode="public" endPc="268437126" name="getDistanceKm" parent="ParkourModel" startPc="268437043">
             <documentation/>
         </functionEntry>
-        <functionEntry accessMode="public" endPc="268437155" name="resumeSession" parent="ParkourModel" startPc="268437106">
+        <functionEntry accessMode="public" endPc="268437173" name="resumeSession" parent="ParkourModel" startPc="268437127">
             <documentation/>
         </functionEntry>
-        <functionEntry accessMode="public" endPc="268437462" name="startSession" parent="ParkourModel" startPc="268437156">
+        <functionEntry accessMode="public" endPc="268437552" name="startSession" parent="ParkourModel" startPc="268437174">
             <documentation/>
         </functionEntry>
-        <functionEntry accessMode="public" endPc="268437712" name="onSensorData" parent="ParkourModel" startPc="268437463">
+        <functionEntry accessMode="public" endPc="268437722" name="onSensorData" parent="ParkourModel" startPc="268437553">
             <param id="data"/>
             <documentation/>
         </functionEntry>
-        <functionEntry accessMode="public" endPc="268437749" name="saveSession" parent="ParkourModel" startPc="268437713">
+        <functionEntry accessMode="public" endPc="268437785" name="getStepCount" parent="ParkourModel" startPc="268437723">
             <documentation/>
         </functionEntry>
-        <functionEntry accessMode="public" endPc="268437786" name="discardSession" parent="ParkourModel" startPc="268437750">
+        <functionEntry accessMode="public" endPc="268437819" name="saveSession" parent="ParkourModel" startPc="268437786">
+            <documentation/>
+        </functionEntry>
+        <functionEntry accessMode="public" endPc="268437853" name="discardSession" parent="ParkourModel" startPc="268437820">
+            <documentation/>
+        </functionEntry>
+        <functionEntry accessMode="private" endPc="268438072" name="&lt;globals/ParkourModel/&lt;&gt;_processSample&gt;" parent="ParkourModel" startPc="268437854">
+            <param id="mag"/>
             <documentation/>
         </functionEntry>
         <functionEntry accessMode="public" name="initialize" parent="ParkourModel">
             <documentation/>
         </functionEntry>
-        <functionEntry accessMode="public" endPc="268437789" name="onStart" parent="ParkourTrackerApp" startPc="268437787">
+        <functionEntry accessMode="public" name="onStart" parent="ParkourTrackerApp">
             <param id="state"/>
             <documentation/>
         </functionEntry>
-        <functionEntry accessMode="public" endPc="268437838" name="getInitialView" parent="ParkourTrackerApp" startPc="268437790">
+        <functionEntry accessMode="public" endPc="268438121" name="getInitialView" parent="ParkourTrackerApp" startPc="268438073">
             <documentation/>
         </functionEntry>
-        <functionEntry accessMode="public" endPc="268437878" name="initialize" parent="ParkourTrackerApp" startPc="268437839">
+        <functionEntry accessMode="public" endPc="268438161" name="initialize" parent="ParkourTrackerApp" startPc="268438122">
             <documentation/>
         </functionEntry>
-        <functionEntry accessMode="public" endPc="268437905" name="onStop" parent="ParkourTrackerApp" startPc="268437879">
+        <functionEntry accessMode="public" endPc="268438188" name="onStop" parent="ParkourTrackerApp" startPc="268438162">
             <param id="state"/>
             <documentation/>
         </functionEntry>
-        <functionEntry accessMode="public" endPc="268437923" name="onBack" parent="SaveMenuDelegate" startPc="268437906">
+        <functionEntry accessMode="public" endPc="268438206" name="onBack" parent="SaveMenuDelegate" startPc="268438189">
             <documentation/>
         </functionEntry>
-        <functionEntry accessMode="public" endPc="268437938" name="initialize" parent="SaveMenuDelegate" startPc="268437924">
+        <functionEntry accessMode="public" endPc="268438221" name="initialize" parent="SaveMenuDelegate" startPc="268438207">
             <documentation/>
         </functionEntry>
-        <functionEntry accessMode="public" endPc="268438001" name="onSelect" parent="SaveMenuDelegate" startPc="268437939">
+        <functionEntry accessMode="public" endPc="268438284" name="onSelect" parent="SaveMenuDelegate" startPc="268438222">
             <param id="item"/>
             <documentation/>
         </functionEntry>
-        <functionEntry accessMode="public" endPc="268438171" name="onBack" parent="SummaryDelegate" startPc="268438002">
+        <functionEntry accessMode="public" endPc="268438454" name="onBack" parent="SummaryDelegate" startPc="268438285">
             <documentation/>
         </functionEntry>
-        <functionEntry accessMode="public" endPc="268438186" name="initialize" parent="SummaryDelegate" startPc="268438172">
+        <functionEntry accessMode="public" endPc="268438469" name="initialize" parent="SummaryDelegate" startPc="268438455">
             <documentation/>
         </functionEntry>
-        <functionEntry accessMode="public" endPc="268438189" name="onLayout" parent="SummaryView" startPc="268438187">
+        <functionEntry accessMode="public" name="onLayout" parent="SummaryView">
             <param id="dc"/>
             <documentation/>
         </functionEntry>
-        <functionEntry accessMode="public" endPc="268438204" name="initialize" parent="SummaryView" startPc="268438190">
+        <functionEntry accessMode="public" endPc="268438484" name="initialize" parent="SummaryView" startPc="268438470">
             <documentation/>
         </functionEntry>
-        <functionEntry accessMode="public" endPc="268438704" name="onUpdate" parent="SummaryView" startPc="268438205">
+        <functionEntry accessMode="public" endPc="268438984" name="onUpdate" parent="SummaryView" startPc="268438485">
             <param id="dc"/>
             <documentation/>
         </functionEntry>
-        <functionEntry accessMode="public" endPc="268438793" name="onBack" parent="ParkourTrackerDelegate" startPc="268438705">
+        <functionEntry accessMode="public" endPc="268439070" name="onBack" parent="ParkourTrackerDelegate" startPc="268438985">
             <documentation/>
         </functionEntry>
-        <functionEntry accessMode="public" endPc="268438808" name="initialize" parent="ParkourTrackerDelegate" startPc="268438794">
+        <functionEntry accessMode="public" endPc="268439085" name="initialize" parent="ParkourTrackerDelegate" startPc="268439071">
             <documentation/>
         </functionEntry>
-        <functionEntry accessMode="public" endPc="268438887" name="onSelect" parent="ParkourTrackerDelegate" startPc="268438809">
+        <functionEntry accessMode="public" endPc="268439164" name="onSelect" parent="ParkourTrackerDelegate" startPc="268439086">
             <documentation/>
         </functionEntry>
-        <functionEntry accessMode="public" endPc="268438900" name="MainLayout" parent="Layouts" startPc="268438888">
+        <functionEntry accessMode="public" endPc="268439177" name="MainLayout" parent="Layouts" startPc="268439165">
             <param id="dc"/>
             <documentation/>
         </functionEntry>

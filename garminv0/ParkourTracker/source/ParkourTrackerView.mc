@@ -45,10 +45,14 @@ class ParkourTrackerView extends WatchUi.View {
         dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_TRANSPARENT);
         dc.drawText(cx, 28, Graphics.FONT_MEDIUM, timerStr, Graphics.TEXT_JUSTIFY_CENTER);
 
-        // ── DISTANCIA (GPS o pasos si es interior) ─────────────
+        // ── DISTANCIA (pasos indoor / GPS outdoor) ─────────────
         var distKm = model.getDistanceKm();
         dc.setColor(0x00AAFF, Graphics.COLOR_TRANSPARENT);
-        dc.drawText(cx, 75, Graphics.FONT_LARGE, distKm.format("%.2f") + " km", Graphics.TEXT_JUSTIFY_CENTER);
+        dc.drawText(cx, 72, Graphics.FONT_LARGE, distKm.format("%.2f") + " km", Graphics.TEXT_JUSTIFY_CENTER);
+
+        var steps = model.getStepCount();
+        dc.setColor(Graphics.COLOR_DK_GRAY, Graphics.COLOR_TRANSPARENT);
+        dc.drawText(cx, 108, Graphics.FONT_TINY, steps.toString() + " pasos", Graphics.TEXT_JUSTIFY_CENTER);
 
         // ── SEPARADOR ──────────────────────────────────────────
         dc.setColor(Graphics.COLOR_DK_GRAY, Graphics.COLOR_TRANSPARENT);

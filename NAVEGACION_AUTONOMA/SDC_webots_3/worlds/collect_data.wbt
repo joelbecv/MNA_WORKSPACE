@@ -1,0 +1,55 @@
+#VRML_SIM R2025a utf8
+
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/backgrounds/protos/TexturedBackground.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/humans/pedestrian/protos/Pedestrian.proto"
+
+WorldInfo {
+  basicTimeStep 32
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+}
+Solid {
+  translation 0 0 0
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.35 0.35 0.35
+        roughness 1
+        metalness 0
+      }
+      geometry Plane {
+        size 200 200
+      }
+    }
+  ]
+  boundingObject Plane {
+    size 200 200
+  }
+  locked TRUE
+}
+Robot {
+  supervisor TRUE
+  translation 0 0 1.2
+  rotation 1 0 0 0
+  name "collector"
+  children [
+    Camera {
+      name "camera"
+      width 320
+      height 240
+      fieldOfView 0.84
+    }
+  ]
+  controller "<extern>"
+}
+DEF PED Pedestrian {
+  translation 0 200 0
+  rotation 0 0 1 0
+  controllerArgs [
+    "--speed=0.01"
+    "--trajectory=0 200, 0.01 200"
+  ]
+}

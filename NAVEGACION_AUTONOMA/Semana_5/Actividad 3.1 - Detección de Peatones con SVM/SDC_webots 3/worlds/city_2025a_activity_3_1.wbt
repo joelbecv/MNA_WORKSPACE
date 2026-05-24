@@ -37,7 +37,7 @@ EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/project
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/traffic/protos/YieldSign.proto"
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/traffic/protos/SpeedLimitSign.proto"
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/traffic/protos/SpeedLimitPanel.proto"
-EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/traffic/protos/TrafficCone.proto"
+EXTERNPROTO "TrafficCone.proto"
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/advertising_board/protos/AdvertisingBoard.proto"
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/traffic/protos/HighwayPole.proto"
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/traffic/protos/HighwaySign.proto"
@@ -163,7 +163,7 @@ Pedestrian {
   name "pedestrian(10)"
   controllerArgs [
     "--trajectory=-34 27, -56 27"
-    "--speed=5.0"
+    "--speed=3.85"
   ]
 }
 Pedestrian {
@@ -172,7 +172,7 @@ Pedestrian {
   name "pedestrian(5)"
   controllerArgs [
     "--trajectory=56 -26, 34 -26"
-    "--speed=4.0"
+    "--speed=3.08"
   ]
 }
 CurvedRoadSegment {
@@ -619,6 +619,7 @@ CurvedRoadSegment {
 DEF VEHICLE BmwX5 {
   translation 5.60911 45.14 0.26702
   rotation 0.012795947566112598 -4.99889827643198e-07 0.9999181285113474 3.141589273847238
+  engineSound ""
   controller "<extern>"
   sensorsSlotFront [
     SickLms291 {
@@ -1459,7 +1460,7 @@ Pedestrian {
   rotation 0 0 1 1.5708
   controllerArgs [
     "--trajectory=-31.8 33, -31.8 55"
-    "--speed=4.0"
+    "--speed=3.08"
   ]
 }
 Pedestrian {
@@ -1468,7 +1469,7 @@ Pedestrian {
   name "pedestrian(2)"
   controllerArgs [
     "--trajectory=-58 33.8, -58 55"
-    "--speed=2.5"
+    "--speed=1.92"
   ]
 }
 Pedestrian {
@@ -1477,7 +1478,7 @@ Pedestrian {
   name "pedestrian(1)"
   controllerArgs [
     "--trajectory=-34 55, -34 33"
-    "--speed=3.5"
+    "--speed=2.69"
   ]
 }
 Pedestrian {
@@ -1486,7 +1487,7 @@ Pedestrian {
   name "pedestrian(3)"
   controllerArgs [
     "--trajectory=-62.4 55, -62.4 35"
-    "--speed=2.5"
+    "--speed=1.92"
   ]
 }
 Pedestrian {
@@ -1495,7 +1496,7 @@ Pedestrian {
   name "pedestrian(9)"
   controllerArgs [
     "--trajectory=-56 59, -34 59"
-    "--speed=3.0"
+    "--speed=2.31"
   ]
 }
 Pedestrian {
@@ -1504,7 +1505,7 @@ Pedestrian {
   name "pedestrian(4)"
   controllerArgs [
     "--trajectory=34 -29, 56 -29"
-    "--speed=4.0"
+    "--speed=3.08"
   ]
 }
 Pedestrian {
@@ -1513,7 +1514,7 @@ Pedestrian {
   name "pedestrian(6)"
   controllerArgs [
     "--trajectory=33 -57, 33 -35"
-    "--speed=4.0"
+    "--speed=3.08"
   ]
 }
 Pedestrian {
@@ -1522,7 +1523,7 @@ Pedestrian {
   name "pedestrian(11)"
   controllerArgs [
     "--trajectory=-21 -116, -21 -94"
-    "--speed=6.0"
+    "--speed=4.62"
   ]
 }
 Pedestrian {
@@ -1531,7 +1532,7 @@ Pedestrian {
   name "pedestrian(12)"
   controllerArgs [
     "--trajectory=-94 -32, -116 -32"
-    "--speed=6.0"
+    "--speed=4.62"
   ]
 }
 Pedestrian {
@@ -1540,7 +1541,7 @@ Pedestrian {
   name "pedestrian(8)"
   controllerArgs [
     "--trajectory=57 -63, 35 -63"
-    "--speed=4.0"
+    "--speed=3.08"
   ]
 }
 Pedestrian {
@@ -1549,7 +1550,7 @@ Pedestrian {
   name "pedestrian(7)"
   controllerArgs [
     "--trajectory=58 -34, 58 -56"
-    "--speed=4.0"
+    "--speed=3.08"
   ]
 }
 Pedestrian {
@@ -1558,7 +1559,7 @@ Pedestrian {
   name "pedestrian(13)"
   controllerArgs [
     "--trajectory=116 33, 94 33"
-    "--speed=6.0"
+    "--speed=4.62"
   ]
 }
 Pedestrian {
@@ -1567,7 +1568,7 @@ Pedestrian {
   name "pedestrian(14)"
   controllerArgs [
     "--trajectory=46 94, 46 116"
-    "--speed=6.0"
+    "--speed=4.62"
   ]
 }
 DEF BARREL OilBarrel {
