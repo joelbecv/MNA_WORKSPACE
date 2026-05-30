@@ -3,7 +3,8 @@
     "allow": [
       "WebFetch(domain:github.com)",
       "Bash(conda run *)",
-      "Bash(git -C /Users/joelbecerril/MNA_WORKSPACE remote get-url origin)"
+      "Bash(git -C /Users/joelbecerril/MNA_WORKSPACE remote get-url origin)",
+      "mcp__claude_ai_Notion__notion-create-pages"
     ]
   }
 }
