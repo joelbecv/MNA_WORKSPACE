@@ -4,7 +4,10 @@
       "WebFetch(domain:github.com)",
       "Bash(conda run *)",
       "Bash(git -C /Users/joelbecerril/MNA_WORKSPACE remote get-url origin)",
-      "mcp__claude_ai_Notion__notion-create-pages"
+      "mcp__claude_ai_Notion__notion-create-pages",
+      "mcp__claude_ai_Notion__notion-update-page",
+      "Bash(git -C /Users/joelbecerril/MNA_WORKSPACE add NLP/Tareasem4y5/semana05Embeddings_explicado.ipynb recorrido_aprendizaje_mna.md)",
+      "Bash(git -C /Users/joelbecerril/MNA_WORKSPACE commit -m ' *)"
     ]
   }
 }
