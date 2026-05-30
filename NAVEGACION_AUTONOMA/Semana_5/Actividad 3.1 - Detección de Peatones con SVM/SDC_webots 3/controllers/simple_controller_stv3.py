@@ -58,7 +58,7 @@ from datetime import datetime
 _CTRL_DIR  = os.path.dirname(os.path.abspath(__file__))
 MODEL_PATH = os.path.normpath(os.path.join(_CTRL_DIR, '..', '..', 'pedestrian_svm.joblib'))
 
-
+#! HUGO INICIA
 # =============================================================================
 # PARÁMETROS DEL SISTEMA
 # =============================================================================
@@ -193,6 +193,7 @@ def compute_center(lines):
     return np.mean(ax) if ax else None
 
 
+#! ALBERTO
 # =============================================================================
 # MÓDULO 2A — DETECCIÓN DE PERSONAS: SVM + HOG
 # =============================================================================
@@ -282,7 +283,7 @@ def svm_detect(bgr, model):
     detected = total >= MIN_HITS
     return detected, total, max_score, windows, best_box
 
-
+#! RAUL
 # =============================================================================
 # MÓDULO 2B — DETECCIÓN DE OBSTÁCULOS: LiDAR
 # =============================================================================
@@ -319,6 +320,7 @@ def lidar_read(lidar, fov_rad, n_rays):
     return d < LIDAR_MAX_M, d, f"{d:.1f}m"
 
 
+#! JOEL
 # =============================================================================
 # MÓDULO 3 — LOOP PRINCIPAL
 # =============================================================================
