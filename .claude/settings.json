@@ -7,7 +7,11 @@
       "mcp__claude_ai_Notion__notion-create-pages",
       "mcp__claude_ai_Notion__notion-update-page",
       "Bash(git -C /Users/joelbecerril/MNA_WORKSPACE add NLP/Tareasem4y5/semana05Embeddings_explicado.ipynb recorrido_aprendizaje_mna.md)",
-      "Bash(git -C /Users/joelbecerril/MNA_WORKSPACE commit -m ' *)"
+      "Bash(git -C /Users/joelbecerril/MNA_WORKSPACE commit -m ' *)",
+      "Bash(git check-ignore *)",
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)",
+      "Bash(git push *)"
     ]
   }
 }
