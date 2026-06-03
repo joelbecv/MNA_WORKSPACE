@@ -11,7 +11,9 @@
       "Bash(git check-ignore *)",
       "Bash(git add *)",
       "Bash(git commit -m ' *)",
-      "Bash(git push *)"
+      "Bash(git push *)",
+      "Bash(python3 -c \"import json; nb=json.load\\(open\\('4.1.2 Perceptron.ipynb'\\)\\); [print\\(f'cell-{i}: {nb[\\\\\"cells\\\\\"][i][\\\\\"cell_type\\\\\"]} | {nb[\\\\\"cells\\\\\"][i][\\\\\"source\\\\\"][:80].replace\\(chr\\(10\\),\\\\\" \\\\\"\\)}'\\) for i in range\\(min\\(8, len\\(nb['cells']\\)\\)\\)]\")",
+      "Bash(python3 -c ' *)"
     ]
   }
 }

@@ -119,6 +119,32 @@ Con texto, asignar números arbitrarios a palabras le dice al modelo mentiras (q
 
 ---
 
+## Keras en el recorrido — el hilo que conecta todo
+
+Keras no es una herramienta nueva que aparece en semana 6. Es la interfaz que ya usaste en otros cursos **sin saberlo explícitamente**:
+
+| Materia | Modelo que usaste | Lo que era por dentro |
+|---|---|---|
+| IAYML | LSTM para predicción temporal | `keras.Sequential` + `LSTM` layer |
+| Advanced ML | CNN MNIST, CNN ASL, Transformer | `keras.Sequential` + `Conv2D` + `Dense` |
+| Nav Autónoma sem 4-5 | SVM con HOG features | sklearn — lineal, no necesitaba Keras |
+| Nav Autónoma **sem 6** | Perceptrón → MLP → CNN | Keras — aprendiendo los bloques base |
+
+### El arco de la semana 6:
+
+```
+4.1.2  numpy manual      → entiende la matemática pura (w, b, sigmoid, cross entropy)
+4.2a   Keras + CSV real  → misma neurona, framework profesional, dataset real
+4.2b   Keras + moons     → por qué necesitas capas ocultas (ReLU, MLP)
+4.3    Keras + MNIST     → multiclase, softmax, 70k imágenes
+4.4a   CNN MNIST         → las mismas Conv2D que usaste en Advanced ML
+4.4b   CNN CIFAR-10      → reto real, 10 clases, GPU Metal en M5
+```
+
+**Lo que desbloquea esta semana**: entender los bloques de construcción de todo lo que ya usaste antes. El LSTM de IAYML, la CNN de Advanced ML — todos son `Sequential` con capas apiladas. Ahora sabes por qué funcionan y cuándo escalarlos.
+
+---
+
 ## El arco de lo que estás aprendiendo
 
 ```
