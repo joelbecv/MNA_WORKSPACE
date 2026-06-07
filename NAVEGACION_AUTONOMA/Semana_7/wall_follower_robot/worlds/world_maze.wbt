@@ -1,0 +1,84 @@
+#VRML_SIM R2023b utf8
+
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/backgrounds/protos/TexturedBackground.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/floors/protos/RectangleArena.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/robots/gctronic/e-puck/protos/E-puck.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/apartment_structure/protos/Wall.proto"
+
+WorldInfo {
+}
+Viewpoint {
+  orientation -0.30628907877419903 0.5833027396430668 0.7522931038820874 1.2187632496302048
+  position -1.5464869890651258 -2.5845585853766027 2.815577565291762
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+}
+RectangleArena {
+  floorSize 2 2
+}
+E-puck {
+  controller "my_controller_wall_follower"
+}
+Wall {
+  translation 0 0.07 0
+  rotation 0 0 1 1.57
+  size 0.01 1 0.1
+}
+Wall {
+  translation -0.000652972 -0.75 0
+  rotation 0 0 1 1.57
+  name "wall(10)"
+  size 0.01 1 0.1
+}
+Wall {
+  translation 0 0.53 0
+  name "wall(1)"
+  size 0.01 0.93 0.1
+}
+Wall {
+  translation -0.8 0.53 0
+  name "wall(3)"
+  size 0.01 0.93 0.1
+}
+Wall {
+  translation 0.78 0.53 0
+  name "wall(2)"
+  size 0.01 0.93 0.1
+}
+Wall {
+  translation 0.55 0.530184 0
+  rotation 0 0 1 1.57
+  name "wall(4)"
+  size 0.01 0.45 0.1
+}
+Wall {
+  translation 0.779176 -0.5 0
+  rotation 0 0 1 1.57
+  name "wall(5)"
+  size 0.01 0.45 0.1
+}
+Wall {
+  translation 0.029176 -0.4994 0
+  rotation 0 0 1 1.57
+  name "wall(6)"
+  size 0.01 0.45 0.1
+}
+Wall {
+  translation -0.780824 -0.498752 0
+  rotation 0 0 1 1.57
+  name "wall(7)"
+  size 0.01 0.45 0.1
+}
+Wall {
+  translation 0.029176 -0.6794 0
+  name "wall(8)"
+  size 0.01 0.35 0.1
+}
+Wall {
+  translation 0.739176 -0.8294 0
+  name "wall(9)"
+  size 0.01 0.35 0.1
+}
