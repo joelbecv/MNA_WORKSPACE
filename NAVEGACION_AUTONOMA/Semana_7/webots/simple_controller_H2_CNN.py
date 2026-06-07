@@ -79,7 +79,11 @@ def get_image(camera):
 def display_image(display, image):
     display.setColor(0x000000)
     display.fillRectangle(0, 0, display.getWidth(), display.getHeight())
-    image_rgb = np.dstack((image, image, image))
+    # Acepta grayscale (2D) o BGR (3 canales)
+    if image.ndim == 2:
+        image_rgb = np.dstack((image, image, image))
+    else:
+        image_rgb = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
     ref = display.imageNew(image_rgb.tobytes(), Display.RGB,
                            width=image_rgb.shape[1], height=image_rgb.shape[0])
     display.imagePaste(ref, 0, 0, False)
@@ -203,21 +207,23 @@ def detectar_regiones_senales(bgr_img):
 
 
 def clasificar_region(bgr_img, bbox, model):
-    """Recorta la región, la preprocesa para la CNN y devuelve (clase, confianza)."""
+    """Recorta la región, la preprocesa para la CNN y devuelve (clase, confianza, crop_bgr)."""
     x1, y1, x2, y2 = bbox
     crop = bgr_img[y1:y2, x1:x2]
     if crop.size == 0:
-        return None, 0.0
+        return None, 0.0, None
 
-    img_rgb  = cv2.cvtColor(crop, cv2.COLOR_BGR2RGB)
-    img_res  = cv2.resize(img_rgb, (IMG_SIZE, IMG_SIZE))
-    img_norm = img_res.astype(np.float32) / 255.0
-    batch    = np.expand_dims(img_norm, axis=0)
+    img_rgb   = cv2.cvtColor(crop, cv2.COLOR_BGR2RGB)
+    img_res   = cv2.resize(img_rgb, (IMG_SIZE, IMG_SIZE))
+    crop_bgr  = cv2.cvtColor(img_res, cv2.COLOR_RGB2BGR)  # para mostrar en display
+
+    img_norm  = img_res.astype(np.float32) / 255.0
+    batch     = np.expand_dims(img_norm, axis=0)
 
     probs      = model.predict(batch, verbose=0)[0]
     class_id   = int(np.argmax(probs))
     confidence = float(probs[class_id])
-    return class_id, confidence
+    return class_id, confidence, crop_bgr
 
 
 def detectar_senales(bgr_img, model):
@@ -232,7 +238,7 @@ def detectar_senales(bgr_img, model):
     mejor  = None
 
     for bbox in bboxes:
-        class_id, conf = clasificar_region(bgr_img, bbox, model)
+        class_id, conf, crop_bgr = clasificar_region(bgr_img, bbox, model)
         if class_id is None:
             continue
         if conf >= CONF_THRESHOLD:
@@ -241,18 +247,22 @@ def detectar_senales(bgr_img, model):
                     "class_id":   class_id,
                     "label":      CLASS_NAMES.get(class_id, f"Clase {class_id}"),
                     "confidence": conf,
-                    "bbox":       bbox
+                    "bbox":       bbox,
+                    "crop":       crop_bgr   # imagen 32×32 que vio el modelo
                 }
     return mejor
 
 
-def mostrar_deteccion(display, deteccion, frame_count):
+def mostrar_deteccion(display, deteccion):
     """Escribe la etiqueta de la señal detectada en el display de Webots."""
     if deteccion is None:
         return
-    label = f"{deteccion['label']} ({deteccion['confidence']*100:.0f}%)"
-    display.setColor(0x00FF00)     # verde
-    display.setFont("Arial", 8, True)
+    label = f">> {deteccion['label']} {deteccion['confidence']*100:.0f}%"
+    # Fondo negro para contraste
+    display.setColor(0x000000)
+    display.fillRectangle(0, 0, display.getWidth(), 12)
+    # Texto blanco — igual que H3
+    display.setColor(0xFFFFFF)
     display.drawText(label, 2, 2)
 
 
@@ -262,7 +272,7 @@ def mostrar_deteccion(display, deteccion, frame_count):
 
 def main():
     # ── Parámetros PID (idénticos a simple_controller_H2.py) ─────────────────
-    speed          = 50
+    speed          = 20
     kp             = 0.28
     ki             = 0.01
     kd             = 0.01
@@ -351,11 +361,46 @@ def main():
                     ultima_deteccion = None
 
         # ── Display: debug de carriles + etiqueta de señal ───────────────────
-        line_img      = draw_lines(np.zeros((display_h, display_w, 3), np.uint8), lines)
-        line_gray     = cv2.cvtColor(line_img, cv2.COLOR_BGR2GRAY)
-        debug_view    = cv2.addWeighted(roi_edges, 0.7, line_gray, 1.0, 0)
-        display_image(display_img, debug_view)
-        mostrar_deteccion(display_img, ultima_deteccion, frame_count)
+        line_img   = draw_lines(np.zeros((display_h, display_w, 3), np.uint8), lines)
+        line_gray  = cv2.cvtColor(line_img, cv2.COLOR_BGR2GRAY)
+        debug_gray = cv2.addWeighted(roi_edges, 0.7, line_gray, 1.0, 0)
+
+        # Convertir a BGR para poder pintar texto en color
+        debug_bgr  = cv2.cvtColor(debug_gray, cv2.COLOR_GRAY2BGR)
+
+        # ── Ventana OpenCV de debug (fuera de Webots, grande y legible) ─────────
+        WIN_W, WIN_H = 512, 256   # tamaño de la ventana de cámara
+        cam_big = cv2.resize(resized_bgr, (WIN_W, WIN_H))
+
+        if ultima_deteccion is not None:
+            label = f"{ultima_deteccion['label']}  {ultima_deteccion['confidence']*100:.0f}%"
+            crop  = ultima_deteccion.get("crop")
+
+            # Panel derecho: recorte CNN ampliado a 256×256
+            if crop is not None:
+                crop_big = cv2.resize(crop, (WIN_H, WIN_H), interpolation=cv2.INTER_NEAREST)
+                # Borde y etiqueta sobre el recorte
+                cv2.rectangle(crop_big, (0, 0), (WIN_H-1, WIN_H-1), (0, 255, 0), 3)
+                cv2.putText(crop_big, "CNN input", (5, 20),
+                            cv2.FONT_HERSHEY_SIMPLEX, 0.55, (0, 255, 0), 1)
+            else:
+                crop_big = np.zeros((WIN_H, WIN_H, 3), dtype=np.uint8)
+
+            # Texto grande en la imagen de cámara
+            cv2.rectangle(cam_big, (0, 0), (WIN_W, 40), (0, 0, 0), -1)
+            cv2.putText(cam_big, label, (8, 28),
+                        cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 255, 0), 2, cv2.LINE_AA)
+        else:
+            crop_big = np.zeros((WIN_H, WIN_H, 3), dtype=np.uint8)
+            cv2.putText(crop_big, "Sin deteccion", (10, WIN_H // 2),
+                        cv2.FONT_HERSHEY_SIMPLEX, 0.5, (100, 100, 100), 1)
+
+        debug_window = np.hstack([cam_big, crop_big])
+        cv2.imshow("CNN Deteccion de Senales", debug_window)
+        cv2.waitKey(1)
+
+        # Display interno de Webots (referencia visual mínima)
+        display_image(display_img, debug_bgr)
 
         # ── Teclado ───────────────────────────────────────────────────────────
         key = keyboard.getKey()
