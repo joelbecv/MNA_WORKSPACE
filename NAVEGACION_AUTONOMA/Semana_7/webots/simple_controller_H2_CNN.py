@@ -44,7 +44,7 @@ MIN_AREA       = 150    # área mínima (px²) de un contorno candidato a señal
 
 # Ruta al modelo exportado desde el notebook (relativa al controlador)
 MODEL_PATH = os.path.join(
-    os.path.dirname(__file__), "..", "avanceAlberto", "modelo_gtsrb.keras"
+    os.path.dirname(__file__), "..", "modelo_gtsrb.keras"
 )
 
 # Nombres de las 43 clases GTSRB (índice = ClassId)
