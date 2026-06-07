@@ -30,30 +30,39 @@ from sklearn.model_selection import train_test_split
 
 # ── Configuración ─────────────────────────────────────────────────────────────
 BASE_DIR    = os.path.dirname(__file__)
-SIGNS_DIR   = os.path.join(BASE_DIR, "webots_signs")
-MODEL_IN    = os.path.join(BASE_DIR, "modelo_gtsrb.keras")
-MODEL_OUT   = os.path.join(BASE_DIR, "modelo_gtsrb_webots.keras")
+SIGNS_DIR   = os.path.join(BASE_DIR, "webots_signs_aug")  # 200 imgs/clase
+MODEL_IN    = os.path.join(BASE_DIR, "modelo_us_webots.keras")  # modelo actual
+MODEL_OUT   = os.path.join(BASE_DIR, "modelo_us_webots.keras")  # sobreescribe
 IMG_SIZE    = 32
 EPOCHS      = 10
 LR          = 0.0001   # lr bajo para fine-tuning (no destruir pesos ya aprendidos)
 
 # Mapeo carpeta → ClassId GTSRB
+# Labels = índice de salida del modelo US (0-10), NO el ID GTSRB
+# us_class_map.json: {idx_modelo: gtsrb_id}
+# 0→3, 1→4, 2→11, 3→13, 4→14, 5→15, 6→17, 7→19, 8→20, 9→22, 10→34
 FOLDER_TO_CLASS = {
-    "14_stop":          14,
-    "13_yield":         13,
-    "18_precaucion":    18,
-    "19_curva_izq":     19,
-    "20_curva_der":     20,
-    "22_bache":         22,
-    "17_prohibido":     17,
-    "15_sin_vehiculos": 15,
-    "3_lim60":           3,
-    "4_lim70":           4,
-    "34_girar_izq":     34,
-    "35_adelante":      35,
+    "3_Lim_60":          0,
+    "4_Lim_70":          1,
+    "11_Cruce":          2,
+    "13_Ceder_paso":     3,
+    "14_STOP":           4,
+    "15_No_peatones":    5,
+    "17_No_girar_der":   6,
+    "19_Curva_izq":      7,
+    "20_Curva_der":      8,
+    "22_Bache":          9,
+    "34_Un_sentido":    10,
 }
 
 # ── Cargar imágenes de Webots ──────────────────────────────────────────────────
+def aplicar_clahe(bgr):
+    """Normaliza contraste con CLAHE (igual que en inferencia del controlador)."""
+    clahe = cv2.createCLAHE(clipLimit=2.5, tileGridSize=(4, 4))
+    lab = cv2.cvtColor(bgr, cv2.COLOR_BGR2LAB)
+    lab[:, :, 0] = clahe.apply(lab[:, :, 0])
+    return cv2.cvtColor(lab, cv2.COLOR_LAB2BGR)
+
 def cargar_webots(signs_dir):
     X, y = [], []
     for carpeta, clase in FOLDER_TO_CLASS.items():
@@ -67,9 +76,18 @@ def cargar_webots(signs_dir):
             img = cv2.imread(os.path.join(ruta, nombre))
             if img is None:
                 continue
-            img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
-            img = cv2.resize(img, (IMG_SIZE, IMG_SIZE))
-            X.append(img.astype(np.float32) / 255.0)
+            # Versión original
+            img_r = cv2.resize(img, (IMG_SIZE, IMG_SIZE))
+            X.append(cv2.cvtColor(img_r, cv2.COLOR_BGR2RGB).astype(np.float32) / 255.0)
+            y.append(clase)
+            # Versión con CLAHE (simula condiciones de sombra de Webots)
+            img_eq = aplicar_clahe(img_r)
+            X.append(cv2.cvtColor(img_eq, cv2.COLOR_BGR2RGB).astype(np.float32) / 255.0)
+            y.append(clase)
+            # Versión oscurecida (simula peor caso de iluminación)
+            img_dark = np.clip(img_r.astype(np.float32) * 0.5, 0, 255).astype(np.uint8)
+            img_dark_eq = aplicar_clahe(img_dark)
+            X.append(cv2.cvtColor(img_dark_eq, cv2.COLOR_BGR2RGB).astype(np.float32) / 255.0)
             y.append(clase)
     return np.array(X), np.array(y, dtype=np.int64)
 
