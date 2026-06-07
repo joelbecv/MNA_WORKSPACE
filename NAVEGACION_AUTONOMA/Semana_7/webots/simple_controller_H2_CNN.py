@@ -390,8 +390,15 @@ def clasificar(bgr_img, bbox, model, idx_to_gtsrb):
             return None, 0.0
 
     valid_gtsrb = COLOR_CLASSES[color]
+
+    # CLAHE: normaliza contraste antes del CNN (crops oscuros en Webots)
+    clahe = cv2.createCLAHE(clipLimit=2.5, tileGridSize=(4, 4))
+    lab   = cv2.cvtColor(crop, cv2.COLOR_BGR2LAB)
+    lab[:, :, 0] = clahe.apply(lab[:, :, 0])
+    crop_eq = cv2.cvtColor(lab, cv2.COLOR_LAB2BGR)
+
     img_norm = cv2.resize(
-        cv2.cvtColor(crop, cv2.COLOR_BGR2RGB),
+        cv2.cvtColor(crop_eq, cv2.COLOR_BGR2RGB),
         (IMG_SIZE, IMG_SIZE)).astype(np.float32) / 255.0
     probs   = model.predict(np.expand_dims(img_norm, 0), verbose=0)[0]
     probs_f = probs.copy()
@@ -402,7 +409,12 @@ def clasificar(bgr_img, bbox, model, idx_to_gtsrb):
     cid      = idx_to_gtsrb.get(local_id, local_id)
     conf     = float(probs_f[local_id])
     label    = CLASS_NAMES.get(cid, f"c{cid}")
-    print(f"    [{color.upper()}] gtsrb={cid}({label})  conf={conf:.2f}  thresh=0.25")
+    # Top-2 para diagnóstico de confusión
+    top2 = sorted([(idx_to_gtsrb.get(i,i), float(probs_f[i]))
+                   for i in range(len(probs_f)) if probs_f[i] > 0.01],
+                  key=lambda x: -x[1])[:2]
+    top2_str = "  ".join(f"g{g}={v:.2f}" for g, v in top2)
+    print(f"    [{color.upper()}] {top2_str}  -> {label}  thresh=0.25")
     if conf < 0.25:
         return None, 0.0
     return cid, conf
