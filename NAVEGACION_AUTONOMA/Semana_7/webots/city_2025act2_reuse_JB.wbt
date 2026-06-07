@@ -597,12 +597,32 @@ CurvedRoadSegment {
   curvatureRadius 40.5
 }
 BmwX5 {
-  translation -55.67054714756429 45.88004292921422 0.31513215760005664
+  translation -55.67054714756429 52.0 0.31513215760005664
   rotation 0.012795947566112598 -4.99889827643198e-07 0.9999181285113474 3.141589273847238
   controller "<extern>"
   sensorsSlotFront [
     SickLms291 {
       translation 0.06 0 0
+    }
+    DistanceSensor {
+      rotation 0 0 1 -1.5708
+      name "ds_lateral"
+      lookupTable [
+        0 0 0
+        10 10 0
+      ]
+      type "laser"
+      aperture 0.26
+    }
+    DistanceSensor {
+      rotation 0 0 1 -0.7854
+      name "ds_front_lateral"
+      lookupTable [
+        0 0 0
+        10 10 0
+      ]
+      type "laser"
+      aperture 0.26
     }
   ]
   sensorsSlotTop [
