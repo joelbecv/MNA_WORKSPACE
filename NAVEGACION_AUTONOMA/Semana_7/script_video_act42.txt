@@ -1,0 +1,142 @@
+========================================================================
+SCRIPT DE VIDEO — Actividad 4.2: Detección de señales con CNN en Webots
+MNA Tec de Monterrey — Joel Arturo Becerril Balderas A01797427
+========================================================================
+
+[INTRO — 0:00 a 0:30]
+
+Hola, en este video voy a mostrarles cómo programé un carro BMW
+para que conduzca solo dentro de una simulación y detecte señales
+de tráfico americanas usando una red neuronal convolucional, o CNN.
+
+Todo esto corre en Webots, que es un simulador de robótica muy usado
+en investigación de vehículos autónomos. Lo genial es que podemos
+probar algoritmos de inteligencia artificial sin necesitar un carro
+real ni arriesgarnos a chocar nada.
+
+El reto de esta actividad es detectar al menos 8 de las 16 señales
+que hay colocadas a lo largo del circuito. Vamos a ver cómo lo logré.
+
+---
+
+[PARTE 1 — ¿Cómo funciona el sistema? — 0:30 a 2:00]
+
+El sistema tiene dos partes principales que trabajan al mismo tiempo:
+
+PRIMERA PARTE: La conducción automática.
+El carro usa un sensor LiDAR — básicamente un radar de luz láser —
+que mide la distancia a las paredes y bordillos que lo rodean.
+Con esas distancias, un controlador proporcional simple calcula
+cuánto debe girar el volante para mantenerse a 2.5 metros del bordillo.
+Es como si el carro "sintiera" la pared con sus manos y se guiara por ella.
+
+Si la pared desaparece, por ejemplo en un cruce, el sistema guarda
+el último ángulo y lo va reduciendo poco a poco para no girar en seco.
+También puede usar la pared del lado izquierdo como respaldo.
+
+SEGUNDA PARTE: La detección de señales con CNN.
+Cada 3 frames, la cámara del carro captura una imagen de 128×128 píxeles.
+A esa imagen se le aplica un filtro de color llamado HSV para encontrar
+regiones que tengan colores de señal: rojo, amarillo o blanco.
+Cada región candidata se recorta y se le pasa a la red neuronal,
+que devuelve qué señal cree que es y con qué confianza.
+
+Solo se cuenta una señal como detectada si la CNN la ve al menos
+2 veces seguidas, lo que evita los falsos positivos.
+
+---
+
+[PARTE 2 — La red neuronal CNN — 2:00 a 3:30]
+
+La CNN que usamos tiene 11 salidas: una por cada tipo de señal en el
+circuito. Fue entrenada primero con un dataset de señales americanas,
+y luego hicimos un fine-tuning, que es un reentrenamiento, con imágenes
+capturadas directamente del simulador.
+
+¿Por qué necesitamos ese reentrenamiento? Por algo que se llama
+"domain gap", o brecha de dominio.
+
+Las imágenes del dataset de entrenamiento tienen un brillo promedio
+de 210 sobre 255. En cambio, los recortes que captura la cámara
+dentro de Webots tienen un brillo de solo 99 sobre 255, casi la mitad.
+Para la red neuronal, una señal oscura se ve completamente diferente
+a la misma señal bien iluminada, aunque para nosotros sea obvio que
+es la misma.
+
+Para resolver esto hicimos dos cosas:
+Primero, aplicamos CLAHE, que es una técnica que normaliza el contraste
+de la imagen dividiéndola en bloques y ajustando el histograma de cada uno.
+Es como darle un "boost" de contraste inteligente a cada crop antes de
+pasarlo a la red.
+
+Segundo, usamos los propios recortes guardados de la simulación para
+reentrenar el modelo, de modo que aprenda cómo se ven las señales
+específicamente en Webots.
+
+---
+
+[PARTE 3 — Filtros inteligentes para evitar errores — 3:30 a 4:30]
+
+Detectar regiones de color en una imagen de simulación no es tan
+sencillo como parece. Hay muchos objetos que también son blancos,
+amarillos o rojos: el guardarriel, el asfalto, el desierto del fondo.
+
+Para filtrar los falsos positivos implementamos varios trucos:
+
+Para las señales BLANCAS como los límites de velocidad:
+- Descartamos regiones que sean más del 20% del área total de la imagen:
+  eso es una pared o un edificio, no una señal.
+- Calculamos la varianza Laplaciana del crop: si es muy baja, la región
+  es uniforme como un guardarriel, no una señal con texto.
+- Usamos el aspect ratio: si el recorte es más alto que ancho,
+  probablemente sea una señal de velocidad. Si es más ancho, puede ser
+  la señal de Un Solo Sentido.
+
+Para las señales AMARILLAS como las señales de precaución:
+- Calculamos la saturación mediana del color amarillo en el crop.
+  El desierto de Webots también tiene píxeles amarillos, pero con
+  muy poca saturación. Si la mediana de saturación está por debajo
+  de 22, lo descartamos como desierto y no como señal.
+
+Además, el sistema de detección busca contornos amarillos y blancos
+de forma independiente a la máscara combinada. Esto resuelve un problema
+donde el guardarriel y la señal se "fusionaban" en un solo contorno
+enorme que el filtro de tamaño rechazaba.
+
+---
+
+[PARTE 4 — Resultados — 4:30 a 5:00]
+
+Aquí pueden ver el sistema en acción. En el display de la izquierda
+se ve la cámara del carro con el recuadro amarillo que es la ROI,
+y los recuadros magenta son las regiones candidatas que el detector
+HSV encontró.
+
+En el panel de la derecha se muestra la señal detectada y el porcentaje
+de confianza. El contador arriba indica cuántas señales únicas se han
+detectado en la corrida.
+
+El carro detecta correctamente la señal de Límite de 55 mph, las señales
+de Curva a la Izquierda y Curva a la Derecha, el STOP, Ceder el Paso,
+y otras señales a lo largo del circuito.
+
+El objetivo de al menos 8 de 16 señales se alcanza de forma consistente
+durante la corrida.
+
+---
+
+[CIERRE — 5:00 a 5:15]
+
+Este proyecto me enseñó que en visión computacional para vehículos
+autónomos, el mayor enemigo no es el algoritmo sino la diferencia
+entre los datos con los que entrenas y el mundo real donde lo usas.
+El domain gap es un problema que aparece siempre que pasas de un
+dataset a un entorno real o simulado diferente.
+
+La solución no es magia: es capturar datos del entorno real, aplicar
+técnicas de normalización como CLAHE, y reentrenar. Los fundamentos
+son simples, la implementación requiere paciencia.
+
+Gracias por ver el video.
+
+========================================================================

@@ -1,5 +1,5 @@
 # Controlador Webots — Actividad 4.2
-# CNN entrenada en GTSRB para detectar señales de tráfico.
+# CNN entrenada con señales USA + fine-tuning con imágenes Webots.
 # Modo principal: seguimiento de pared derecha con LiDAR (SickLMS 291).
 # Modo override: teclado ←→ para dirección manual temporal.
 
@@ -34,29 +34,27 @@ except ImportError:
 # PARÁMETROS
 # =============================================================================
 MAX_ANGLE      = 0.5
-SPEED_INCR     = 2.0    # km/h por tecla (antes 5 → demasiado brusco)
-ANGLE_INCR     = 0.012  # incremento por pulso de dirección
-STEER_DEBOUNCE = 0.07   # segundos mínimos entre pulsos de dirección (≈1 frame)
+SPEED_INCR     = 2.0    # km/h por tecla
+ANGLE_INCR     = 0.012  # radianes por pulso de dirección
+STEER_DEBOUNCE = 0.07   # segundos mínimos entre pulsos de dirección
 DEFAULT_SPEED  = 10.0   # km/h al arrancar
 
 IMG_SIZE       = 32
-CONF_THRESHOLD = 0.45   # alto: solo detecciones confiables
-CONFIRM_STREAK = 2      # veces consecutivas para confirmar (3 era demasiado exigente)
-DETECT_EVERY   = 3
-MIN_AREA       = 18     # área mínima px² (señales lejanas son pequeñas en 128×128)
+CONFIRM_STREAK = 2      # detecciones consecutivas para confirmar una señal
+DETECT_EVERY   = 3      # correr CNN cada N frames (ahorra CPU)
 
 # -- LiDAR wall-following (lado derecho = norte para carro apuntando oeste) --
 WALL_TARGET    = 2.5    # m objetivo de distancia al bordillo derecho
-WALL_NO_WALL   = 8.0    # si distancia > esto, asumimos sin pared (cruce)
+WALL_NO_WALL   = 8.0    # si distancia > esto, asumimos sin pared
 KP_WALL        = 0.15   # ganancia proporcional P
-FRONT_STOP     = 0.9    # m: freno total (1.5 era demasiado — chocaba con edificios)
-FRONT_SLOW     = 1.8    # m: reducir velocidad
+FRONT_STOP     = 0.9    # m: freno total por obstáculo frontal
+FRONT_SLOW     = 1.8    # m: reducir velocidad por obstáculo frontal
 MANUAL_TICKS   = 120    # frames de override manual antes de volver a LiDAR
 DETECT_GRACE   = 60     # frames iniciales sin CNN (evita falsos positivos al arrancar)
-CROSS_HOLD     = 20     # frames que se mantiene el último ángulo al perder pared
-CROSS_DECAY    = 0.90   # decaimiento por frame después de CROSS_HOLD
+CROSS_HOLD     = 20     # frames que mantiene el último ángulo al perder pared
+CROSS_DECAY    = 0.90   # decaimiento del ángulo cuando no hay pared
 
-# Usa el modelo US si existe, cae al GTSRB como respaldo
+# Usa el modelo US, cae al GTSRB como respaldo
 _US_MODEL  = os.path.join(os.path.dirname(__file__), "..", "modelo_us_webots.keras")
 _OLD_MODEL = os.path.join(os.path.dirname(__file__), "..", "modelo_gtsrb.keras")
 MODEL_PATH = _US_MODEL if os.path.exists(_US_MODEL) else _OLD_MODEL
@@ -66,7 +64,7 @@ CLASS_NAMES = {
      0: "Lim. 20km/h",      1: "Lim. 30km/h",       2: "Lim. 50km/h",
      3: "Lim. 55 mph",      4: "Lim. 65 mph",        5: "Lim. 80km/h",
      6: "Fin lim. 80",       7: "Lim. 100km/h",       8: "Lim. 120km/h",
-     9: "No adelantar",     10: "No adel. >3.5t",    11: "Ceder derecho",
+     9: "No adelantar",     10: "No adel. >3.5t",    11: "Cruce prioritario",
     12: "Prioridad",        13: "Ceder paso",         14: "STOP",
     15: "Sin vehículos",    16: "Sin >3.5t",          17: "No entrar",
     18: "Precaución",       19: "Curva izq.",         20: "Curva der.",
@@ -174,7 +172,7 @@ def cargar_modelo(path):
         print(f"[CNN] Error: {e}")
         return None, {}
 
-    # Cargar mapeo índice→clase GTSRB (sólo existe para modelo US)
+    # Cargar mapeo índice→clase GTSRB 
     idx_to_gtsrb = {}
     map_abs = os.path.abspath(MAP_PATH)
     if os.path.exists(map_abs):
@@ -346,7 +344,7 @@ def clasificar(bgr_img, bbox, model, idx_to_gtsrb):
         if lap_var < 15:
             return None, 0.0   # guardarriel, pared, cielo — descartar
 
-        # Filtro 2 — aspect ratio para elegir subconjunto de clases:
+        # Filtro 3 — aspect ratio para elegir subconjunto de clases:
         #   Speed Limit 55/65: señal portrait  (asp < 1.1) → {3, 4}
         #   One-Way left:      señal landscape (asp > 1.4) → {34}
         if asp < 1.1:
@@ -358,8 +356,12 @@ def clasificar(bgr_img, bbox, model, idx_to_gtsrb):
 
         if not candidates:
             return None, 0.0
+        clahe_w  = cv2.createCLAHE(clipLimit=2.5, tileGridSize=(4, 4))
+        lab_w    = cv2.cvtColor(crop, cv2.COLOR_BGR2LAB)
+        lab_w[:, :, 0] = clahe_w.apply(lab_w[:, :, 0])
+        crop_w   = cv2.cvtColor(lab_w, cv2.COLOR_LAB2BGR)
         img_norm = cv2.resize(
-            cv2.cvtColor(crop, cv2.COLOR_BGR2RGB),
+            cv2.cvtColor(crop_w, cv2.COLOR_BGR2RGB),
             (IMG_SIZE, IMG_SIZE)).astype(np.float32) / 255.0
         probs    = model.predict(np.expand_dims(img_norm, 0), verbose=0)[0]
         best     = max(candidates, key=lambda i: probs[i])
@@ -490,6 +492,10 @@ def main():
     last_wall_steer  = 0.0   # último ángulo calculado con pared visible
     no_wall_frames   = 0     # frames consecutivos sin pared derecha
 
+    sin_pared_activo     = False   # True cuando se pierde la barra → frena y modo manual
+    pared_vista          = False   # True después de detectar la primera pared
+    NO_WALL_TRIGGER      = 8      # frames sin ninguna pared para activar frenado
+
     last_steer_time      = 0.0     # timestamp del último pulso de dirección
     lidar_enabled        = True    # tecla L para toggle LiDAR on/off
     ultima_deteccion     = None
@@ -545,32 +551,52 @@ def main():
                 speed = 0.0
                 print(f"[LIDAR] Obstáculo a {frente:.1f}m — STOP")
             elif frente < FRONT_SLOW:
-                speed = 6.0          # reduce puntualmente, no acumula
+                speed = 6.0
+            elif sin_pared_activo:
+                speed = 4.0          # frenado suave mientras no hay barra
             else:
-                speed = target_speed  # recupera velocidad normal
+                speed = target_speed
+
+            # Detección de pared — siempre corre para poder recuperar modo LiDAR
+            if lidar_enabled:
+                auto_steer, dist_right, dist_fr, hay_pared = lidar_steering(ranges)
+                left_vals = ranges[n * 15 // 180 : n * 45 // 180]
+                dist_left = min(left_vals) if left_vals else 99.0
+                hay_pared_izq = dist_left < WALL_NO_WALL
+
+                # Marcar que ya se vio al menos una pared
+                if hay_pared or hay_pared_izq:
+                    pared_vista = True
+
+                # Recuperar modo LiDAR si vuelve la barra (aunque estemos en manual)
+                if sin_pared_activo and (hay_pared or hay_pared_izq):
+                    sin_pared_activo = False
+                    manual_countdown = 0
+                    print("[PARED] Barra recuperada — LiDAR activo")
+
+                # Activar modo sin-barra solo si ya habíamos visto pared antes
+                if not hay_pared and not hay_pared_izq:
+                    no_wall_frames += 1
+                    if pared_vista and no_wall_frames == NO_WALL_TRIGGER and not sin_pared_activo:
+                        sin_pared_activo = True
+                        manual_countdown = 99999
+                        speed = 4.0
+                        print("[PARED] Barra perdida — frenando, modo manual hasta recuperar")
+                else:
+                    no_wall_frames = 0
 
             # Dirección automática (solo si LiDAR activo y sin override manual)
             if lidar_enabled and manual_countdown <= 0:
-                auto_steer, dist_right, dist_fr, hay_pared = lidar_steering(ranges)
-
                 if hay_pared:
                     target_steer    = auto_steer
                     last_wall_steer = auto_steer
-                    no_wall_frames  = 0
                 else:
-                    # Sin pared derecha: intentar usar pared IZQUIERDA como guía
-                    left_vals = ranges[n * 15 // 180 : n * 45 // 180]
-                    dist_left = min(left_vals) if left_vals else 99.0
-                    if dist_left < WALL_NO_WALL:
-                        # Pared izquierda visible: mantener distancia simétrica
-                        error_left = WALL_TARGET - dist_left   # positivo → virar izq
+                    if hay_pared_izq:
+                        error_left   = WALL_TARGET - dist_left
                         target_steer = float(np.clip(-KP_WALL * error_left,
                                                      -MAX_ANGLE, MAX_ANGLE))
                         last_wall_steer = target_steer
-                        no_wall_frames  = 0
                     else:
-                        # Sin ninguna pared: hold → decay
-                        no_wall_frames += 1
                         if no_wall_frames <= CROSS_HOLD:
                             target_steer = last_wall_steer
                         else:
