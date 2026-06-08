@@ -1,7 +1,15 @@
 # Controlador Webots — Actividad 4.2
 # CNN entrenada con señales USA + fine-tuning con imágenes Webots.
-# Modo principal: seguimiento de pared derecha con LiDAR (SickLMS 291).
-# Modo override: teclado ←→ para dirección manual temporal.
+#
+# Modos de operación:
+#   LIDAR  — seguimiento de pared derecha con Sick LMS 291 (2D, plano horizontal)
+#   XROAD  — cruce de intersección: heading con giroscopio + bias izquierda + decay
+#   RAMP   — recuperación suave 4→10 km/h al volver a detectar pared
+#   MANUAL — override con teclado ←→ (MANUAL_TICKS frames, luego vuelve a LIDAR)
+#
+# Teclas: ↑↓ velocidad | ←→ dirección | L toggle LiDAR | SPACE freno
+# Display izq: cámara + ROIs | Display der: señal detectada
+# Velocidad en display: cyan=normal, amarillo=ramp, rojo=sin pared
 
 from controller import Display, Keyboard, Camera
 from vehicle import Car, Driver
@@ -39,20 +47,35 @@ ANGLE_INCR     = 0.012  # radianes por pulso de dirección
 STEER_DEBOUNCE = 0.07   # segundos mínimos entre pulsos de dirección
 DEFAULT_SPEED  = 10.0   # km/h al arrancar
 
-IMG_SIZE       = 32
-CONFIRM_STREAK = 2      # detecciones consecutivas para confirmar una señal
-DETECT_EVERY   = 3      # correr CNN cada N frames (ahorra CPU)
+IMG_SIZE          = 32
+CONFIRM_STREAK     = 1   # 1 = confirma en 1 frame (ciudad: señales pasan rápido)
+DETECT_EVERY_CLOSE = 2   # frames entre llamadas CNN cuando hay señal cerca (bbox grande)
+DETECT_EVERY_FAR   = 8   # frames entre llamadas CNN cuando no hay candidatos (ahorra cómputo)
+BBOX_CLOSE_THRESH  = 300 # área mínima en px² para considerar señal "cerca"
+VERBOSE           = False  # True = logs diagnóstico por consola (más lento)
 
-# -- LiDAR wall-following (lado derecho = norte para carro apuntando oeste) --
+# -- LiDAR wall-following -------------------------------------------------
+# Sick LMS 291: 2D, plano horizontal único, FOV 180°, ~30 m max range
 WALL_TARGET    = 2.5    # m objetivo de distancia al bordillo derecho
-WALL_NO_WALL   = 8.0    # si distancia > esto, asumimos sin pared
-KP_WALL        = 0.15   # ganancia proporcional P
-FRONT_STOP     = 0.9    # m: freno total por obstáculo frontal
-FRONT_SLOW     = 1.8    # m: reducir velocidad por obstáculo frontal
-MANUAL_TICKS   = 120    # frames de override manual antes de volver a LiDAR
-DETECT_GRACE   = 60     # frames iniciales sin CNN (evita falsos positivos al arrancar)
-CROSS_HOLD     = 20     # frames que mantiene el último ángulo al perder pared
-CROSS_DECAY    = 0.90   # decaimiento del ángulo cuando no hay pared
+WALL_NO_WALL   = 8.0    # dist frontal-derecha > esto → anticipar pérdida de pared
+KP_WALL        = 0.15   # ganancia P del controlador de pared
+FRONT_STOP     = 0.9    # m: freno de emergencia por obstáculo frontal
+FRONT_SLOW     = 1.8    # m: reducir a 6 km/h por obstáculo frontal
+MANUAL_TICKS   = 120    # frames de override manual antes de volver a LIDAR
+DETECT_GRACE   = 25     # frames iniciales sin CNN al arrancar
+
+# -- Intersección (sin pared) ---------------------------------------------
+# Al perder la pared: entra modo XROAD usando último steering de curva (last_curve_steer)
+# + corrección giroscópica para mantener heading recto + bias izquierda
+CROSS_DECAY        = 0.82   # multiplicador de steering por frame si no hay pared ni gyro
+XROAD_CRUISE_SPEED = 3.0    # km/h durante el cruce
+XROAD_LEFT_BIAS    = 0.025  # rad bias izquierda para contrarrestar inercia de curva
+KP_HEADING         = 1.2    # ganancia P del corrector de heading con gyro
+NO_WALL_TRIGGER    = 8      # frames consecutivos sin pared para activar modo XROAD
+
+# -- Recuperación de pared ------------------------------------------------
+WALL_RECOVER_SPEED = 4.0    # km/h de arranque al detectar pared de nuevo
+WALL_RECOVER_RAMP  = 40     # frames para rampear de WALL_RECOVER_SPEED → DEFAULT_SPEED
 
 # Usa el modelo US, cae al GTSRB como respaldo
 _US_MODEL  = os.path.join(os.path.dirname(__file__), "..", "modelo_us_webots.keras")
@@ -87,7 +110,8 @@ def get_image(camera):
     return np.frombuffer(raw, np.uint8).reshape(
         (camera.getHeight(), camera.getWidth(), 4))
 
-def render_roi_overlay(display_cam, display_info, bgr_img, bboxes, deteccion, total):
+def render_roi_overlay(display_cam, display_info, bgr_img, bboxes, deteccion, total,
+                       speed=0.0, wall_lost=False, ramping=False):
     """imageNew pega cámara+overlays OpenCV en display_cam. Draw API para display_info."""
     dw = display_cam.getWidth()
     dh = display_cam.getHeight()
@@ -135,6 +159,16 @@ def render_roi_overlay(display_cam, display_info, bgr_img, bboxes, deteccion, to
     display_info.fillRectangle(0, 20, dw2, 24)
     display_info.setColor(cnt_c)
     display_info.drawText(f"Senales unicas: {total} / 16", 4, 28)
+
+    # ── Velocidad actual ──────────────────────────────────────────────────
+    if wall_lost:
+        spd_color = 0xFF4444   # rojo: sin pared, frenando
+    elif ramping:
+        spd_color = 0xFFCC00   # amarillo: acelerando suavemente
+    else:
+        spd_color = 0x00CCFF   # cyan: velocidad normal
+    display_info.setColor(spd_color)
+    display_info.drawText(f"Vel: {speed:.1f} km/h", 4, 44)
 
     if deteccion is not None:
         pct = int(deteccion["confidence"] * 100)
@@ -220,11 +254,10 @@ def detectar_regiones(bgr_img):
 
     # Diagnóstico: guardar masks + ROI color cada 5 llamadas
     _mask_n += 1
-    if _mask_n % 5 == 0:
+    if VERBOSE and _mask_n % 5 == 0:
         cv2.imwrite(os.path.join(SCRIPT_DIR, "dbg_roi_color.png"), roi)
         cv2.imwrite(os.path.join(SCRIPT_DIR, "dbg_white.png"),  white)
         cv2.imwrite(os.path.join(SCRIPT_DIR, "dbg_yellow.png"), yellow)
-        # Diagnóstico de amarillo: cuántos pixels tienen hue amarillo con cualquier S/V
         any_hue_yellow = cv2.inRange(hsv, np.array([10, 0, 0]), np.array([50, 255, 255]))
         any_px = cv2.countNonZero(any_hue_yellow)
         if any_px > 0:
@@ -234,7 +267,6 @@ def detectar_regiones(bgr_img):
             print(f"[YEL] H=10-50 px={any_px} S={sv.min()}-{sv.max()}(med={int(np.median(sv))}) V={vv.min()}-{vv.max()}(med={int(np.median(vv))}) -> filtered_y={cv2.countNonZero(yellow)}")
         else:
             print(f"[YEL] CERO pixels con H=10-50 en ROI. w={cv2.countNonZero(white)} cnts={len(contornos)}")
-        # Diagnóstico blanco: cuántos píxels y contornos hay
         w_px = cv2.countNonZero(white)
         white_cnts, _ = cv2.findContours(white, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
         w_areas = sorted([int(cv2.contourArea(c)) for c in white_cnts if cv2.contourArea(c) >= 5], reverse=True)[:5]
@@ -292,7 +324,8 @@ def detectar_regiones(bgr_img):
             if not any(abs(b[0]-new_bbox[0]) < 8 and abs(b[1]-new_bbox[1]) < 8
                        for b in bboxes):
                 bboxes.append(new_bbox)
-                print(f"[WHT+] area={int(area)} asp={asp:.2f}")
+                if VERBOSE:
+                    print(f"[WHT+] area={int(area)} asp={asp:.2f}")
     return bboxes
 
 # Clases válidas por color de la región detectada
@@ -314,7 +347,8 @@ def color_region(bgr_crop):
     if y  > 0.02: return 'yellow'
     if r1 + r2 > 0.04: return 'red'
     if w  > 0.10: return 'white'
-    print(f"    [OTHER] y={y:.3f} r={r1+r2:.3f} w={w:.3f}  sz={bgr_crop.shape[:2]}")
+    if VERBOSE:
+        print(f"    [OTHER] y={y:.3f} r={r1+r2:.3f} w={w:.3f}  sz={bgr_crop.shape[:2]}")
     return 'other'
 
 def clasificar(bgr_img, bbox, model, idx_to_gtsrb):
@@ -340,8 +374,9 @@ def clasificar(bgr_img, bbox, model, idx_to_gtsrb):
         #   Guardarrieles/paredes/cielo son uniformes → var casi 0
         gray_c  = cv2.cvtColor(crop, cv2.COLOR_BGR2GRAY)
         lap_var = cv2.Laplacian(gray_c, cv2.CV_64F).var()
-        print(f"    [BLANCA] asp={asp:.2f}  lap={lap_var:.0f}  thresh_lap=15")
-        if lap_var < 15:
+        if VERBOSE:
+            print(f"    [BLANCA] asp={asp:.2f}  lap={lap_var:.0f}  thresh_lap=25")
+        if lap_var < 25:
             return None, 0.0   # guardarriel, pared, cielo — descartar
 
         # Filtro 3 — aspect ratio para elegir subconjunto de clases:
@@ -367,7 +402,8 @@ def clasificar(bgr_img, bbox, model, idx_to_gtsrb):
         best     = max(candidates, key=lambda i: probs[i])
         cid      = idx_to_gtsrb[best]
         raw_conf = float(probs[best])
-        print(f"           gtsrb={cid}  cnn_conf={raw_conf:.2f}")
+        if VERBOSE:
+            print(f"           gtsrb={cid}  cnn_conf={raw_conf:.2f}")
         if raw_conf < 0.10:
             return None, 0.0
         return cid, 0.80
@@ -386,7 +422,8 @@ def clasificar(bgr_img, bbox, model, idx_to_gtsrb):
             s_vals = hsv_c[:, :, 1][yel_mask > 0]
             s_med = int(np.median(s_vals))
             if s_med < 22:   # desierto puro, no señal
-                print(f"    [SKIP] crop amarillo descartado S_med={s_med}<22 (desierto)")
+                if VERBOSE:
+                    print(f"    [SKIP] crop amarillo descartado S_med={s_med}<22 (desierto)")
                 return None, 0.0
         else:
             return None, 0.0
@@ -415,9 +452,10 @@ def clasificar(bgr_img, bbox, model, idx_to_gtsrb):
     top2 = sorted([(idx_to_gtsrb.get(i,i), float(probs_f[i]))
                    for i in range(len(probs_f)) if probs_f[i] > 0.01],
                   key=lambda x: -x[1])[:2]
-    top2_str = "  ".join(f"g{g}={v:.2f}" for g, v in top2)
-    print(f"    [{color.upper()}] {top2_str}  -> {label}  thresh=0.25")
-    if conf < 0.25:
+    if VERBOSE:
+        top2_str = "  ".join(f"g{g}={v:.2f}" for g, v in top2)
+        print(f"    [{color.upper()}] {top2_str}  -> {label}  thresh=0.55")
+    if conf < 0.55:
         return None, 0.0
     return cid, conf
 
@@ -426,8 +464,10 @@ def detectar_senales(bgr_img, model, idx_to_gtsrb):
     global _crop_n
     if model is None:
         return None, []
-    bboxes = detectar_regiones(bgr_img)
-    if bboxes:
+    bboxes = sorted(detectar_regiones(bgr_img),
+                    key=lambda b: (b[2]-b[0])*(b[3]-b[1]),
+                    reverse=True)   # mayor área primero = señal más cercana primero
+    if VERBOSE and bboxes:
         print(f"[CNN] {len(bboxes)} candidato(s)")
     mejor = None
     for i, bbox in enumerate(bboxes):
@@ -443,7 +483,8 @@ def detectar_senales(bgr_img, model, idx_to_gtsrb):
         if cid is None:
             continue
         label = CLASS_NAMES.get(cid, f"Clase {cid}")
-        print(f"  ✓ {label}  {conf:.2f}")
+        if VERBOSE:
+            print(f"  ✓ {label}  {conf:.2f}")
         if mejor is None or conf > mejor["confidence"]:
             mejor = {"class_id": cid, "label": label, "confidence": conf}
     return mejor, bboxes
@@ -464,8 +505,8 @@ def lidar_steering(ranges):
     right_vals = ranges[n * 135 // 180 : n * 165 // 180]
     fr_vals    = ranges[n * 105 // 180 : n * 135 // 180]
 
-    right       = min(right_vals) if right_vals else 99.0
-    front_right = min(fr_vals)    if fr_vals    else 99.0
+    right       = float(min(right_vals))        if right_vals else 99.0
+    front_right = float(np.median(fr_vals))    if fr_vals    else 99.0
 
     hay_pared = right < WALL_NO_WALL
 
@@ -489,13 +530,14 @@ def main():
     manual_countdown = 0
     blend_countdown  = 0     # frames de transición suave de vuelta a LiDAR
     BLEND_TICKS      = 20    # duración del blend (frames)
-    last_wall_steer  = 0.0   # último ángulo calculado con pared visible
+
     no_wall_frames   = 0     # frames consecutivos sin pared derecha
 
     sin_pared_activo     = False   # True cuando se pierde la barra → frena y modo manual
     pared_vista          = False   # True después de detectar la primera pared
     NO_WALL_TRIGGER      = 8      # frames sin ninguna pared para activar frenado
 
+    last_curve_steer     = 0.0     # último auto_steer válido de curva (antes de wall_ending_soon)
     last_steer_time      = 0.0     # timestamp del último pulso de dirección
     lidar_enabled        = True    # tecla L para toggle LiDAR on/off
     ultima_deteccion     = None
@@ -504,6 +546,7 @@ def main():
     pending_class        = None   # clase candidata esperando confirmación
     last_bboxes          = []     # bboxes del último frame CNN para visualización
     pending_streak       = 0      # cuántas veces consecutivas se vio esa clase
+    recovery_ramp_frames = 0      # frames restantes de ramp-up al recuperar barra
 
     robot    = Car()
     driver   = Driver()
@@ -520,6 +563,17 @@ def main():
 
     sick = robot.getDevice("Sick LMS 291")
     sick.enable(timestep)
+
+    gyro = robot.getDevice("gyro")
+    if gyro:
+        gyro.enable(timestep)
+        print(f"[GYRO] Device encontrado: {gyro.getName()}")
+    else:
+        print("[GYRO] ADVERTENCIA: device 'gyro' no encontrado — heading sin corrección")
+
+    dt                   = timestep / 1000.0  # ms → s
+    heading_integral     = 0.0   # rotación acumulada desde que se detectó el cruce
+    wall_ending_soon_prev = False  # estado anterior para detectar flanco de subida
 
     model_cnn, idx_to_gtsrb = cargar_modelo(MODEL_PATH)
 
@@ -546,14 +600,27 @@ def main():
             front_vals = ranges[n*70//180 : n*110//180]
             frente = min(front_vals) if front_vals else 99.0
 
+            # Frente amplio ±45° — solo en intersección para atrapar postes laterales
+            if sin_pared_activo:
+                wide_vals = ranges[n*45//180 : n*135//180]
+                frente_wide = min(wide_vals) if wide_vals else 99.0
+            else:
+                frente_wide = 99.0
+
             # Control de velocidad por obstáculo frontal
-            if frente < FRONT_STOP:
+            if frente < FRONT_STOP or frente_wide < 2.0:
                 speed = 0.0
-                print(f"[LIDAR] Obstáculo a {frente:.1f}m — STOP")
+                if frente_wide < 2.0:
+                    print(f"[XROAD] Obstáculo amplio a {frente_wide:.1f}m — STOP")
             elif frente < FRONT_SLOW:
                 speed = 6.0
             elif sin_pared_activo:
-                speed = 4.0          # frenado suave mientras no hay barra
+                speed = XROAD_CRUISE_SPEED   # crucero lento hasta encontrar la próxima barra
+                recovery_ramp_frames = 0
+            elif recovery_ramp_frames > 0:
+                t = 1.0 - recovery_ramp_frames / WALL_RECOVER_RAMP
+                speed = WALL_RECOVER_SPEED + t * (DEFAULT_SPEED - WALL_RECOVER_SPEED)
+                recovery_ramp_frames -= 1
             else:
                 speed = target_speed
 
@@ -564,6 +631,17 @@ def main():
                 dist_left = min(left_vals) if left_vals else 99.0
                 hay_pared_izq = dist_left < WALL_NO_WALL
 
+                # Anticipación: pared al costado pero frente-derecha ya libre → cruce inminente
+                wall_ending_soon = hay_pared and dist_fr > WALL_NO_WALL
+
+                # Gyro: resetear integral al detectar cruce por primera vez
+                if wall_ending_soon and not wall_ending_soon_prev:
+                    heading_integral = 0.0
+                # Acumular rotación mientras se aproxima o cruza la intersección
+                if (wall_ending_soon or sin_pared_activo) and gyro:
+                    heading_integral += gyro.getValues()[1] * dt
+                wall_ending_soon_prev = wall_ending_soon
+
                 # Marcar que ya se vio al menos una pared
                 if hay_pared or hay_pared_izq:
                     pared_vista = True
@@ -572,49 +650,68 @@ def main():
                 if sin_pared_activo and (hay_pared or hay_pared_izq):
                     sin_pared_activo = False
                     manual_countdown = 0
-                    print("[PARED] Barra recuperada — LiDAR activo")
+                    recovery_ramp_frames = WALL_RECOVER_RAMP
+                    target_speed = DEFAULT_SPEED
+                    heading_integral = 0.0
+                    print("[PARED] Barra recuperada — acelerando suavemente")
 
                 # Activar modo sin-barra solo si ya habíamos visto pared antes
                 if not hay_pared and not hay_pared_izq:
                     no_wall_frames += 1
                     if pared_vista and no_wall_frames == NO_WALL_TRIGGER and not sin_pared_activo:
                         sin_pared_activo = True
-                        manual_countdown = 99999
-                        speed = 4.0
-                        print("[PARED] Barra perdida — frenando, modo manual hasta recuperar")
+                        steering = float(np.clip(last_curve_steer, -0.15, 0.05))
+                        last_bboxes = []
+                        print("[XROAD] Sin pared — crucero recto a 3 km/h")
                 else:
                     no_wall_frames = 0
 
             # Dirección automática (solo si LiDAR activo y sin override manual)
             if lidar_enabled and manual_countdown <= 0:
-                if hay_pared:
-                    target_steer    = auto_steer
-                    last_wall_steer = auto_steer
+                if sin_pared_activo:
+                    # Mantener heading del cruce con gyro; bias izquierda como offset base
+                    gyro_correction = float(np.clip(-KP_HEADING * heading_integral,
+                                                    -0.15, 0.15))
+                    steering = gyro_correction - XROAD_LEFT_BIAS
                 else:
-                    if hay_pared_izq:
+                    if hay_pared:
+                        if wall_ending_soon:
+                            # Cruce a la vista: corregir con gyro en lugar de forzar 0
+                            gyro_correction = float(np.clip(-KP_HEADING * heading_integral,
+                                                            -0.15, 0.15))
+                            target_steer = gyro_correction - XROAD_LEFT_BIAS
+                            if VERBOSE:
+                                print(f"[WALL_END] integral={heading_integral:.3f} corr={gyro_correction:.3f}")
+                        else:
+                            target_steer = auto_steer
+                            last_curve_steer = auto_steer  # guardar steer real de curva
+                    elif hay_pared_izq:
                         error_left   = WALL_TARGET - dist_left
                         target_steer = float(np.clip(-KP_WALL * error_left,
                                                      -MAX_ANGLE, MAX_ANGLE))
-                        last_wall_steer = target_steer
                     else:
-                        if no_wall_frames <= CROSS_HOLD:
-                            target_steer = last_wall_steer
-                        else:
-                            last_wall_steer *= CROSS_DECAY
-                            target_steer = last_wall_steer
+                        target_steer = steering * CROSS_DECAY
 
-                # Blend suave al volver de override manual
-                if blend_countdown > 0:
-                    alpha = 1.0 - blend_countdown / BLEND_TICKS
-                    steering = steering * (1.0 - alpha) + target_steer * alpha
-                    blend_countdown -= 1
-                else:
-                    steering = target_steer
+                    # Blend suave al volver de override manual
+                    if blend_countdown > 0:
+                        alpha = 1.0 - blend_countdown / BLEND_TICKS
+                        steering = steering * (1.0 - alpha) + target_steer * alpha
+                        blend_countdown -= 1
+                    else:
+                        steering = target_steer
             else:
                 manual_countdown -= 1
 
-        # ── CNN sobre imagen completa (cada DETECT_EVERY frames) ────────────
-        if model_cnn is not None and frame_count > DETECT_GRACE and frame_count % DETECT_EVERY == 0:
+        # ── CNN sobre imagen completa (tasa adaptiva por tamaño de bbox) ──────
+        # Sin pared = intersección: no hay señales ahí, solo edificios → apagar CNN
+        if sin_pared_activo:
+            last_bboxes = []
+        bbox_area_max = max(((x2-x1)*(y2-y1)) for x1,y1,x2,y2 in last_bboxes) \
+                        if last_bboxes else 0
+        detect_rate = DETECT_EVERY_CLOSE if bbox_area_max >= BBOX_CLOSE_THRESH \
+                      else DETECT_EVERY_FAR
+        if model_cnn is not None and frame_count > DETECT_GRACE \
+                and not sin_pared_activo and frame_count % detect_rate == 0:
             det, last_bboxes = detectar_senales(bgr, model_cnn, idx_to_gtsrb)
             if det is not None:
                 cid = det["class_id"]
@@ -646,7 +743,10 @@ def main():
         # ── Displays: ROI sobre cámara + panel de detección ──────────────────
         render_roi_overlay(display_img, display_img2,
                            bgr, last_bboxes,
-                           ultima_deteccion, len(senales_detectadas))
+                           ultima_deteccion, len(senales_detectadas),
+                           speed=speed,
+                           wall_lost=sin_pared_activo,
+                           ramping=recovery_ramp_frames > 0)
 
         # ── Debug: guardar frame anotado cada 30 frames en carpeta del script ──
         if frame_count % 30 == 0:
