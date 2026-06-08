@@ -35,8 +35,8 @@ except ImportError:
 # =============================================================================
 MAX_ANGLE      = 0.5
 SPEED_INCR     = 2.0    # km/h por tecla (antes 5 → demasiado brusco)
-ANGLE_INCR     = 0.007  # incremento por pulso de dirección
-STEER_DEBOUNCE = 0.13   # segundos mínimos entre pulsos de dirección (≈2 frames)
+ANGLE_INCR     = 0.012  # incremento por pulso de dirección
+STEER_DEBOUNCE = 0.07   # segundos mínimos entre pulsos de dirección (≈1 frame)
 DEFAULT_SPEED  = 10.0   # km/h al arrancar
 
 IMG_SIZE       = 32
@@ -51,7 +51,7 @@ WALL_NO_WALL   = 8.0    # si distancia > esto, asumimos sin pared (cruce)
 KP_WALL        = 0.15   # ganancia proporcional P
 FRONT_STOP     = 0.9    # m: freno total (1.5 era demasiado — chocaba con edificios)
 FRONT_SLOW     = 1.8    # m: reducir velocidad
-MANUAL_TICKS   = 80     # frames de override manual antes de volver a LiDAR
+MANUAL_TICKS   = 120    # frames de override manual antes de volver a LiDAR
 DETECT_GRACE   = 60     # frames iniciales sin CNN (evita falsos positivos al arrancar)
 CROSS_HOLD     = 20     # frames que se mantiene el último ángulo al perder pared
 CROSS_DECAY    = 0.90   # decaimiento por frame después de CROSS_HOLD
@@ -64,7 +64,7 @@ MAP_PATH   = os.path.join(os.path.dirname(__file__), "..", "us_class_map.json")
 
 CLASS_NAMES = {
      0: "Lim. 20km/h",      1: "Lim. 30km/h",       2: "Lim. 50km/h",
-     3: "Lim. 60km/h",      4: "Lim. 70km/h",        5: "Lim. 80km/h",
+     3: "Lim. 55 mph",      4: "Lim. 65 mph",        5: "Lim. 80km/h",
      6: "Fin lim. 80",       7: "Lim. 100km/h",       8: "Lim. 120km/h",
      9: "No adelantar",     10: "No adel. >3.5t",    11: "Ceder derecho",
     12: "Prioridad",        13: "Ceder paso",         14: "STOP",
