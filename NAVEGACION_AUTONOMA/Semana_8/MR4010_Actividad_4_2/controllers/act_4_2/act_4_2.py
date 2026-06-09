@@ -51,19 +51,19 @@ MAX_STEER_RATE = 0.03     # rad/frame rate limiter (H2)
 NO_LINE_HOLD   = 10       # frames sin línea antes de decay (H2: 10 a 50km/h)
 
 # ── LiDAR ────────────────────────────────────────────────────────────────────
-BUS_LIDAR_THRESH = 4.0    # m: bus debe estar muy cerca para activar evasión
+BUS_LIDAR_THRESH = 14.5   # m: iniciar evasión con suficiente margen para rodear el bus
 LIDAR_FOV_DEG    = 20     # grados a cada lado del centro para medir frente
 
 # ── Wall-following (evasión) ─────────────────────────────────────────────────
-SPEED_EVADE   = 20        # km/h durante la evasión
-WALL_TARGET   = 2.5       # m: distancia objetivo al costado del autobús
+SPEED_EVADE   = 15        # km/h durante la evasión (mitad de SPEED_FOLLOW=30)
+WALL_TARGET   = 2.9       # m: distancia objetivo al costado del autobús
 KP_WALL       = 0.10      # ganancia P del controlador de pared derecha
 DS_CLEAR_DIST = 4.8       # m: sensor trasero sin obstáculo → bus superado
 DS_ENGAGE_DIST = 4.5      # m: sensor frontal debe leer < esto para considerar bus detectado lateralmente
 
 # ── Filtros anti-falso-positivo en recognition ────────────────────────────────
-BUS_MIN_PX_AREA = 8000    # px²: concentración alta de color (bus grande vs señal pequeña)
-BUS_CONFIRM_FRAMES = 5    # frames consecutivos con bus detectado antes de activar evasión
+BUS_MIN_PX_AREA = 400     # px²: detectar bus desde lejos (era 2000, bloqueaba hasta <6m)
+BUS_CONFIRM_FRAMES = 1    # 1 frame basta — color exacto ya garantiza no hay falsos positivos
 
 # ── Reorientación con giroscopio ─────────────────────────────────────────────
 SPEED_REORIENT = 20       # km/h mientras se recupera el heading
@@ -83,7 +83,8 @@ BUS_COLOR_MAP = {
 STATE_LINE_FOLLOW = 0
 STATE_WALL_FOLLOW = 1
 STATE_REORIENT    = 2
-STATE_NAMES = {0: "LINE_FOLLOW", 1: "WALL_FOLLOW", 2: "REORIENT"}
+STATE_RECENTER    = 3
+STATE_NAMES = {0: "LINE_FOLLOW", 1: "WALL_FOLLOW", 2: "REORIENT", 3: "RECENTER"}
 
 # =============================================================================
 # FUNCIONES DE PROCESAMIENTO DE IMAGEN (Canny + Hough)
@@ -229,7 +230,7 @@ def identify_bus_color(obj, debug=False):
         pos   = obj.getPositionOnImage()
         print(f"[DBG] modelo='{model}' color={color_str} size={sz[0]}x{sz[1]} pos=({pos[0]},{pos[1]})")
     for name, (cr, cg, cb) in BUS_COLOR_MAP.items():
-        if abs(r - cr) < 0.01 and abs(g - cg) < 0.01 and abs(b - cb) < 0.01:
+        if abs(r - cr) < 0.05 and abs(g - cg) < 0.05 and abs(b - cb) < 0.05:
             return name, color_str
     return "desconocido", color_str
 
@@ -296,20 +297,32 @@ def main():
     _bus_print_cd    = 0   # cooldown entre prints de recognition
     _bus_streak      = 0   # frames consecutivos con bus válido detectado
     _wall_engaged    = False  # True cuando ds_right_front detectó el bus lateralmente
+    _clear_hold      = 0     # frames de buffer recto tras liberar sensor trasero
+    _recenter_frames = 0   # frames en RECENTER (timeout de seguridad)
 
     # ── Log de diagnóstico ────────────────────────────────────────────────────
     # n_raw   = líneas Hough antes del filtro de slope (si 0: ROI/Canny falla)
-    # n_filt  = líneas tras slope filter (si n_raw>0 pero 0: slope demasiado estricto)
-    # cx      = centro de carril detectado en px (None si no hay líneas)
-    # err     = error PID normalizado [-1,1] (None si sin línea)
-    # steer   = ángulo de dirección aplicado
-    # nolf    = frames consecutivos sin línea (hold/decay counter)
-    # lidar   = distancia frontal LiDAR (m)
+    # n_filt    = líneas tras slope filter
+    # cx        = centro de carril detectado en px
+    # err       = error PID normalizado [-1,1]
+    # nolf      = frames sin línea (hold/decay counter)
+    # lidar     = distancia frontal LiDAR (m)
+    # n_obj     = objetos totales en recognition
+    # top_model = modelo del objeto más grande detectado
+    # top_color = color RGB del objeto más grande
+    # top_area  = área en px² del objeto más grande
+    # top_px    = posición x del objeto más grande
+    # bus_str   = streak de confirmación de bus
     _log_path = os.path.join(os.path.dirname(__file__), "act42_diag.log")
     _log_file = open(_log_path, "w")
-    _log_file.write("frame,sim_t,state,yellow_frac,n_raw,n_filt,cx,err,steer,nolf,lidar\n")
+    _log_file.write("frame,sim_t,state,yellow_frac,n_raw,n_filt,cx,err,steer,nolf,lidar,"
+                    "n_obj,top_model,top_color,top_area,top_px,bus_str\n")
+    _wall_log_path = os.path.join(os.path.dirname(__file__), "act42_wall.log")
+    _wall_log_file = open(_wall_log_path, "w")
+    _wall_log_file.write("sim_t,state,lidar_front,lidar_right,dist_rf,dist_rm,dist_rr,steering,engaged\n")
     _frame = 0
     print(f"[INIT] Log de diagnóstico → {_log_path}")
+    print(f"[INIT] Log wall-follow     → {_wall_log_path}")
 
     print("[INIT] Actividad 4.2 — Controlador iniciado")
     print("[INIT] Estado: LINE_FOLLOW | velocidad PID: 30 km/h")
@@ -331,13 +344,20 @@ def main():
         # getValues()[1] = yaw rate en BmwX5 Webots R2023b (validado en Semana_7)
         heading += gyro.getValues()[1] * dt
 
-        # ── [3] Lectura LiDAR — distancia frontal ─────────────────────────────
-        # El LiDAR tiene 181 rayos en 180°; tomamos el sector frontal ±LIDAR_FOV_DEG
+        # ── [3] Lectura LiDAR — sectores frontal y lateral derecho ───────────────
+        # índice 0=izquierda, 90=frente, 180=derecha (igual que Semana 7)
         ranges = list(sick.getRangeImage())
         span   = max(1, int(n_rays * LIDAR_FOV_DEG / 180))
         center = n_rays // 2
-        front_vals = [r for r in ranges[center - span : center + span] if r < 99.0]
-        lidar_dist = float(min(front_vals)) if front_vals else 99.0
+        front_vals  = [r for r in ranges[center - span : center + span] if r < 99.0]
+        lidar_dist  = float(min(front_vals)) if front_vals else 99.0
+
+        # Sector lateral derecho puro (índices 150-180 = 65°-90° del frente)
+        # El bus al costado aparece a ~90° del frente (índice 180); antes 135-165 lo perdía
+        r_start = n_rays * 150 // 180
+        r_end   = n_rays
+        right_vals  = [r for r in ranges[r_start:r_end] if r < 99.0]
+        lidar_right = float(min(right_vals)) if right_vals else 99.0
 
         # ── [4] Lectura sensores laterales derecha ────────────────────────────
         dist_rf = float(ds_front.getValue())   # distancia sensor frontal derecho
@@ -348,20 +368,35 @@ def main():
         bus_in_front = False
         bus_name     = "desconocido"
         color_str    = "N/A"
-        objects = camera.getRecognitionObjects()
+        objects      = camera.getRecognitionObjects()
+
+        # Capturar el objeto más grande para el log (sin filtros)
+        top_model = "none"
+        top_color = "none"
+        top_area  = 0
+        top_px    = -1
+        for _o in objects:
+            _si  = _o.getSizeOnImage()
+            _a   = _si[0] * _si[1]
+            if _a > top_area:
+                top_area  = _a
+                top_px    = int(_o.getPositionOnImage()[0])
+                top_model = _o.getModel()
+                _, top_color = identify_bus_color(_o)
+
         for obj in objects:
             pos_img  = obj.getPositionOnImage()
             img_size = obj.getSizeOnImage()
             px_area  = img_size[0] * img_size[1]
 
-            # Filtro 1: bus debe estar en el 25% central de la imagen (directamente enfrente)
-            if abs(pos_img[0] - setpoint) > width * 0.25:
+            # Filtro 1: bus en el 50% central de la imagen
+            if abs(pos_img[0] - setpoint) > width * 0.50:
                 continue
-            # Filtro 2: tamaño mínimo (buses >> señales/árboles/letreros)
+            # Filtro 2: tamaño mínimo
             if px_area < BUS_MIN_PX_AREA:
                 continue
-            # Filtro 3: color exacto de uno de los 4 buses (tolerancia 0.05)
-            bus_name, color_str = identify_bus_color(obj, debug=False)
+            # Filtro 3: color coincide con un bus conocido
+            bus_name, color_str = identify_bus_color(obj)
             if bus_name == "desconocido":
                 continue
 
@@ -376,13 +411,10 @@ def main():
 
         bus_confirmed = _bus_streak >= BUS_CONFIRM_FRAMES
 
-        # Imprimir detección cada 30 frames para no saturar consola
-        if bus_in_front and state == STATE_LINE_FOLLOW:
-            if _bus_print_cd <= 0:
-                print(f"[RECOGNITION] Autobús en frente: {bus_name} | "
-                      f"Color: {color_str} | streak={_bus_streak}/{BUS_CONFIRM_FRAMES} | "
-                      f"LiDAR: {lidar_dist:.1f} m")
-                _bus_print_cd = 30
+        if bus_in_front and _bus_print_cd <= 0:
+            print(f"[BUS] {bus_name} | color={color_str} | "
+                  f"streak={_bus_streak}/{BUS_CONFIRM_FRAMES} | LiDAR={lidar_dist:.1f}m")
+            _bus_print_cd = 60
         _bus_print_cd -= 1
 
         # ── [6] Teclado ───────────────────────────────────────────────────────
@@ -433,6 +465,16 @@ def main():
 
             display_with_lines(display, roi, filt_lines, proc_w, proc_h)
 
+            # HUD: texto sobre el display con info clave
+            bus_label = bus_name if bus_in_front else "---"
+            hud_color = 0xFF0000 if bus_in_front else 0x00FF00   # rojo si bus, verde si no
+            display.setColor(0x000000)
+            display.fillRectangle(0, 0, proc_w, 22)              # fondo negro para legibilidad
+            display.setColor(hud_color)
+            display.drawText(f"LIDAR:{lidar_dist:.1f}m  BUS:{bus_label}", 2, 2)
+            display.setColor(0xFFFFFF)
+            display.drawText(f"ST:{STATE_NAMES[state]}  E:{prev_error:.2f}", 2, 12)
+
             if lane_center_x is not None:
                 no_line_frames = 0
                 image_center   = proc_w / 2.0
@@ -456,48 +498,64 @@ def main():
             driver.setCruisingSpeed(SPEED_FOLLOW)
             driver.setSteeringAngle(steering)
 
-            # Log: n_raw=hough bruto, n_filt=tras slope, cx=centro detectado, err=error norm
             lane_cx_log = f"{lane_center_x:.1f}" if lane_center_x is not None else "None"
             err_log     = f"{prev_error:.3f}" if lane_center_x is not None else "None"
             _log_file.write(
                 f"{_frame},{robot.getTime():.2f},{STATE_NAMES[state]},"
                 f"{yellow_frac:.3f},{len(raw_lines)},{len(filt_lines)},"
                 f"{lane_cx_log},{err_log},"
-                f"{steering:.4f},{no_line_frames},{lidar_dist:.2f}\n"
+                f"{steering:.4f},{no_line_frames},{lidar_dist:.2f},"
+                f"{len(objects)},{top_model},{top_color},{top_area},{top_px},{_bus_streak}\n"
             )
             _log_file.flush()
             _frame += 1
 
         elif state == STATE_WALL_FOLLOW:
-            # ── Paso 4: seguimiento de pared derecha ───────────────────────────
-            # Solo controlar distancia si ya hay un obstáculo a la derecha.
-            # Si dist_rf == max (sin obstáculo), ir recto hasta encontrarlo.
-            if dist_rf > DS_ENGAGE_DIST:
-                steering = 0.0   # sin obstáculo derecho → avanzar recto
+            # ── Paso 4: seguimiento de pared derecha con LiDAR lateral ───────────
+            # Usa el sector derecho del LiDAR (135-165°) — mayor alcance que los
+            # sensores de 5m, mismo enfoque que Semana 7.
+            # Fase A: bus aún enfrente → girar izquierda suavemente para rodearlo
+            # Fase B: bus al costado derecho → P controller a WALL_TARGET (2.5m)
+            right_dist = min(lidar_right, dist_rf)   # el más cercano de ambos sensores
+
+            if right_dist > DS_ENGAGE_DIST:
+                steering = -0.08   # giro izquierda suave para rodear el bus
             else:
-                # error_wall > 0 → lejos del bus → girar derecha
-                # error_wall < 0 → muy cerca del bus → girar izquierda
-                error_wall = dist_rf - WALL_TARGET
+                error_wall = right_dist - WALL_TARGET
                 steering   = float(np.clip(KP_WALL * error_wall, -MAX_ANGLE, MAX_ANGLE))
 
             driver.setCruisingSpeed(SPEED_EVADE)
             driver.setSteeringAngle(steering)
 
-            # Confirmar que el bus ya está al costado derecho del carro
-            if not _wall_engaged and dist_rf < DS_ENGAGE_DIST:
+            # Confirmar que el bus está al costado
+            if not _wall_engaged and right_dist < DS_ENGAGE_DIST:
                 _wall_engaged = True
-                print(f"[WALL] Bus detectado lateralmente ({dist_rf:.2f}m) — seguimiento activo")
+                print(f"[WALL] Bus al costado ({right_dist:.2f}m) — seguimiento activo")
+
+            _wall_log_file.write(
+                f"{robot.getTime():.3f},WALL_FOLLOW,{lidar_dist:.2f},{lidar_right:.2f},"
+                f"{dist_rf:.2f},{dist_rm:.2f},{dist_rr:.2f},{steering:.4f},{int(_wall_engaged)}\n"
+            )
+            _wall_log_file.flush()
 
             if int(robot.getTime() * 10) % 10 == 0:
-                print(f"[WALL] front={dist_rf:.2f}m mid={dist_rm:.2f}m rear={dist_rr:.2f}m "
-                      f"| engaged={_wall_engaged} | steer={steering:+.3f}")
+                print(f"[WALL] lidar_r={lidar_right:.2f}m ds_rf={dist_rf:.2f}m "
+                      f"rear={dist_rr:.2f}m | steer={steering:+.3f}")
 
-            # ── Paso 5: sensor trasero libre → autobús superado ───────────────
-            # Solo revisar condición de salida DESPUÉS de que el bus estuvo al costado
+            # ── Paso 5: sensor trasero libre → buffer recto → REORIENT ──────────
+            # Cuando dist_rr se libera, el bus acaba de pasar la cola del coche.
+            # Girar de inmediato hace que la cola barra hacia el bus → choque.
+            # Buffer de 80 frames (~0.8s = ~3.3m a 15 km/h) da margen suficiente.
             if _wall_engaged and dist_rr > DS_CLEAR_DIST:
-                state = STATE_REORIENT
-                print(f"[WALL] Sensor trasero libre ({dist_rr:.2f}m) — bus superado")
-                print(f"[WALL] Iniciando recuperación de heading: target={saved_heading:.4f} rad")
+                if _clear_hold == 0:
+                    _clear_hold = 30
+                    print(f"[WALL] Sensor trasero libre ({dist_rr:.2f}m) — iniciando buffer recto")
+                _clear_hold -= 1
+                steering = 0.0   # recto durante el buffer
+                driver.setSteeringAngle(steering)
+                if _clear_hold == 0:
+                    state = STATE_REORIENT
+                    print(f"[WALL] Buffer completo — iniciando REORIENT (target={saved_heading:.4f} rad)")
 
         elif state == STATE_REORIENT:
             # ── Paso 5 (cont.): recuperar heading original con giroscopio ─────
@@ -513,12 +571,50 @@ def main():
                 print(f"[REORIENT] heading={heading:.4f} target={saved_heading:.4f} "
                       f"error={heading_error:+.4f} rad")
 
-            # ── Transición: heading recuperado → retomar seguimiento de línea ──
+            # ── Transición: heading recuperado → recentrar en carril ──────────
             if abs(heading_error) < HEADING_TOL:
-                state      = STATE_LINE_FOLLOW
-                integral   = 0.0
-                prev_error = 0.0
-                print("[REORIENT] Heading recuperado — retomando LINE_FOLLOW")
+                state            = STATE_RECENTER
+                _recenter_frames = 0
+                integral         = 0.0
+                prev_error       = 0.0
+                print("[REORIENT] Heading recuperado — buscando carril (RECENTER)")
+
+        elif state == STATE_RECENTER:
+            # ── Deriva derecha a baja velocidad hasta encontrar línea amarilla ──
+            # El carro salió ~1-2m a la izquierda durante la evasión.
+            # Steering fijo +0.10 (derecha) hasta que yellow_frac > 0.015.
+            _recenter_frames += 1
+
+            proc_w = display.getWidth()
+            proc_h = display.getHeight()
+            img = get_image(camera)
+            _, yellow_mask = preprocess(img, proc_w, proc_h)
+            yellow_frac = float((yellow_mask[int(proc_h * 0.6):] > 0).mean())
+
+            steering = 0.10   # deriva suave hacia carril derecho
+            driver.setCruisingSpeed(SPEED_REORIENT)
+            driver.setSteeringAngle(steering)
+
+            _wall_log_file.write(
+                f"{robot.getTime():.3f},RECENTER,{lidar_dist:.2f},{lidar_right:.2f},"
+                f"{dist_rf:.2f},{dist_rm:.2f},{dist_rr:.2f},{steering:.4f},0\n"
+            )
+            _wall_log_file.flush()
+
+            if int(robot.getTime() * 10) % 20 == 0:
+                print(f"[RECENTER] frame={_recenter_frames} yfrac={yellow_frac:.3f}")
+
+            # Línea encontrada → retomar PID
+            if yellow_frac > 0.015:
+                state   = STATE_LINE_FOLLOW
+                steering = 0.0
+                print(f"[RECENTER] Línea encontrada (yfrac={yellow_frac:.3f}) — retomando LINE_FOLLOW")
+
+            # Timeout de seguridad: 300 frames (~3s) sin línea
+            elif _recenter_frames > 300:
+                state   = STATE_LINE_FOLLOW
+                steering = 0.0
+                print("[RECENTER] Timeout — retomando LINE_FOLLOW sin línea")
 
 
 if __name__ == "__main__":
