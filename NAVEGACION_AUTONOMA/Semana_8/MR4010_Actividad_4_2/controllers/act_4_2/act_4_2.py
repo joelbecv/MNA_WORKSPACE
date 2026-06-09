@@ -548,7 +548,7 @@ def main():
             # Buffer de 80 frames (~0.8s = ~3.3m a 15 km/h) da margen suficiente.
             if _wall_engaged and dist_rr > DS_CLEAR_DIST:
                 if _clear_hold == 0:
-                    _clear_hold = 30
+                    _clear_hold = 33 #ajuste para nochocar con autobus al girar
                     print(f"[WALL] Sensor trasero libre ({dist_rr:.2f}m) — iniciando buffer recto")
                 _clear_hold -= 1
                 steering = 0.0   # recto durante el buffer
