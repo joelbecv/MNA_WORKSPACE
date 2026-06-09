@@ -9,21 +9,22 @@
 #   Anthropic. (2026). Claude Sonnet 4.6 [Modelo de lenguaje grande],
 #   utilizado para generación de código, depuración y optimización.
 #   https://claude.ai/claude-code
-#
-# DESCRIPCIÓN GENERAL
-# -------------------
-# Controlador para vehículo BMW en Webots R2023b que implementa:
-#   1. Seguimiento de carril central con controlador PID (base: Actividad 2.1)
-#   2. Detección de autobús con nodo Recognition de la cámara
-#   3. Reducción de velocidad al confirmar el autobús (PASO 3 rúbrica)
-#   4. Evasión por wall-following derecha con sensores de distancia (PASO 4)
-#   5. Recuperación de orientación con giroscopio (PASO 5)
-#   6. Retorno al seguimiento de línea de forma autónoma
-#
-# MÁQUINA DE ESTADOS
-# ------------------
-#   LINE_FOLLOW  →  WALL_FOLLOW  →  REORIENT  →  RECENTER  →  LINE_FOLLOW
 # =============================================================================
+#
+# ? ======================================================================
+# ? QUÉ HACE ESTE CONTROLADOR
+# ? BMW en Webots: sigue carril con PID, detecta autobús (cámara+LiDAR),
+# ? lo evade por la derecha (wall-following), y vuelve al carril solo.
+# ?
+# ? SENSORES:
+# ?   Cámara 128×128 + Recognition  → detecta bus por color
+# ?   Sick LMS 291 (LiDAR 2D)       → mide distancia frontal y lateral
+# ?   Giroscopio (yaw rate)         → recupera la orientación original
+# ?   3× DistanceSensor derecha     → confirma que el bus fue superado
+# ?
+# ? FLUJO DE ESTADOS:
+# ?   LINE_FOLLOW → WALL_FOLLOW → REORIENT → RECENTER → LINE_FOLLOW
+# ? ======================================================================
 
 from controller import Display, Keyboard
 from vehicle import Car, Driver
@@ -34,15 +35,18 @@ import os
 
 # =============================================================================
 # SECCIÓN 1 — PARÁMETROS GLOBALES
-# Todos los valores calibrables están concentrados aquí para facilitar ajuste.
+# ─────────────────────────────────────────────────────────────────────────────
+# ? Todos los valores calibrables están aquí. Los marcados "RÚBRICA" son
+# ? los exigidos explícitamente en la actividad.
 # =============================================================================
 
 MAX_ANGLE     = 0.5       # rad: ángulo máximo del volante (límite físico del BMW)
 DEBOUNCE_TIME = 0.1       # s: tiempo mínimo entre pulsaciones de teclado
 
-# ── PASO BASE: PID seguidor de línea (portado de Actividad 2.1) ───────────────
-# Velocidad de crucero normal durante el seguimiento de carril
-SPEED_FOLLOW  = 30        # km/h
+# ? PASO BASE — PID seguidor de línea (portado de Actividad 2.1)
+# ? El controlador mide qué tan descentrado está el carril en la imagen
+# ? y lo convierte en un ángulo de volante. A más error, más giro.
+SPEED_FOLLOW  = 30        # km/h — velocidad de crucero durante seguimiento
 
 # Ganancias PID calibradas para error normalizado en rango [-1, +1]
 # Kp: respuesta proporcional al error actual — valor mayor = reacción más rápida
@@ -84,7 +88,11 @@ MAX_STEER_RATE = 0.03     # rad/frame
 # A 30 km/h, 10 frames (~0.1s) es suficiente para cruzar una cebra sin desviarse
 NO_LINE_HOLD   = 10
 
-# ── PASO 2 RÚBRICA: LiDAR — configuración de sectores ───────────────────────
+# * PASO 2 RÚBRICA — LiDAR (Sick LMS 291)
+# * El sensor escanea 181 rayos en 180°. Se leen dos zonas:
+# *   frente del vehículo, para detectar el bus mientras está adelante,
+# *   y el costado derecho, para seguirlo mientras se rodea.
+# * La evasión se activa a 14.5 m porque el Recognition pierde el bus antes de llegar a 12 m.
 # El sensor Sick LMS 291 escanea 181 rayos en un arco de 180°
 # Índice 0 = extremo izquierdo (-90°), índice 90 = frente (0°), índice 180 = derecha (+90°)
 #
@@ -97,10 +105,18 @@ BUS_LIDAR_THRESH = 14.5   # m: distancia de umbral para iniciar evasión (PASO 3
                            # Se usa 14.5m porque el Recognition pierde el bus a <12m
 LIDAR_FOV_DEG    = 20     # grados del sector frontal
 
-# ── PASO 3 RÚBRICA: Reducción de velocidad a la mitad ────────────────────────
+# * PASO 3 RÚBRICA — Activar evasión al confirmar el bus
+# * Cuando Recognition y LiDAR coinciden en que hay un bus enfrente,
+# * se guarda la orientación actual del giroscopio como referencia de retorno,
+# * se baja la velocidad de 30 a 15 km/h (la mitad, exigido en la rúbrica)
+# * y se activa el wall-following.
 SPEED_EVADE   = 15        # km/h = SPEED_FOLLOW / 2 (exigido explícitamente por la rúbrica)
 
-# ── PASO 4 RÚBRICA: Wall-following — parámetros del controlador P ────────────
+# * PASO 4 RÚBRICA — Wall-following: rodear el bus por la derecha
+# * Primero el vehículo gira suavemente a la izquierda para abrirse paso.
+# * Una vez que el bus está al costado, un controlador P mantiene 2.9 m de separación.
+# * Cuando el sensor trasero confirma que el bus quedó atrás, se avanza recto
+# * unos instantes de seguridad y luego se inicia la recuperación de orientación.
 # WALL_TARGET: distancia objetivo al costado del autobús durante la evasión
 #   Calibrado experimentalmente: 2.9m da margen suficiente sin exceder el carril contrario
 WALL_TARGET   = 2.9       # m
@@ -127,7 +143,11 @@ BUS_MIN_PX_AREA = 400
 #   Con color exacto (tolerancia 0.05), 1 frame es suficiente sin falsos positivos
 BUS_CONFIRM_FRAMES = 1
 
-# ── PASO 5 RÚBRICA: Recuperación de orientación con giroscopio ───────────────
+# * PASO 5 RÚBRICA — Recuperar orientación con el giroscopio
+# * El giroscopio lleva la cuenta del ángulo acumulado durante toda la simulación.
+# * Al terminar la evasión, el vehículo compara su ángulo actual con el que tenía
+# * antes de rodear el bus y gira proporcionalmente para recuperarlo.
+# * Cuando el error angular es menor a 4.6°, busca las líneas del carril y retoma el PID.
 SPEED_REORIENT = 20       # km/h durante la recuperación de heading
 
 # KP_HEADING: ganancia del controlador P de heading
@@ -160,7 +180,13 @@ STATE_NAMES = {0: "LINE_FOLLOW", 1: "WALL_FOLLOW", 2: "REORIENT", 3: "RECENTER"}
 
 # =============================================================================
 # SECCIÓN 2 — FUNCIONES DE PROCESAMIENTO DE IMAGEN
-# Pipeline H2: HSV amarillo → Canny → ROI trapezoidal → HoughLinesP → PID
+# ─────────────────────────────────────────────────────────────────────────────
+# ? Pipeline de visión — cada función hace una sola cosa:
+# ?   1. Leer la imagen de la cámara
+# ?   2. Quedarse solo con los píxeles amarillos y detectar sus bordes
+# ?   3. Enfocar solo la zona de la carretera (trapecio)
+# ?   4. Encontrar las líneas del carril con Hough
+# ?   5. Calcular el centro del carril → eso entra al PID
 # =============================================================================
 
 def get_image(camera):
@@ -347,7 +373,9 @@ def compute_lane_center(lines):
 
 def identify_bus_color(obj, debug=False):
     """
-    PASO 1 RÚBRICA: Identifica si un RecognitionObject es un autobús conocido.
+    ▶ PASO 1 RÚBRICA — Identificar el autobús por su color en Recognition.
+
+    El nodo Recognition de Webots asigna un recognitionColor a cada objeto.
 
     El nodo Recognition de Webots asigna un recognitionColor a cada objeto.
     Esta función compara el color del objeto contra el BUS_COLOR_MAP con
@@ -521,7 +549,11 @@ def main():
     print(f"[INIT] Umbral LiDAR para evasión: {BUS_LIDAR_THRESH} m  |  Vel. evasión: {SPEED_EVADE} km/h")
 
     # =========================================================================
-    # LOOP PRINCIPAL — se ejecuta cada timestep (10ms por defecto)
+    # LOOP PRINCIPAL — se ejecuta cada timestep (~10ms, 100 frames/seg)
+    # ─────────────────────────────────────────────────────────────────────────
+    # ? Cada frame (cada 10 ms) el controlador lee todos los sensores,
+    # ? actualiza el estado de la máquina y envía velocidad y ángulo al vehículo.
+    # ? El orden importa: primero sensores, luego lógica, luego actuadores.
     # =========================================================================
     while robot.step() != -1:
         current_time = time.time()
@@ -635,6 +667,9 @@ def main():
         # MÁQUINA DE ESTADOS
         # =====================================================================
 
+        # ? ESTADO: LINE_FOLLOW — El vehículo sigue su carril a 30 km/h con PID.
+        # ? En paralelo vigila si aparece un bus: cuando cámara y LiDAR lo confirman,
+        # ? guarda su orientación y activa la evasión.
         if state == STATE_LINE_FOLLOW:
             # ── PASO 3 RÚBRICA: Condición de activación de evasión ───────────
             # Se activan AMBAS condiciones:
@@ -733,6 +768,9 @@ def main():
             _log_file.flush()
             _frame += 1
 
+        # * ESTADO: WALL_FOLLOW — El vehículo rodea el bus por la derecha a 15 km/h.
+        # * Primero gira a la izquierda para abrirse, luego mantiene 2.9 m de distancia
+        # * al costado hasta que el sensor trasero confirma que el bus quedó atrás.
         elif state == STATE_WALL_FOLLOW:
             # ================================================================
             # PASO 4 RÚBRICA: Wall-following derecha con sensores del costado
@@ -804,6 +842,9 @@ def main():
                     state = STATE_REORIENT
                     print(f"[WALL] Iniciando REORIENT — target={saved_heading:.4f} rad")
 
+        # * ESTADO: REORIENT — El vehículo gira de vuelta hacia su orientación original.
+        # * Compara el ángulo actual con el que tenía antes de evadir y corrige
+        # * hasta quedar a menos de 4.6° de diferencia; luego busca el carril.
         elif state == STATE_REORIENT:
             # ================================================================
             # PASO 5 RÚBRICA (cont.): Recuperación de orientación con giroscopio
@@ -832,6 +873,9 @@ def main():
                 prev_error       = 0.0
                 print("[REORIENT] Heading recuperado — buscando carril (RECENTER)")
 
+        # ? ESTADO: RECENTER — El vehículo ya apunta bien pero está fuera del carril.
+        # ? Deriva suavemente a la derecha hasta que la cámara vuelve a ver
+        # ? líneas amarillas; entonces retoma el PID y el ciclo se cierra.
         elif state == STATE_RECENTER:
             # ================================================================
             # RECUPERACIÓN DE CARRIL (extensión del PASO 5)
