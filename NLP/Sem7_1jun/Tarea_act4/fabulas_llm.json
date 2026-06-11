@@ -1,0 +1,92 @@
+{
+  "audio01": {
+    "resumen": "Un cordero elige ser sacrificado a un dios que ser devorado por un lobo.",
+    "subtemas": [
+      "Cordero huye de un lobo y se refugia en un templo.",
+      "Lobo intenta engañar al cordero para que salga del templo.",
+      "Cordero prefiere ser sacrificado a un dios que ser víctima del lobo."
+    ],
+    "raw": "RESUMEN: Un cordero elige ser sacrificado a un dios que ser devorado por un lobo.\nSUBTEMA_1: Cordero huye de un lobo y se refugia en un templo.\nSUBTEMA_2: Lobo intenta engañar al cordero para que salga del templo.\nSUBTEMA_3: Cordero prefiere ser sacrificado a un dios que ser víctima del lobo."
+  },
+  "audio04": {
+    "resumen": "Lobo y grulla en situación de auxilio y paga.",
+    "subtemas": [
+      "Lobo con hueso atragantado busca ayuda.",
+      "Grulla salva al lobo con astucia.",
+      "Lobo no paga, considera la vida paga suficiente."
+    ],
+    "raw": "RESUMEN: Lobo y grulla en situación de auxilio y paga.\nSUBTEMA_1: Lobo con hueso atragantado busca ayuda.\nSUBTEMA_2: Grulla salva al lobo con astucia.\nSUBTEMA_3: Lobo no paga, considera la vida paga suficiente."
+  },
+  "audio05": {
+    "resumen": "Un lobo y un caballo discuten sobre la cebada.",
+    "subtemas": [
+      "Lobo encuentra cebada, pero no la come.",
+      "Lobo intenta engañar al caballo sobre la cebada.",
+      "Caballo responde con ironía al lobo malvado."
+    ],
+    "raw": "RESUMEN: Un lobo y un caballo discuten sobre la cebada.\nSUBTEMA_1: Lobo encuentra cebada, pero no la come.\nSUBTEMA_2: Lobo intenta engañar al caballo sobre la cebada.\nSUBTEMA_3: Caballo responde con ironía al lobo malvado."
+  },
+  "audio06": {
+    "resumen": "Lobo rey impone ley para compartir presas, pero es hipócrita.",
+    "subtemas": [
+      "Lobo es elegido rey y decreta ley para compartir presas.",
+      "Asno descubre hipocresía del lobo escondiendo su botín.",
+      "Lobo se muestra confundido y sin poder ante el asno."
+    ],
+    "raw": "RESUMEN: Lobo rey impone ley para compartir presas, pero es hipócrita.\nSUBTEMA_1: Lobo es elegido rey y decreta ley para compartir presas.\nSUBTEMA_2: Asno descubre hipocresía del lobo escondiendo su botín.\nSUBTEMA_3: Lobo se muestra confundido y sin poder ante el asno."
+  },
+  "audio14": {
+    "resumen": "Un cabrito insulta a un lobo desde un corral seguro.",
+    "subtemas": [
+      "Cabrito se burla del lobo desde la seguridad del corral.",
+      "Lobo responde serenamente al cabrito con sabia reflexión.",
+      "Lobo destaca la importancia del lugar y la ocasión en el enfrentamiento."
+    ],
+    "raw": "RESUMEN: Un cabrito insulta a un lobo desde un corral seguro.\nSUBTEMA_1: Cabrito se burla del lobo desde la seguridad del corral.\nSUBTEMA_2: Lobo responde serenamente al cabrito con sabia reflexión.\nSUBTEMA_3: Lobo destaca la importancia del lugar y la ocasión en el enfrentamiento."
+  },
+  "audio22": {
+    "resumen": "Perro se come almeja pensando que es huevo.",
+    "subtemas": [
+      "Perro confunde almeja con huevo redondo.",
+      "Perro sufre por su error de creer.",
+      "Perro aprende a reflexionar antes de actuar."
+    ],
+    "raw": "RESUMEN: Perro se come almeja pensando que es huevo.\nSUBTEMA_1: Perro confunde almeja con huevo redondo.\nSUBTEMA_2: Perro sufre por su error de creer.\nSUBTEMA_3: Perro aprende a reflexionar antes de actuar."
+  },
+  "audio24": {
+    "resumen": "Perro pierde carne al perseguir reflejo.",
+    "subtemas": [
+      "Perro ve reflejo en el río.",
+      "Cree que reflejo es otro perro.",
+      "Pierde carne al soltarla para atacar."
+    ],
+    "raw": "RESUMEN: Perro pierde carne al perseguir reflejo.\nSUBTEMA_1: Perro ve reflejo en el río.\nSUBTEMA_2: Cree que reflejo es otro perro.\nSUBTEMA_3: Pierde carne al soltarla para atacar."
+  },
+  "audio25": {
+    "resumen": "Perro roba carne en carnicería, carnicero advierte sobre prevenir accidentes.",
+    "subtemas": [
+      "Perro entra en carnicería y roba carne.",
+      "Carnicero se da cuenta y ve al perro huir.",
+      "Carnicero advierte al perro sobre prevenir accidentes futuros."
+    ],
+    "raw": "RESUMEN: Perro roba carne en carnicería, carnicero advierte sobre prevenir accidentes.\nSUBTEMA_1: Perro entra en carnicería y roba carne.\nSUBTEMA_2: Carnicero se da cuenta y ve al perro huir.\nSUBTEMA_3: Carnicero advierte al perro sobre prevenir accidentes futuros."
+  },
+  "audio26": {
+    "resumen": "Un perro fanfarrón con campanilla revela sus defectos.",
+    "subtemas": [
+      "Perro agresivo con campanilla para advertir a la gente.",
+      "Perra sabia critica al perro por presumir.",
+      "Halagos propios delatan defectos del perro fanfarrón."
+    ],
+    "raw": "RESUMEN: Un perro fanfarrón con campanilla revela sus defectos.\nSUBTEMA_1: Perro agresivo con campanilla para advertir a la gente.\nSUBTEMA_2: Perra sabia critica al perro por presumir.\nSUBTEMA_3: Halagos propios delatan defectos del perro fanfarrón."
+  },
+  "audio27": {
+    "resumen": "Perro persigue león, huye al verse amenazado.",
+    "subtemas": [
+      "Perro encuentra león y lo persigue.",
+      "León se vuelve y asusta al perro.",
+      "Zorra aconseja al perro sobre imprevistos."
+    ],
+    "raw": "RESUMEN: Perro persigue león, huye al verse amenazado.\nSUBTEMA_1: Perro encuentra león y lo persigue.\nSUBTEMA_2: León se vuelve y asusta al perro.\nSUBTEMA_3: Zorra aconseja al perro sobre imprevistos."
+  }
+}
