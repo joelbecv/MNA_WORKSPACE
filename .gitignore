@@ -13,3 +13,6 @@ data/
 
 # Configuración local de VS Code
 .vscode/
+
+# Variables de entorno y tokens (nunca subir a git)
+.env
