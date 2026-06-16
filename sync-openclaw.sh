@@ -55,13 +55,13 @@ while IFS= read -r file; do
     fi
 
     # Verificar tamaño del archivo
-    SIZE_BYTES=$(multipass exec "$VM" -- stat -c%s "$file" 2>/dev/null)
+    SIZE_BYTES=$(multipass exec "$VM" -- stat -c%s "$file" 2>/dev/null </dev/null)
     SIZE_MB=$((SIZE_BYTES / 1048576))
 
     if [ "$SIZE_MB" -ge "$MAX_SIZE_MB" ]; then
         echo ""
         echo "  🔒 $REL_PATH pesa ${SIZE_MB}MB (mayor a ${MAX_SIZE_MB}MB)"
-        read -p "     ¿Sincronizar este archivo? (s/n): " RESPUESTA
+        read -p "     ¿Sincronizar este archivo? (s/n): " RESPUESTA </dev/tty
         if [ "$RESPUESTA" != "s" ] && [ "$RESPUESTA" != "S" ]; then
             echo "     ⏭️  Saltado."
             SKIPPED=$((SKIPPED + 1))
@@ -71,7 +71,7 @@ while IFS= read -r file; do
 
     DIR_PATH=$(dirname "$REL_PATH")
     mkdir -p "$DRIVE/$DIR_PATH"
-    multipass transfer "$VM:$file" "$DRIVE/$REL_PATH" 2>/dev/null
+    multipass transfer "$VM:$file" "$DRIVE/$REL_PATH" 2>/dev/null </dev/null
     if [ $? -eq 0 ]; then
         COUNT=$((COUNT + 1))
         echo "  ✅ $REL_PATH"
