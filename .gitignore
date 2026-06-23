@@ -3,6 +3,8 @@ data/
 
 # Datasets de imágenes (demasiado pesados para git)
 **/human detection dataset/
+**/Capturas/
+dataset_equipo25.zip
 
 # Ignorar todos los archivos CSV
 *.csv
