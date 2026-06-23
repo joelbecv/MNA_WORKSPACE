@@ -29,7 +29,14 @@
       "Bash(python3 -)",
       "Bash(unzip -l \"/Users/joelbecerril/MNA_WORKSPACE/NAVEGACION_AUTONOMA/Semana_9/ActFinal/ProyectoFinal_alberto/Capturas/capturas_parte_1.zip\")",
       "Bash(python3 code/homologar_dataset.py)",
-      "Bash(jupyter nbconvert *)"
+      "Bash(jupyter nbconvert *)",
+      "Bash(zip -r ../dataset_equipo25.zip data/images/ data/dataset_merged.csv -q)",
+      "Bash(kill 73536)",
+      "Bash(python3 -m py_compile /Users/joelbecerril/MNA_WORKSPACE/NAVEGACION_AUTONOMA/Semana_9/ActFinal/MR4010_proyecto_final_2026/controllers/autonomous_cil/autonomous_cil.py)",
+      "Bash(grep -i \"webots\\\\|PYTHONPATH\\\\|controller\" /Users/joelbecerril/.zshrc /Users/joelbecerril/.zprofile /Users/joelbecerril/.bashrc 2>/dev/null)",
+      "Read(//Users/joelbecerril/**)",
+      "Bash(~/miniconda3/envs/ml_env/bin/python3 code/balance_dataset.py)",
+      "Bash(python3 -m py_compile /Users/joelbecerril/MNA_WORKSPACE/NAVEGACION_AUTONOMA/Semana_9/ActFinal/MR4010_proyecto_final_2026/controllers/auto_collect/auto_collect.py)"
     ],
     "additionalDirectories": [
       "/Users/joelbecerril/MNA_WORKSPACE/NAVEGACION_AUTONOMA/Semana_9/ActFinal/MR4010_proyecto_final_2026/data/images"

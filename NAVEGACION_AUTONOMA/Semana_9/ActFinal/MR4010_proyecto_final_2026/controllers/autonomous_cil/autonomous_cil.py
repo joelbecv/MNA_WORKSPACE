@@ -1,40 +1,22 @@
 # =============================================================================
-# autonomous_cil.py — Controlador autónomo CIL + módulos de seguridad
+# autonomous_cil.py — Controlador autónomo híbrido PID + CIL
 # Proyecto Final MR4010 — Equipo 25
 # =============================================================================
 #
-# ARQUITECTURA (máquina de estados):
-#   CIL_DRIVE  — Inferencia normal: imagen + nav_cmd → CNN → steering
-#   BRAKE_PED  — Freno de emergencia por peatón detectado (cámara recognition)
-#   EVADE_OBS  — Wall-following derecha (evasión de vehículo/obstáculo)
-#   REORIENT   — Recuperación de heading con giroscopio post-evasión
+# ARQUITECTURA:
+#   Carretera normal (s/w) → Hough + PID (línea amarilla HSV)
+#   Intersección izq/der  (a/d) → CIL (rama entrenada para giros)
+#   BRAKE_PED → freno de emergencia por peatón
+#   EVADE_OBS → wall-following LiDAR
+#   REORIENT  → corrección de heading
 #
-# SENSORES (todos en city_traffic_2025_02.wbt):
-#   camera     — 320×160, FOV=1 rad  → input CIL + recognition de peatones
-#   radar      — range 1–50 m        → distancia al vehículo más próximo
-#   Sick LMS 291 — 180° horizontal   → detección de obstáculos (evasión)
-#   ds_right_*   — 3 sensores lat.   → wall-following durante evasión
-#   Gyro         — eje Z             → integración de heading
-#
-# CONTROLES (teclado):
-#   A  — fijar comando IZQUIERDA en siguiente intersección
-#   W  — fijar comando RECTO
-#   D  — fijar comando DERECHA
-#   M  — forzar estado CIL_DRIVE (debug)
-#
-# NOTAS CRÍTICAS:
-#   - timestep = int() SIN multiplicador (freeze)
-#   - engineSound "" aplicado en .wbt (fix principal del freeze macOS)
-#   - lidar.enable() sin enablePointCloud() (enablePointCloud → freeze)
-#   - recognition: camera.recognitionEnable(ts) — NO enableRecognition (R2023b)
-#   - Radar: getTargets() → lista de RadarTarget con .distance y .speed
-#   - Modelo: exportar desde Colab como cil_model_equipo25.h5 en models/
-#
-# PROTOCOLO PREVIO AL RUN:
-#   1. python -m py_compile autonomous_cil.py && echo OK
-#   2. Copiar cil_model_equipo25.h5 a ../../models/
-#   3. Abrir city_traffic_2025_02.wbt → Play → verificar consola sin errores
-#   4. Primera corrida: solo prints de sensores, sin control (MODE_SENSOR_ONLY)
+# CONTROLES:
+#   s = CONTINUE  (PID normal en carretera)
+#   w = STRAIGHT  (PID en cruce — va recto)
+#   a = LEFT      (CIL gira izquierda en cruce)
+#   d = RIGHT     (CIL gira derecha en cruce)
+#   m = forzar PID
+#   q = detener
 # =============================================================================
 
 from controller import Keyboard
@@ -42,73 +24,86 @@ from vehicle import Driver
 import numpy as np
 import cv2
 import os
+import math
+import time
 
-# Importar TensorFlow/Keras para el modelo CIL
-try:
-    import tensorflow as tf
-    TF_AVAILABLE = True
-except ImportError:
-    TF_AVAILABLE = False
-    print("[CIL] ⚠️  TensorFlow no disponible — instalar con: pip install tensorflow")
+import torch
+import torch.nn as nn
+from torchvision import transforms
+from PIL import Image
 
 # =============================================================================
 # PARÁMETROS GENERALES
 # =============================================================================
 
-CRUISE_SPEED  = 30       # km/h durante conducción autónoma normal
-MAX_ANGLE     = 0.5      # rad — límite del volante
-MAX_STEER_RATE = 0.03    # rad/frame — rate limiter (suaviza el volante)
+CRUISE_SPEED   = 25       # km/h
+MAX_ANGLE      = 0.5      # rad
 
-# Comandos de navegación CIL
-CMD_STRAIGHT = 0
-CMD_LEFT     = 1
-CMD_RIGHT    = 2
-CMD_LABEL    = {0: "RECTO", 1: "IZQUIERDA", 2: "DERECHA"}
-
-# =============================================================================
-# PARÁMETROS — RADAR (distancia a vehículo frontal)
-# =============================================================================
-
-RADAR_SAFE_M  = 15.0     # m: distancia de seguridad — se anuncia en el video
-RADAR_STOP_M  = 5.0      # m: detención completa
-# Velocidad proporcional a distancia: v = CRUISE × min(1, dist/SAFE_M)
-# Negocio: evita colisiones traseras en tráfico denso (SUMO)
+CMD_CONTINUE = 0
+CMD_STRAIGHT = 1
+CMD_LEFT     = 2
+CMD_RIGHT    = 3
+CMD_LABEL    = {0: "CONTINUE", 1: "RECTO", 2: "IZQUIERDA", 3: "DERECHA"}
 
 # =============================================================================
-# PARÁMETROS — RECOGNITION / FRENO POR PEATÓN (reutilizado de Act 3.1)
+# PARÁMETROS — PID LANE FOLLOWING (Act 2.1 H2 — línea amarilla HSV)
 # =============================================================================
 
-PED_CONFIRM_N  = 2        # scans positivos consecutivos para confirmar peatón
-PED_RELEASE_N  = 4        # scans negativos para liberar el freno
-PED_HOLD_F     = 100      # frames de freno garantizados (~1.6 s a 16 ms/frame)
-DETECT_EVERY   = 10       # ejecutar recognition cada N frames (no cada frame)
+PID_KP           = 0.28
+PID_KI           = 0.01
+PID_KD           = 0.005
+PID_RATE_LIMIT   = 0.06    # rad/frame
+PID_MIN_SLOPE    = 0.4     # rechaza líneas casi horizontales
+# HSV amarillo (línea central)
+YELLOW_LOW  = np.array([15,  80,  80])
+YELLOW_HIGH = np.array([35, 255, 255])
 
-# Modelos de peatones en Webots (reconocidos por recognition por nombre de modelo)
+# =============================================================================
+# PARÁMETROS — CIL GIROS (solo para CMD_LEFT / CMD_RIGHT)
+# =============================================================================
+
+CIL_STEER_GAIN = 4.0       # amplifica salida CNN en giros
+CIL_RATE_LIMIT = 0.12      # rad/frame más rápido en giros
+
+# =============================================================================
+# PARÁMETROS — RADAR
+# =============================================================================
+
+RADAR_SAFE_M = 15.0
+RADAR_STOP_M =  5.0
+
+# =============================================================================
+# PARÁMETROS — PEATÓN
+# =============================================================================
+
+PED_CONFIRM_N = 2
+PED_RELEASE_N = 4
+PED_HOLD_F    = 100
+DETECT_EVERY  = 10
 PEDESTRIAN_KEYWORDS = ["pedestrian", "Pedestrian", "human", "person"]
 
 # =============================================================================
-# PARÁMETROS — LIDAR / EVASIÓN (reutilizados de Act 4.2)
+# PARÁMETROS — LIDAR / EVASIÓN
 # =============================================================================
 
-OBS_LIDAR_THRESH = 14.0  # m: iniciar evasión con margen suficiente
-LIDAR_FOV_DEG    = 20    # grados a cada lado del centro para medir frente
-
-SPEED_EVADE   = 15       # km/h durante la evasión
-WALL_TARGET   = 2.9      # m: distancia objetivo al obstáculo lateral
-KP_WALL       = 0.10     # ganancia P del controlador de pared
-DS_CLEAR_DIST = 4.8      # m: sensor trasero libre → obstáculo superado
-DS_ENGAGE_DIST = 4.5     # m: sensor frontal detecta obstáculo lateralmente
-
-# =============================================================================
-# PARÁMETROS — REORIENTACIÓN (reutilizados de Act 4.2)
-# =============================================================================
-
-SPEED_REORIENT = 20      # km/h durante corrección de heading
-KP_HEADING     = 1.0     # ganancia P
-HEADING_TOL    = 0.08    # rad: tolerancia para declarar heading recuperado
+OBS_LIDAR_THRESH = 14.0
+LIDAR_FOV_DEG    = 20
+SPEED_EVADE      = 15
+WALL_TARGET      = 2.9
+KP_WALL          = 0.10
+DS_CLEAR_DIST    = 4.8
+DS_ENGAGE_DIST   = 4.5
 
 # =============================================================================
-# ESTADOS DE LA MÁQUINA
+# PARÁMETROS — REORIENTACIÓN
+# =============================================================================
+
+SPEED_REORIENT = 20
+KP_HEADING     = 1.0
+HEADING_TOL    = 0.08
+
+# =============================================================================
+# ESTADOS
 # =============================================================================
 
 STATE_CIL   = "CIL_DRIVE"
@@ -117,200 +112,244 @@ STATE_EVADE = "EVADE_OBS"
 STATE_REOR  = "REORIENT"
 
 # =============================================================================
-# INICIALIZACIÓN DE DRIVER Y DISPOSITIVOS
+# INICIALIZACIÓN
 # =============================================================================
 
 driver   = Driver()
-timestep = int(driver.getBasicTimeStep())   # 16 ms — NUNCA multiplicar
+timestep = int(driver.getBasicTimeStep())
 
-# ── Cámara ──────────────────────────────────────────────────────────────────
 camera = driver.getDevice("camera")
 camera.enable(timestep)
-# Recognition para detección de peatones (API R2023b: recognitionEnable, NO enableRecognition)
 camera.recognitionEnable(timestep * DETECT_EVERY)
-CAM_W = camera.getWidth()    # 320
-CAM_H = camera.getHeight()   # 160
+CAM_W = camera.getWidth()
+CAM_H = camera.getHeight()
 
-# ── Radar ────────────────────────────────────────────────────────────────────
 radar = driver.getDevice("radar")
 radar.enable(timestep)
 
-# ── LiDAR (Sick LMS 291) ────────────────────────────────────────────────────
-# IMPORTANTE: solo enable() — enablePointCloud() causa freeze
 lidar = driver.getDevice("Sick LMS 291")
 lidar.enable(timestep)
-# NO llamar lidar.enablePointCloud()
-LIDAR_RAYS = lidar.getNumberOfPoints()   # 180 rayos (1°/rayo)
+LIDAR_RAYS = lidar.getNumberOfPoints()
 
-# ── Sensores de distancia laterales (wall-following) ─────────────────────────
 ds_rf = driver.getDevice("ds_right_front")
 ds_rm = driver.getDevice("ds_right_mid")
 ds_rr = driver.getDevice("ds_right_rear")
 for ds in [ds_rf, ds_rm, ds_rr]:
     ds.enable(timestep)
 
-# ── Giroscopio (integración de heading) ──────────────────────────────────────
 gyro = driver.getDevice("gyro")
 gyro.enable(timestep)
 
-# ── Display ──────────────────────────────────────────────────────────────────
-display = driver.getDevice("display_image")   # 200×150
+display = driver.getDevice("display_image")
+DW = display.getWidth()
+DH = display.getHeight()
 
-# ── Teclado ──────────────────────────────────────────────────────────────────
-keyboard = Keyboard()
+keyboard = driver.getKeyboard()
 keyboard.enable(timestep)
 
 # =============================================================================
-# CARGA DEL MODELO CIL
+# MODELO CIL (PyTorch — solo para giros en intersección)
 # =============================================================================
+
+IMG_W, IMG_H = 200, 88
+N_COMMANDS   = 4
+
+NORMALIZE = transforms.Compose([
+    transforms.ToTensor(),
+    transforms.Normalize(mean=[0.485, 0.456, 0.406],
+                         std=[0.229, 0.224, 0.225]),
+])
+
+
+class CILModel(nn.Module):
+    def __init__(self, n_commands=4):
+        super().__init__()
+        self.cnn = nn.Sequential(
+            nn.Conv2d(3, 32, 5, stride=2, padding=2), nn.ReLU(),
+            nn.Conv2d(32, 64, 3, stride=1, padding=1), nn.ReLU(),
+            nn.MaxPool2d(2),
+            nn.Conv2d(64, 128, 3, stride=1, padding=1), nn.ReLU(),
+            nn.MaxPool2d(2),
+            nn.Conv2d(128, 256, 3, stride=1, padding=1), nn.ReLU(),
+            nn.AdaptiveAvgPool2d((1, 1)),
+            nn.Flatten(),
+            nn.Linear(256, 512), nn.ReLU(), nn.Dropout(0.2),
+        )
+        self.speed_fc = nn.Sequential(
+            nn.Linear(1, 128), nn.ReLU(), nn.Linear(128, 128), nn.ReLU())
+        branch_input = 512 + 128
+        self.branches = nn.ModuleList([
+            nn.Sequential(
+                nn.Linear(branch_input, 256), nn.ReLU(), nn.Dropout(0.2),
+                nn.Linear(256, 256), nn.ReLU(), nn.Linear(256, 1), nn.Tanh())
+            for _ in range(n_commands)
+        ])
+
+    def forward(self, img, speed, cmd):
+        feat = self.cnn(img)
+        spd  = self.speed_fc(speed)
+        x    = torch.cat([feat, spd], dim=1)
+        outs = torch.stack([b(x) for b in self.branches], dim=1)
+        idx  = cmd.view(-1, 1, 1).expand(-1, 1, 1)
+        return outs.gather(1, idx).squeeze(1)
+
 
 CTRL_DIR   = os.path.dirname(os.path.abspath(__file__))
-MODEL_PATH = os.path.normpath(os.path.join(CTRL_DIR, "..", "..", "models", "cil_model_equipo25.h5"))
+MODEL_PATH = os.path.normpath(
+    os.path.join(CTRL_DIR, "..", "..", "models", "cil_model_equipo25.pt"))
 
-model = None
-if TF_AVAILABLE:
-    if os.path.exists(MODEL_PATH):
-        model = tf.keras.models.load_model(MODEL_PATH)
-        print(f"[CIL] ✓ Modelo cargado: {MODEL_PATH}")
-        model.summary()
-    else:
-        print(f"[CIL] ⚠️  Modelo NO encontrado en: {MODEL_PATH}")
-        print("[CIL]    Copiar cil_model_equipo25.h5 exportado de Colab a models/")
-
-
-def preprocess_image(bgr: np.ndarray, nav_cmd: int) -> np.ndarray:
-    """
-    Preprocesa la imagen de cámara para la inferencia CIL.
-    Entrada:  bgr (CAM_H × CAM_W × 3)
-    Salida:   array (1, H_MODEL, W_MODEL, 3+1) o según arquitectura del modelo
-
-    AJUSTAR según la arquitectura definida en el notebook de Colab:
-      - Si el modelo acepta imagen + comando como un solo tensor, concatenar aquí
-      - Si el modelo tiene dos entradas separadas, retornar una tupla
-    """
-    # Resize al tamaño de entrada del modelo (Codevilla: 88×200, Bojarski: 66×200)
-    # Ajustar si se usó otra resolución en el entrenamiento
-    img_model = cv2.resize(bgr, (200, 88))
-    img_norm  = img_model.astype(np.float32) / 255.0   # normalizar [0, 1]
-    img_batch = np.expand_dims(img_norm, axis=0)        # (1, 88, 200, 3)
-
-    # Comando de navegación como one-hot (3 clases)
-    cmd_onehot = np.zeros((1, 3), dtype=np.float32)
-    cmd_onehot[0, nav_cmd] = 1.0
-
-    # NOTA: adaptar según la firma del modelo:
-    #   Modelo 1 entrada (imagen con cmd como canal adicional):
-    #     return img_batch, cmd_onehot   ← devolver por separado y manejar en el loop
-    #   Modelo 2 entradas (imagen, cmd):
-    #     return [img_batch, cmd_onehot]
-    return img_batch, cmd_onehot
-
-
-def cil_predict(bgr: np.ndarray, nav_cmd: int) -> float:
-    """
-    Ejecuta la inferencia CIL y retorna el ángulo de dirección normalizado.
-    Retorna 0.0 si el modelo no está cargado (carro va recto).
-    """
-    if model is None:
-        return 0.0
-
-    img_inp, cmd_inp = preprocess_image(bgr, nav_cmd)
-
-    # AJUSTAR según arquitectura del modelo Colab:
+cil_model = None
+if os.path.exists(MODEL_PATH):
     try:
-        # Intento con dos entradas (más común en CIL)
-        pred = model.predict([img_inp, cmd_inp], verbose=0)
-    except Exception:
-        # Fallback: una sola entrada de imagen
-        pred = model.predict(img_inp, verbose=0)
+        ckpt      = torch.load(MODEL_PATH, map_location="cpu")
+        cil_model = CILModel(ckpt.get("n_commands", N_COMMANDS))
+        cil_model.load_state_dict(ckpt["model_state_dict"])
+        cil_model.eval()
+        print(f"[CIL] Modelo cargado epoch={ckpt.get('epoch','?')} "
+              f"val={ckpt.get('val_loss', ckpt.get('val_mse','?'))}")
+    except Exception as e:
+        print(f"[CIL] Error cargando modelo: {e}")
+else:
+    print(f"[CIL] Modelo NO encontrado: {MODEL_PATH}")
 
-    # La salida del modelo es steering normalizado en [-1, 1]
-    # Desnormalizar: steering_rad = pred * MAX_ANGLE
-    steering_norm = float(pred[0][0])
-    return np.clip(steering_norm, -1.0, 1.0) * MAX_ANGLE
+
+def cil_predict(bgr_frame, nav_cmd, speed_kmh):
+    if cil_model is None:
+        return 0.0
+    img_pil = Image.fromarray(cv2.cvtColor(bgr_frame, cv2.COLOR_BGR2RGB))
+    img_pil = img_pil.resize((IMG_W, IMG_H))
+    img_t   = NORMALIZE(img_pil).unsqueeze(0)
+    spd_t   = torch.tensor([[speed_kmh / 50.0]], dtype=torch.float32)
+    cmd_t   = torch.tensor([nav_cmd], dtype=torch.long)
+    with torch.no_grad():
+        pred = cil_model(img_t, spd_t, cmd_t)
+    raw = float(pred[0, 0])
+    return float(np.clip(raw * CIL_STEER_GAIN, -1.0, 1.0) * MAX_ANGLE)
 
 
 # =============================================================================
-# FUNCIONES DE SENSORES
+# PID LANE FOLLOWING (Hough + línea amarilla HSV — H2 de Act 2.1)
 # =============================================================================
 
-def get_lidar_front_dist() -> float:
-    """Distancia mínima en el cono frontal del LiDAR (±LIDAR_FOV_DEG°)."""
+pid_integral   = 0.0
+pid_prev_error = 0.0
+pid_no_line    = 0
+
+
+def pid_lane_step(bgr_frame, dt):
+    """Calcula el ángulo de volante con PID siguiendo la línea amarilla."""
+    global pid_integral, pid_prev_error, pid_no_line
+
+    small = cv2.resize(bgr_frame, (DW, DH))
+    hsv   = cv2.cvtColor(small, cv2.COLOR_BGR2HSV)
+    ymask = cv2.inRange(hsv, YELLOW_LOW, YELLOW_HIGH)
+    edges = cv2.Canny(ymask, 50, 150)
+
+    h, w = edges.shape
+    verts = np.array([[
+        (int(w * 0.10), h),
+        (int(w * 0.35), int(h * 0.6)),
+        (int(w * 0.65), int(h * 0.6)),
+        (int(w * 0.90), h),
+    ]], dtype=np.int32)
+    mask = np.zeros_like(edges)
+    cv2.fillPoly(mask, verts, 255)
+    roi = cv2.bitwise_and(edges, mask)
+
+    lines = cv2.HoughLinesP(roi, 1, np.pi / 180, 20,
+                            minLineLength=20, maxLineGap=15)
+
+    filtered = []
+    if lines is not None:
+        for ln in lines:
+            x1, y1, x2, y2 = ln[0]
+            if x2 == x1:
+                continue
+            if abs((y2 - y1) / (x2 - x1)) >= PID_MIN_SLOPE:
+                filtered.append(ln)
+
+    lane_x = None
+    if filtered:
+        left_xs, right_xs = [], []
+        for ln in filtered:
+            x1, y1, x2, y2 = ln[0]
+            slope = (y2 - y1) / (x2 - x1)
+            if slope < 0:
+                left_xs.extend([x1, x2])
+            else:
+                right_xs.extend([x1, x2])
+        if left_xs and right_xs:
+            lane_x = (np.mean(left_xs) + np.mean(right_xs)) / 2.0
+        elif left_xs:
+            lane_x = np.mean(left_xs)
+        elif right_xs:
+            lane_x = np.mean(right_xs)
+
+    if lane_x is not None:
+        pid_no_line = 0
+        error        = (lane_x - w / 2.0) / (w / 2.0)
+        pid_integral = float(np.clip(pid_integral + error * dt, -0.5, 0.5))
+        deriv        = (error - pid_prev_error) / dt
+        raw          = PID_KP * error + PID_KI * pid_integral + PID_KD * deriv
+        pid_prev_error = error
+        return float(np.clip(raw, -MAX_ANGLE, MAX_ANGLE)), True
+    else:
+        pid_no_line  += 1
+        pid_integral *= 0.6
+        pid_prev_error = 0.0
+        return None, False
+
+
+# =============================================================================
+# SENSORES / CONTROL AUXILIAR
+# =============================================================================
+
+def get_lidar_front_dist():
     ranges = lidar.getRangeImage()
     if not ranges:
         return 999.0
-    center = LIDAR_RAYS // 2
-    half   = int(LIDAR_FOV_DEG * LIDAR_RAYS / 180)
-    cone   = ranges[center - half: center + half]
-    valid  = [r for r in cone if r > 0.1 and r < 80.0]
+    c    = LIDAR_RAYS // 2
+    half = int(LIDAR_FOV_DEG * LIDAR_RAYS / 180)
+    cone = ranges[max(0, c - half): c + half]
+    valid = [r for r in cone if 0.1 < r < 80.0]
     return min(valid) if valid else 999.0
 
 
-def get_radar_min_dist() -> float:
-    """Distancia al objetivo radar más próximo."""
-    targets = radar.getTargets()
-    if not targets:
-        return 999.0
-    return min(t.distance for t in targets)
+def get_radar_min_dist():
+    tgts = radar.getTargets()
+    return min((t.distance for t in tgts), default=999.0)
 
 
-def check_pedestrian() -> bool:
-    """
-    Detecta peatones vía recognition de cámara.
-    Reutilizado de Act 4.2 — API R2023b.
-    """
-    objs = camera.getRecognitionObjects()
-    for obj in objs:
-        model_name = obj.getModel() if hasattr(obj, 'getModel') else ""
-        if any(kw in model_name for kw in PEDESTRIAN_KEYWORDS):
+def check_pedestrian():
+    for obj in camera.getRecognitionObjects():
+        name = obj.getModel() if hasattr(obj, "getModel") else ""
+        if any(kw in name for kw in PEDESTRIAN_KEYWORDS):
             return True
     return False
 
 
-# =============================================================================
-# FUNCIONES DE CONTROL
-# =============================================================================
-
-def wall_follow_step(ds_f: float, ds_m: float, ds_r: float) -> float:
-    """
-    Controlador P de seguimiento de pared derecha (copiado de Act 4.2).
-    Mantiene distancia WALL_TARGET al obstáculo lateral derecho.
-    """
-    error  = WALL_TARGET - ds_m
-    steer  = KP_WALL * error
-    return float(np.clip(steer, -MAX_ANGLE, MAX_ANGLE))
+def wall_follow_step(ds_m):
+    return float(np.clip(KP_WALL * (WALL_TARGET - ds_m), -MAX_ANGLE, MAX_ANGLE))
 
 
-def apply_rate_limit(current: float, target: float) -> float:
-    """Limita el cambio de steering a MAX_STEER_RATE rad/frame."""
-    delta = target - current
-    delta = np.clip(delta, -MAX_STEER_RATE, MAX_STEER_RATE)
-    return current + delta
+def apply_rate_limit(current, target, limit):
+    return current + float(np.clip(target - current, -limit, limit))
 
 
-def draw_hud(state: str, nav_cmd: int, steer: float,
-             radar_d: float, ped: bool, lidar_d: float) -> None:
-    """Dibuja información de estado en el display 200×150."""
-    # Fondo según estado
-    colors = {
-        STATE_CIL:   0x002200,
-        STATE_PED:   0x440000,
-        STATE_EVADE: 0x002244,
-        STATE_REOR:  0x222200,
-    }
-    display.setColor(colors.get(state, 0x000000))
-    display.fillRectangle(0, 0, 200, 150)
-
+def draw_hud(state, nav_cmd, steer, radar_d, ped, lidar_d, mode):
+    bg = {STATE_CIL: 0x002200, STATE_PED: 0x440000,
+          STATE_EVADE: 0x002244, STATE_REOR: 0x222200}
+    display.setColor(bg.get(state, 0x000000))
+    display.fillRectangle(0, 0, DW, DH)
     display.setColor(0xFFFFFF)
-    display.drawText(f"STATE: {state}", 2, 2)
-    display.drawText(f"NAV:   {CMD_LABEL[nav_cmd]}", 2, 14)
-    display.drawText(f"Steer: {steer:+.3f}r", 2, 26)
-    display.drawText(f"Radar: {radar_d:.1f}m", 2, 38)
-    display.drawText(f"LiDAR: {lidar_d:.1f}m", 2, 50)
-
-    color_ped = 0xFF4444 if ped else 0x44FF44
-    display.setColor(color_ped)
-    display.drawText(f"Ped:   {'DETECTADO' if ped else 'libre'}", 2, 62)
+    display.drawText(f"{state}", 2, 2)
+    display.drawText(f"NAV: {CMD_LABEL[nav_cmd]}", 2, 14)
+    display.drawText(f"MODE:{mode}", 2, 26)
+    display.drawText(f"St:{steer:+.3f}r", 2, 38)
+    display.drawText(f"Radar:{radar_d:.1f}m", 2, 50)
+    display.drawText(f"LiDAR:{lidar_d:.1f}m", 2, 62)
+    display.setColor(0xFF4444 if ped else 0x44FF44)
+    display.drawText(f"Ped:{'DET' if ped else 'OK'}", 2, 74)
 
 
 # =============================================================================
@@ -318,26 +357,22 @@ def draw_hud(state: str, nav_cmd: int, steer: float,
 # =============================================================================
 
 state         = STATE_CIL
-nav_cmd       = CMD_STRAIGHT
+nav_cmd       = CMD_CONTINUE
 current_steer = 0.0
+mode          = "PID"
 
-# Variables de estado — freno por peatón
 ped_pos_streak = 0
 ped_neg_streak = 0
 ped_hold_count = 0
-
-# Variables de estado — evasión
-heading_ref    = 0.0
 heading_accum  = 0.0
-prev_time      = 0.0
-
+heading_ref    = 0.0
 frame_count    = 0
 
 print("=" * 60)
-print("[CIL-AUTO] Controlador autónomo iniciado")
-print(f"[CIL-AUTO] Modelo: {'cargado ✓' if model else 'NO cargado ⚠️'}")
-print(f"[CIL-AUTO] Distancia radar segura: {RADAR_SAFE_M} m")
-print("  CONTROLES: A=izquierda  W=recto  D=derecha  M=forzar CIL")
+print("[AUTO] Controlador híbrido PID+CIL — Equipo 25")
+print(f"[AUTO] CIL: {'CARGADO' if cil_model else 'NO CARGADO'}")
+print(f"[AUTO] Radar seguro={RADAR_SAFE_M}m  stop={RADAR_STOP_M}m")
+print("  s=CONTINUE(PID)  w=RECTO(PID)  a=IZQ(CIL)  d=DER(CIL)  q=stop")
 print("=" * 60)
 
 driver.setCruisingSpeed(CRUISE_SPEED)
@@ -349,133 +384,130 @@ driver.setCruisingSpeed(CRUISE_SPEED)
 while driver.step() != -1:
     frame_count += 1
 
-    # ── TECLADO — comandos de navegación ─────────────────────────────────────
+    # ── Teclado ───────────────────────────────────────────────────────────────
     key = keyboard.getKey()
     while key > 0:
-        if key == ord('A') or key == ord('a'):
-            nav_cmd = CMD_LEFT
-            print(f"[NAV] IZQUIERDA")
-        elif key == ord('W') or key == ord('w'):
-            nav_cmd = CMD_STRAIGHT
-            print(f"[NAV] RECTO")
-        elif key == ord('D') or key == ord('d'):
-            nav_cmd = CMD_RIGHT
-            print(f"[NAV] DERECHA")
-        elif key == ord('M') or key == ord('m'):
-            state = STATE_CIL
-            print(f"[DEBUG] Forzado a CIL_DRIVE")
+        if   key in (ord('S'), ord('s')):
+            nav_cmd = CMD_CONTINUE; print("[NAV] CONTINUE (PID)")
+        elif key in (ord('W'), ord('w')):
+            nav_cmd = CMD_STRAIGHT; print("[NAV] RECTO (PID)")
+        elif key in (ord('A'), ord('a')):
+            nav_cmd = CMD_LEFT;     print("[NAV] IZQUIERDA (CIL)")
+        elif key in (ord('D'), ord('d')):
+            nav_cmd = CMD_RIGHT;    print("[NAV] DERECHA (CIL)")
+        elif key in (ord('M'), ord('m')):
+            state = STATE_CIL;      print("[DBG] Forzado CIL_DRIVE")
+        elif key in (ord('Q'), ord('q')):
+            driver.setCruisingSpeed(0); driver.setBrakeIntensity(1.0)
         key = keyboard.getKey()
 
-    # ── LECTURA DE SENSORES ───────────────────────────────────────────────────
-    raw     = camera.getImage()
-    img     = np.frombuffer(raw, np.uint8).reshape((CAM_H, CAM_W, 4))
-    bgr     = cv2.cvtColor(img, cv2.COLOR_BGRA2BGR)
+    # ── Imagen ────────────────────────────────────────────────────────────────
+    raw = camera.getImage()
+    img = np.frombuffer(raw, np.uint8).reshape((CAM_H, CAM_W, 4))
+    bgr = cv2.cvtColor(img, cv2.COLOR_BGRA2BGR)
 
-    radar_d = get_radar_min_dist()
-    lidar_d = get_lidar_front_dist()
-
-    ds_f_val = ds_rf.getValue()
+    # ── Sensores ──────────────────────────────────────────────────────────────
+    radar_d  = get_radar_min_dist()
+    lidar_d  = get_lidar_front_dist()
     ds_m_val = ds_rm.getValue()
+    ds_f_val = ds_rf.getValue()
     ds_r_val = ds_rr.getValue()
 
-    gyro_vals    = gyro.getValues()
-    yaw_rate     = gyro_vals[2]    # eje Z en frame del vehículo (R2023b)
-    heading_accum += yaw_rate * timestep / 1000.0   # integrar en radianes
+    gyro_vals     = gyro.getValues()
+    heading_accum += gyro_vals[2] * timestep / 1000.0
 
-    # Detection de peatón (solo en frames múltiplos de DETECT_EVERY)
+    speed_now = driver.getCurrentSpeed()
+    if math.isnan(speed_now) or speed_now < 0:
+        speed_now = 0.0
+
     ped_detected = False
     if frame_count % DETECT_EVERY == 0:
         ped_detected = check_pedestrian()
 
-    # ── MÁQUINA DE ESTADOS ────────────────────────────────────────────────────
+    # ── Máquina de estados ────────────────────────────────────────────────────
 
     if state == STATE_CIL:
-        # ── Verificar peatón ──────────────────────────────────────────────────
+        # Detección de peatón
         if ped_detected:
-            ped_pos_streak += 1
-            ped_neg_streak  = 0
+            ped_pos_streak += 1; ped_neg_streak = 0
         else:
-            ped_neg_streak  += 1
-            ped_pos_streak   = 0
+            ped_neg_streak += 1; ped_pos_streak = 0
 
         if ped_pos_streak >= PED_CONFIRM_N:
-            state          = STATE_PED
-            ped_hold_count = PED_HOLD_F
-            print(f"[CIL] PEATÓN detectado → BRAKE_PED")
+            state = STATE_PED; ped_hold_count = PED_HOLD_F
+            print("[AUTO] PEATÓN → BRAKE_PED")
 
-        # ── Verificar obstáculo con LiDAR ─────────────────────────────────────
+        # Detección de obstáculo
         elif lidar_d < OBS_LIDAR_THRESH:
-            state       = STATE_EVADE
-            heading_ref = heading_accum   # guardar heading actual como referencia
-            print(f"[CIL] Obstáculo a {lidar_d:.1f}m → EVADE_OBS")
+            state = STATE_EVADE; heading_ref = heading_accum
+            print(f"[AUTO] Obstáculo {lidar_d:.1f}m → EVADE_OBS")
 
         else:
-            # ── Inferencia CIL ────────────────────────────────────────────────
-            target_steer = cil_predict(bgr, nav_cmd)
-
-            # Control de velocidad por radar (nueva funcionalidad Act Final)
+            # ── Control de velocidad por radar ───────────────────────────────
             if radar_d < RADAR_STOP_M:
-                driver.setCruisingSpeed(0)
-                driver.setBrakeIntensity(0.5)
+                driver.setCruisingSpeed(0); driver.setBrakeIntensity(0.5)
             elif radar_d < RADAR_SAFE_M:
-                speed_factor = radar_d / RADAR_SAFE_M
-                driver.setCruisingSpeed(CRUISE_SPEED * speed_factor)
+                driver.setCruisingSpeed(CRUISE_SPEED * radar_d / RADAR_SAFE_M)
                 driver.setBrakeIntensity(0.0)
             else:
-                driver.setCruisingSpeed(CRUISE_SPEED)
-                driver.setBrakeIntensity(0.0)
+                driver.setCruisingSpeed(CRUISE_SPEED); driver.setBrakeIntensity(0.0)
 
-            # Rate limiter en steering (suaviza cambios abruptos de la CNN)
-            current_steer = apply_rate_limit(current_steer, target_steer)
+            # ── Dirección: PID o CIL según comando ───────────────────────────
+            dt_sim = timestep / 1000.0   # dt fijo de simulación
+
+            if nav_cmd in (CMD_LEFT, CMD_RIGHT):
+                target = cil_predict(bgr, nav_cmd, speed_now)
+                current_steer = apply_rate_limit(current_steer, target, CIL_RATE_LIMIT)
+                mode = "CIL"
+            else:
+                pid_raw, detected = pid_lane_step(bgr, dt_sim)
+                if detected:
+                    current_steer = apply_rate_limit(current_steer, pid_raw, PID_RATE_LIMIT)
+                else:
+                    if pid_no_line > 10:
+                        current_steer *= 0.95
+                mode = f"PID{'!' if not detected else ''}"
+
             driver.setSteeringAngle(current_steer)
 
     elif state == STATE_PED:
-        # Freno de emergencia — mantener N frames
-        driver.setCruisingSpeed(0)
-        driver.setBrakeIntensity(1.0)
+        driver.setCruisingSpeed(0); driver.setBrakeIntensity(1.0)
         driver.setSteeringAngle(0.0)
-
         ped_hold_count -= 1
+        if not ped_detected:
+            ped_neg_streak += 1
+        else:
+            ped_neg_streak = 0
         if ped_hold_count <= 0:
             if ped_neg_streak >= PED_RELEASE_N:
-                state = STATE_CIL
-                driver.setBrakeIntensity(0.0)
-                ped_pos_streak = 0
-                ped_neg_streak = 0
-                print("[CIL] Peatón liberado → CIL_DRIVE")
+                state = STATE_CIL; driver.setBrakeIntensity(0.0)
+                ped_pos_streak = ped_neg_streak = 0
+                print("[AUTO] Peatón despejado → CIL_DRIVE")
             else:
-                ped_hold_count = 20   # extender 20 frames más si sigue detectando
+                ped_hold_count = 20
+        mode = "BRAKE"
 
     elif state == STATE_EVADE:
-        # Wall-following lateral derecha (Act 4.2 logic)
-        driver.setCruisingSpeed(SPEED_EVADE)
-        driver.setBrakeIntensity(0.0)
-
-        steer = wall_follow_step(ds_f_val, ds_m_val, ds_r_val)
-        current_steer = apply_rate_limit(current_steer, steer)
+        driver.setCruisingSpeed(SPEED_EVADE); driver.setBrakeIntensity(0.0)
+        steer = wall_follow_step(ds_m_val)
+        current_steer = apply_rate_limit(current_steer, steer, PID_RATE_LIMIT)
         driver.setSteeringAngle(current_steer)
-
-        # Obstáculo superado: sensor trasero libre
         if ds_r_val > DS_CLEAR_DIST and ds_f_val < DS_ENGAGE_DIST:
-            state = STATE_REOR
-            heading_ref = heading_accum   # re-capturar referencia para corrección
-            print(f"[EVADE] Obstáculo superado → REORIENT")
+            state = STATE_REOR; heading_ref = heading_accum
+            print("[AUTO] Obstáculo superado → REORIENT")
+        mode = "EVADE"
 
     elif state == STATE_REOR:
-        # Recuperar heading original con giroscopio
         driver.setCruisingSpeed(SPEED_REORIENT)
         heading_error = heading_ref - heading_accum
-        steer_corr    = KP_HEADING * heading_error
-        steer_corr    = np.clip(steer_corr, -MAX_ANGLE, MAX_ANGLE)
-
-        current_steer = apply_rate_limit(current_steer, steer_corr)
+        steer_corr    = float(np.clip(KP_HEADING * heading_error, -MAX_ANGLE, MAX_ANGLE))
+        current_steer = apply_rate_limit(current_steer, steer_corr, PID_RATE_LIMIT)
         driver.setSteeringAngle(current_steer)
-
         if abs(heading_error) < HEADING_TOL:
-            state         = STATE_CIL
-            heading_accum = 0.0   # resetear acumulador
+            state = STATE_CIL; heading_accum = 0.0
             driver.setCruisingSpeed(CRUISE_SPEED)
-            print(f"[REOR] Heading recuperado → CIL_DRIVE")
+            print("[AUTO] Heading OK → CIL_DRIVE")
+        mode = "REOR"
 
     # ── HUD ───────────────────────────────────────────────────────────────────
-    draw_hud(state, nav_cmd, current_steer, radar_d, ped_detected, lidar_d)
+    draw_hud(state, nav_cmd, current_steer, radar_d, ped_detected, lidar_d, mode)

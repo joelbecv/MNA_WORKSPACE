@@ -903,6 +903,22 @@ DEF WEBOTS_VEHICLE0 BmwX5 {
   rotation 0 0 1 -1.5708153071795863
   controller "<extern>"
   engineSound ""
+  sensorsSlotFront [
+    SickLms291 {
+      translation 0.06 0 0
+    }
+    Radar {
+      name "radar"
+      minRange 1.0
+      maxRange 50.0
+      horizontalFieldOfView 0.5
+      verticalFieldOfView 0.1
+      numberOfHorizontalRays 1
+      numberOfVerticalRays 1
+      minAbsoluteRadialSpeed 0.0
+      maxRadialSpeed 500.0
+    }
+  ]
   sensorsSlotTop [
     Camera {
       translation 0.72 0 -0.05
@@ -939,6 +955,33 @@ DEF WEBOTS_VEHICLE0 BmwX5 {
       name "display_image"
       width 200
       height 150
+    }
+    DistanceSensor {
+      translation 1.2 -1.0 -0.3
+      rotation 0 0 1 -1.5708
+      name "ds_right_front"
+      lookupTable [ 0 0 0  5 5 0 ]
+      type "generic"
+      numberOfRays 1
+      aperture 0.1
+    }
+    DistanceSensor {
+      translation 0 -1.0 -0.3
+      rotation 0 0 1 -1.5708
+      name "ds_right_mid"
+      lookupTable [ 0 0 0  5 5 0 ]
+      type "generic"
+      numberOfRays 1
+      aperture 0.1
+    }
+    DistanceSensor {
+      translation -1.2 -1.0 -0.3
+      rotation 0 0 1 -1.5708
+      name "ds_right_rear"
+      lookupTable [ 0 0 0  5 5 0 ]
+      type "generic"
+      numberOfRays 1
+      aperture 0.1
     }
   ]
 }
