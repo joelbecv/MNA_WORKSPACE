@@ -36,7 +36,16 @@
       "Bash(grep -i \"webots\\\\|PYTHONPATH\\\\|controller\" /Users/joelbecerril/.zshrc /Users/joelbecerril/.zprofile /Users/joelbecerril/.bashrc 2>/dev/null)",
       "Read(//Users/joelbecerril/**)",
       "Bash(~/miniconda3/envs/ml_env/bin/python3 code/balance_dataset.py)",
-      "Bash(python3 -m py_compile /Users/joelbecerril/MNA_WORKSPACE/NAVEGACION_AUTONOMA/Semana_9/ActFinal/MR4010_proyecto_final_2026/controllers/auto_collect/auto_collect.py)"
+      "Bash(python3 -m py_compile /Users/joelbecerril/MNA_WORKSPACE/NAVEGACION_AUTONOMA/Semana_9/ActFinal/MR4010_proyecto_final_2026/controllers/auto_collect/auto_collect.py)",
+      "Bash(~/miniconda3/envs/ml_env/bin/jupyter nbconvert *)",
+      "Bash(echo \"EXIT:$?\")",
+      "Bash(~/miniconda3/envs/ml_env/bin/python3 -c ' *)",
+      "Bash(echo \"PID: $!\")",
+      "Bash(ps -p 77942 -o pid,stat,command)",
+      "Bash(gh api *)",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "Bash(~/miniconda3/envs/ml_env/bin/python3 -c \"import tensorflow as tf; print\\('TF:', tf.__version__\\)\")",
+      "Bash(python3 code/clean_dataset.py)"
     ],
     "additionalDirectories": [
       "/Users/joelbecerril/MNA_WORKSPACE/NAVEGACION_AUTONOMA/Semana_9/ActFinal/MR4010_proyecto_final_2026/data/images"

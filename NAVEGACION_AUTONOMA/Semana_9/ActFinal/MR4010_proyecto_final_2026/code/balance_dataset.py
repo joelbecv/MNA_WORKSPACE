@@ -1,6 +1,12 @@
 """
-balance_dataset.py
-Genera dataset_balanced.csv reduciendo el dominio de steering≈0 en CMD_CONTINUE.
+balance_dataset.py  [SUPERSEDIDO — usar clean_dataset.py]
+===========================================================
+Genera dataset_balanced.csv (13,148 filas) sub-muestreando CMD_CONTINUE recto.
+No filtra frames IZQ/DER con steering incorrecto.
+
+USAR EN SU LUGAR: clean_dataset.py  →  dataset_clean.csv (10,883 filas)
+  - Filtra IZQ/DER con |steer| < 0.04 (ruido por tecla antes del cruce)
+  - Sub-muestrea CONTINUE recto al 28%
 """
 import csv, random, os
 from collections import Counter
