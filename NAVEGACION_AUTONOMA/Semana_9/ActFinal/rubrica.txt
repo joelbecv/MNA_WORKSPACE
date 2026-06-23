@@ -1,0 +1,111 @@
+Verifica los videos tutoriales y los capítulos de los libros indicados en este módulo para familiarizarte con el concepto de Behavioral Cloning.
+En este proyecto final, vas a desarrollar una solución basada en Behavioral Cloning que permite incorporar comandos de navegación (gira a la izquierda en la siguiente intersección, sigue derecho, gira a la derecha en la siguiente intersección, etc.), la cual se denomina Conditional Imitation Learning (CIL). Además del material disponible en este módulo, se recomienda consultar el siguiente material:
+Artículo de conferencia de Felipe Codevilla que plantea la idea de CIL y proporciona detalles del modelo de aprendizaje profundo utilizado: https://arxiv.org/pdf/1710.02410
+Github de Felipe Codevilla donde se puede consultar el modelo de aprendizaje profundo utilizado en el artículo: https://github.com/carla-simulator/imitation-learning/tree/master
+Video de YouTube de la Universidad de Tubingen que proporciona más contexto de CIL: https://www.youtube.com/watch?v=U5kZ1uRPx7o
+Se proporcionan un par de mundos
+Descargar mundos de Webots denominados 1 y 2. 
+
+El mundo #1 deberá ser usado para entrenar el modelo siguiendo los detalles de programación 
+proporcionados por Felipe Codevilla, es decir, conducir el vehículo manualmente (usando el 
+controlador proporcionado como base para la solución de la actividad 2.1), mientras se 
+proporcionan comandos de navegación explicados en el artículo y se guarda el ángulo de 
+conducción. Es importante mencionar que durante la recopilación de este dataset, 
+la velocidad se deberá mantener constante y no muy alta (30 kmh o menor). La velocidad 
+no forma parte del entrenamiento.
+El mundo #1 no incluye tráfico, peatones ni vehículos detenidos en las carreteras. 
+
+Se recomienda generar un archivo CSV para relacionar la ruta de las imágenes en la PC, 
+los comandos de navegación y el ángulo de conducción, como se explica en los pasos 
+siguientes.
+Para el entrenamiento del modelo de aprendizaje profundo, Felipe Codevilla recomienda CNN 
+y MLP, pero puedes usar cualquier otro modelo que juzgues adecuado (usa Keras en tu código). Además, para el entrenamiento, considera lo siguiente:
+Modifica el controlador del vehículo para que, en lugar de que una tecla sea presionada 
+para guardar una imagen capturada por la cámara, la captura de las imágenes deberán 
+hacerse de manera automática y guardadas en una carpeta específica.
+En caso de que el periodo de captura de imágenes sea demasiado corto de tal manera que 
+afecte la operación normal de la PC, se pueden introducir retardos o aumentar el time step 
+del mundo.
+Se recomienda verificar los límites del ángulo de conducción del controlador, con el 
+objetivo de que el entrenamiento sea adecuado y permita al vehículo hacer los giros 
+adecuados ya que los giros requeridos en la parte central de ambos mundos pueden ser muy 
+abruptos.
+Cada vez que una imagen sea guardada, es necesario que el nombre de la imagen junto con el 
+ángulo de dirección y el comando de navegación sean registrados en un archivo CSV.
+Modifica el controlador base de la actividad 2.1 (sin controlador PID, no hace falta) para 
+permitir introducir los comandos de navegación con el teclado, como lo sugiere el artículo 
+de Felipe Codevilla.
+El vehículo deberá estar bien posicionado en el carril derecho de baja velocidad para 
+evitar colisiones con el tráfico generado por SUMO en el mundo #2.
+El dataset debería ser lo suficiente grande para permitir al modelo generalizar.
+Como parte de la generación de imágenes para el entrenamiento, es recomendable que se 
+incluya situaciones en las cuales el vehículo sale de la pista y se regresa a ella. 
+Esto le permitirá al vehículo mantenerse dentro de la pista cuando este maneje de manera
+autónoma. 
+Haz recorridos en todo el mundo en ambos sentidos cubriendo prácticamente todas las rutas 
+posibles, eso ayudará a generalizar al modelo y, en la medida de lo posible, obtén un 
+dataset balanceado en ambos sentidos de conducción.
+Como se recomienda tanto en el material de este módulo como en el artículo de Felipe 
+Codevilla, es altamente recomendable hacer uso de data augmentation para aumentar el tamaño
+ del dataset.
+Se sugiere que todo el equipo se involucre en la conducción manual para incrementar el 
+tamaño del dataset.
+Toma en cuenta que el dataset final debería ser superior a las 10 mil imágenes, después de 
+data augmentation, lo cual va a ocupar mucho espacio en la computadora local.
+Sube tu dataset a tu cuenta personal de Github siguiendo las instrucciones en este enlace.
+Crea un Notebook en Google Colab y accede al dataset que se subió a Github con el siguiente 
+comando en la primera celda de código: !git clone https://... donde la liga debe coincidir 
+con la carpeta en tu Github  que contiene las imágenes generadas por el simulador y el 
+archivo con los ángulos de dirección y los comandos de navegación.
+Uno de los modelos de aprendizaje profundo recomendado para behavioral cloning, en general, 
+es reportado por Bojarski en el siguiente artículo (pero puedes usar el modelo que juzgues 
+más adecuado): https://arxiv.org/abs/1604.07316
+Una vez que el modelo ha sido entrenado, este debe ser exportado y puesto a prueba en el 
+mundo #2.
+El mundo #2 es exactamente igual al mundo #1, pero con tres peatones, cuatro vehículos 
+estacionados y tráfico generado por SUMO Interface. Este mundo deberá ser usado para 
+evaluar el modelo entrenado en el paso anterior. El modelo entrenado deberá ser evaluado 
+dándole comandos al vehículo autónomo para que cubra, al menos, tres rutas distintas que 
+tengan las siguientes características:
+En, al menos, un recorrido deberá haber una evasión de obstáculos como el que se realizó en 
+una actividad anterior. Se sugiere reusar código de soluciones de actividades pasadas.
+En, al menos, un recorrido deberá haber una detección de peatones y freno de emergencia 
+como se resolvió  en una actividad pasada. Sin embargo, la detección del peatón lo deberá 
+hacer un nodo de reconocimiento de la cámara a bordo en el vehículo, en coordinación con el 
+LiDAR, como se resolvió en dicha actividad.
+El vehículo autónomo debe guardar cierta distancia (distancia de umbral) respecto al 
+vehículo más próximo detectado modificando la velocidad. Si el vehículo detectado se 
+encuentra a una distancia menor que la de umbral, el vehículo autónomo debería detenerse. 
+El equipo deberá indicar, en el video de evidencia, el valor de esta distancia de umbral y 
+que la solución funciona correctamente. El sensor sugerido para esta tarea es un radar 
+montado en el slot delantero del vehículo junto al LiDAR (no es necesario darle geometría 
+a este sensor), pero se puede usar cualquier otro sensor. El radar es el más adecuado 
+ya que proporciona distancia y velocidad de los objetos detectados. Consulta la active class
+ #3 para más información.
+Cada una de las tres rutas deberá cubrir al menos un comando de navegación distinto, 
+por ejemplo, una ruta que sólo pida al auto manejar derecho en las intersecciones, 
+una ruta que pida al menos girar a la derecha una vez en una intersección y una ruta que 
+pida al vehículo girar a la izquierda al menos una vez en una intersección. 
+Se sugiere localizar edificios de interés en el mundo #2 para definir el origen y el destino
+ de las tres rutas, por ejemplo: ir de la gasolinería a los silos o ir del parque infantil 
+ a la iglesia, etc. Reposiciona el vehículo para coincidir con el punto de origen en cada 
+ ruta evaluada y, desde ese punto, inicia la simulación y su correspondiente grabación. 
+ Tanto el origen como el destino de las rutas deben coincidir con el lado derecho de 
+ conducción del vehículo autónomo, es decir, siempre se debe favorecer la conducción 
+ por la derecha incluso haciendo recorridos más largos. Los vueltas en U (U-turns) no son 
+ permitidas.
+Incorpora los sensores usados en actividades pasadas y, si lo juzgas necesario, agrega 
+otros no contemplados en dichas actividades.
+Toma en cuenta que mientras más avance la simulación en este mundo, más vehículos 
+controlados por SUMO van a ser agregados, lo cual incidirá en el desempeño de la PC. 
+Se puede reducir el número máximo de vehículos generado por SUMO en el Scene Tree de 
+Webots, pero asegúrate de que dicho número no sea menor a 30.
+Habilita las distintas opciones de Optional Rendering de Webots para visualizar la 
+operación de los sensores del vehículo autónomo.
+Crea un video, con una duración menor a seis minutos, en donde participe todo el 
+equipo explicando los parámetros de la red neuronal y del entrenamiento que permitieron 
+llegar a una solución correcta. Asegúrate de incluir en el video la evidencia de que el 
+vehículo autónomo cumple con los requerimientos indicados en el paso 6. Puedes acelerar
+ esta parte del video para lograr que esta evidencia cumpla con el requerimiento de duración del video. Sube tu video a tu canal de YouTube y guarda el enlace.
+A manera de reporte, crea un documento que incluya los controladores del vehículo 
+de los dos mundos y el notebook que se creó en Google Colab. Asegúrate de incluir comentarios y el enlace de tu video en YouTube. Tanto el código como los comentarios son importantes para el documento.
