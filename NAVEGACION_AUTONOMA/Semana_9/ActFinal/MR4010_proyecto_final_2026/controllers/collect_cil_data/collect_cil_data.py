@@ -31,6 +31,15 @@ CAPTURE_EVERY      = 5
 CAPTURE_EVERY_CONT = 30
 INTER_RADIUS  = 80
 
+# Parámetros del asistente de carril automático (tecla F)
+LANE_KP       = 0.40    # ganancia: error de posición → steering
+LANE_EMA      = 0.65    # suavizado exponencial del steering
+LANE_RATE_MAX = 0.06    # rad/frame máximo cambio
+LANE_ROI_TOP  = 0.45    # ignorar el % superior de la imagen
+MIN_VERT_PX   = 8       # mínimo píxeles verticales para aceptar línea
+YELLOW_TARGET = 0.22    # fracción del ancho donde debe quedar la línea amarilla
+                        # (~22% desde izquierda = carril derecho correcto)
+
 CMD_CONTINUE, CMD_STRAIGHT, CMD_LEFT, CMD_RIGHT = 0, 1, 2, 3
 CMD_FULL   = {0:"CONTINUE", 1:"RECTO", 2:"IZQUIERDA", 3:"DERECHA"}
 CMD_TARGET = {0:500, 1:150, 2:175, 3:175}
@@ -105,20 +114,73 @@ if csv_exists:
 print("=" * 60)
 print("[CIL] Controlador iniciado — controles en ventana 3D Webots")
 print(f"[CIL] Imágenes previas: {img_count}")
-print("  ←/→ volante  |  i/k velocidad")
-print("  s/w/a/d nav  |  m marcar cruce  |  q salir")
+print("  f = AUTO/MANUAL  |  ←/→ volante (MANUAL)  |  i/k velocidad")
+print("  s/w/a/d nav      |  m marcar cruce         |  q salir")
 print("=" * 60)
+
+# =============================================================================
+# ASISTENTE DE CARRIL (modo AUTO)
+# =============================================================================
+
+def lane_follow_steer(bgr):
+    """
+    Calcula steering para mantenerse en el carril derecho.
+    Rastrea la línea amarilla central al 22% del ancho (YELLOW_TARGET).
+    Fallback a centrado general si no hay amarillo.
+    Devuelve rad en [-MAX_ANGLE, MAX_ANGLE] o None si no detecta líneas.
+    """
+    h = bgr.shape[0]
+    roi   = bgr[int(h * LANE_ROI_TOP):, :]
+    roi_w = roi.shape[1]
+
+    hsv     = cv2.cvtColor(roi, cv2.COLOR_BGR2HSV)
+    ymask   = cv2.inRange(hsv, np.array([18, 70, 70]), np.array([38, 255, 255]))
+    gray    = cv2.cvtColor(roi, cv2.COLOR_BGR2GRAY)
+    blur    = cv2.GaussianBlur(gray, (5, 5), 0)
+    edges   = cv2.bitwise_or(cv2.Canny(blur, 40, 120), cv2.Canny(ymask, 50, 150))
+
+    lines = cv2.HoughLinesP(edges, 1, np.pi / 180,
+                             threshold=25, minLineLength=15, maxLineGap=12)
+    if lines is None:
+        return None
+
+    yellow_xs, all_xs = [], []
+    for seg in lines:
+        x1, y1, x2, y2 = seg[0]
+        if abs(y2 - y1) < MIN_VERT_PX:
+            continue
+        cx = (x1 + x2) / 2.0
+        all_xs.append(cx)
+        mx, my = int(cx), int((y1 + y2) / 2)
+        if 0 <= my < ymask.shape[0] and 0 <= mx < ymask.shape[1]:
+            if ymask[my, mx] > 0:
+                yellow_xs.append(cx)
+
+    if not all_xs:
+        return None
+
+    if yellow_xs:
+        # Amarillo detectado: mantenerlo en YELLOW_TARGET del ancho → carril derecho
+        ycx   = sum(yellow_xs) / len(yellow_xs)
+        error = (ycx - YELLOW_TARGET * roi_w) / (roi_w / 2.0)
+    else:
+        # Sin amarillo: centrar en todas las líneas (curva o zona sin pintura)
+        error = (sum(all_xs) / len(all_xs) - roi_w / 2.0) / (roi_w / 2.0)
+
+    return float(np.clip(LANE_KP * error, -MAX_ANGLE, MAX_ANGLE))
 
 # =============================================================================
 # HUD
 # =============================================================================
 
-def draw_hud(cmd, steer, speed, total, counts, dist_m):
+def draw_hud(cmd, steer, speed, total, counts, dist_m, auto_mode=False):
     n = max(1, sum(counts.values()))
     display.setColor(CMD_COLOR[cmd])
     display.fillRectangle(0, 0, DW, DH)
+    display.setColor(0x00CCFF if auto_mode else 0xFFCC00)
+    display.drawText("AUTO" if auto_mode else "MAN", 2, 2)
     display.setColor(CMD_TCOL[cmd])
-    display.drawText(f"CMD:{CMD_FULL[cmd]}", 2, 2)
+    display.drawText(f"CMD:{CMD_FULL[cmd]}", 36, 2)
     display.setColor(0xFFFFFF)
     display.drawText(f"St:{steer:+.3f} {speed:.0f}km/h", 2, 14)
     display.drawText(f"TOTAL:{total:,}", 2, 26)
@@ -176,6 +238,8 @@ cruise_speed = CRUISE_SPEED
 frame        = 0
 gps_pos      = None
 gps_printed  = False
+auto_mode    = False
+auto_steer   = 0.0
 driver.setCruisingSpeed(cruise_speed)
 
 while robot.step() != -1:
@@ -232,6 +296,10 @@ while robot.step() != -1:
                     print(f"[GPS] Cruce #{len(intersections)}: x={pt[0]:.1f} y={pt[1]:.1f}")
             else:
                 print("[GPS] Sin señal GPS")
+        elif key == ord('F') or key == ord('f'):
+            auto_mode = not auto_mode
+            steer = 0.0; auto_steer = 0.0
+            print(f"[MODE] {'AUTO-FOLLOW' if auto_mode else 'MANUAL'}")
         elif key == ord('Q') or key == ord('q'):
             csv_file.close()
             print(f"[CIL] Fin. {img_count} imágenes")
@@ -239,17 +307,27 @@ while robot.step() != -1:
             break
         key = keyboard.getKey()
 
-    if not steer_pressed:
-        steer *= CENTER_DECAY
-        if abs(steer) < 0.003:
-            steer = 0.0
-    driver.setSteeringAngle(steer)
-
     capture_rate = CAPTURE_EVERY_CONT if nav_cmd == CMD_CONTINUE else CAPTURE_EVERY
     if frame % capture_rate == 0:
         raw = camera.getImage()
         img = np.frombuffer(raw, np.uint8).reshape((CAM_H, CAM_W, 4))
         bgr = cv2.cvtColor(img, cv2.COLOR_BGRA2BGR)
+
+        if auto_mode:
+            raw_s = lane_follow_steer(bgr)
+            if raw_s is not None:
+                auto_steer = auto_steer * LANE_EMA + raw_s * (1.0 - LANE_EMA)
+                delta = float(np.clip(auto_steer - steer, -LANE_RATE_MAX, LANE_RATE_MAX))
+                steer = float(np.clip(steer + delta, -MAX_ANGLE, MAX_ANGLE))
+            else:
+                steer *= 0.97
+        else:
+            if not steer_pressed:
+                steer *= CENTER_DECAY
+                if abs(steer) < 0.003:
+                    steer = 0.0
+        driver.setSteeringAngle(steer)
+
         name = f"img_{img_count:06d}.jpg"
         cv2.imwrite(os.path.join(DATA_DIR, name), bgr, [cv2.IMWRITE_JPEG_QUALITY, 95])
         spd = driver.getCurrentSpeed()
@@ -257,8 +335,14 @@ while robot.step() != -1:
         csv_file.flush()
         cmd_counts[nav_cmd] += 1
         img_count += 1
-        draw_hud(nav_cmd, steer, spd, img_count, cmd_counts, dist_m)
+        draw_hud(nav_cmd, steer, spd, img_count, cmd_counts, dist_m, auto_mode)
         if img_count % 100 == 0:
-            print(f"[CIL] {img_count} | S:{cmd_counts[0]} W:{cmd_counts[1]} A:{cmd_counts[2]} D:{cmd_counts[3]}")
+            print(f"[CIL] {img_count} | S:{cmd_counts[0]} W:{cmd_counts[1]} A:{cmd_counts[2]} D:{cmd_counts[3]} | {'AUTO' if auto_mode else 'MAN'}")
+    else:
+        if not auto_mode and not steer_pressed:
+            steer *= CENTER_DECAY
+            if abs(steer) < 0.003:
+                steer = 0.0
+        driver.setSteeringAngle(steer)
 
 csv_file.close()
