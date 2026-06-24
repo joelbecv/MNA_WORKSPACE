@@ -157,7 +157,7 @@ cil_model = None
 if os.path.exists(MODEL_PATH):
     try:
         # compile=False: no necesitamos la función de loss para inferencia
-        cil_model = keras.models.load_model(MODEL_PATH, compile=False)
+        cil_model = keras.models.load_model(MODEL_PATH, compile=False, safe_mode=False)
         print(f"[CIL] Modelo Keras cargado: {MODEL_PATH}")
         print(f"[CIL] Entradas: {[i.name for i in cil_model.inputs]}")
     except Exception as e:
@@ -181,8 +181,9 @@ def cil_predict(bgr_frame, nav_cmd, speed_kmh):
     img  = (img - MEAN) / STD
     img  = img[np.newaxis, ...]                          # (1, H, W, 3)
 
-    spd  = np.array([[speed_kmh / 30.0]], dtype=np.float32)
-    cmd  = np.array([nav_cmd],            dtype=np.int32)
+    spd      = np.array([[speed_kmh / 30.0]], dtype=np.float32)
+    cmd      = np.zeros((1, 4), dtype=np.float32)
+    cmd[0, nav_cmd] = 1.0                                 # one-hot float, igual que en entrenamiento
 
     # Llamada directa al modelo (más rápida que model.predict() en tiempo real)
     pred = cil_model({'image': img, 'speed': spd, 'command': cmd}, training=False)
