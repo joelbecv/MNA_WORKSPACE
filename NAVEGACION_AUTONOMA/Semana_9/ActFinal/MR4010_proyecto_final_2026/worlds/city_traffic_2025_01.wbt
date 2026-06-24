@@ -78,6 +78,7 @@ EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/project
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/buildings/protos/SmallResidentialTower.proto"
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/buildings/protos/OldResidentialBuilding.proto"
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/street_furniture/protos/BusStop.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/devices/sick/protos/SickLms291.proto"
 
 WorldInfo {
   ERP 0.6
@@ -147,8 +148,8 @@ WorldInfo {
   ]
 }
 Viewpoint {
-  orientation -0.23222786423757952 -0.2513826807048947 0.9396153292242914 4.7278316649951195
-  position -232.0227683486074 158.0356903879088 60.912821683717425
+  orientation -0.4405942030345793 -0.6354235345169632 0.6341243411463509 4.62235856159022
+  position -158.28008704451156 166.18007860908773 374.37726238890104
   near 1
   follow "vehicle"
   followType "Mounted Shot"
@@ -899,24 +900,17 @@ CurvedRoadSegment {
   curvatureRadius 40.5
 }
 DEF WEBOTS_VEHICLE0 BmwX5 {
-  translation -238.13 45.88 0.4
-  rotation 0 0 1 -1.5708153071795863
-  controller "<extern>"
+  translation -111.45 16.1189 0.4
+  rotation 1.91796e-08 1.91792e-08 1 -1.5708153071795863
   engineSound ""
+  controller "<extern>"
   sensorsSlotFront [
     SickLms291 {
       translation 0.06 0 0
     }
     Radar {
-      name "radar"
-      minRange 1.0
-      maxRange 50.0
       horizontalFieldOfView 0.5
-      verticalFieldOfView 0.1
-      numberOfHorizontalRays 1
-      numberOfVerticalRays 1
-      minAbsoluteRadialSpeed 0.0
-      maxRadialSpeed 500.0
+      maxRadialSpeed 500
     }
   ]
   sensorsSlotTop [
@@ -957,30 +951,33 @@ DEF WEBOTS_VEHICLE0 BmwX5 {
       height 150
     }
     DistanceSensor {
-      translation 1.2 -1.0 -0.3
+      translation 1.2 -1 -0.3
       rotation 0 0 1 -1.5708
       name "ds_right_front"
-      lookupTable [ 0 0 0  5 5 0 ]
-      type "generic"
-      numberOfRays 1
+      lookupTable [
+        0 0 0
+        5 5 0
+      ]
       aperture 0.1
     }
     DistanceSensor {
-      translation 0 -1.0 -0.3
+      translation 0 -1 -0.3
       rotation 0 0 1 -1.5708
       name "ds_right_mid"
-      lookupTable [ 0 0 0  5 5 0 ]
-      type "generic"
-      numberOfRays 1
+      lookupTable [
+        0 0 0
+        5 5 0
+      ]
       aperture 0.1
     }
     DistanceSensor {
-      translation -1.2 -1.0 -0.3
+      translation -1.2 -1 -0.3
       rotation 0 0 1 -1.5708
       name "ds_right_rear"
-      lookupTable [ 0 0 0  5 5 0 ]
-      type "generic"
-      numberOfRays 1
+      lookupTable [
+        0 0 0
+        5 5 0
+      ]
       aperture 0.1
     }
   ]
@@ -2252,83 +2249,11 @@ DEF PLAY_AREA Solid {
       translation -8.16 -16.9 0
       name "sassafras tree(1)"
     }
-    PalmTree {
-      translation 10.36 27.18000000000002 0
-      rotation 0 0 1 0.2617993870000007
-    }
-    PalmTree {
-      translation 10.36 17.11000000000003 0
-      rotation 0 0 1 4.712388966
-      name "palm tree(1)"
-    }
-    PalmTree {
-      translation 10.36 4.770000000000028 0
-      rotation 0 0 1 2.356194483
-      name "palm tree(2)"
-    }
-    PalmTree {
-      translation 10.36 -6.959999999999971 0
-      name "palm tree(3)"
-    }
-    PalmTree {
-      translation 10.36 -17.539999999999974 0
-      rotation 0 0 1 5.7595865139999995
-      name "palm tree(4)"
-    }
-    PalmTree {
-      translation 10.36 -28.029999999999973 0
-      rotation 0 0 -1 4.450589598179587
-      name "palm tree(5)"
-    }
-    PalmTree {
-      translation -5.230000000000002 -28.029999999999973 0
-      name "palm tree(6)"
-    }
-    PalmTree {
-      translation -18.2 -28.029999999999973 0
-      name "palm tree(7)"
-    }
-    SwingCouch {
-      translation -18.50999995324974 3.250000053223353 0
-    }
-    SwingCouch {
-      translation -14.488910811959313 -22.935267429505167 0
-      rotation 0 0 1 0.5235987404357232
-      name "swing couch(1)"
-    }
-    SwingCouch {
-      translation -18.224999700554385 20.21363452427017 0
-      rotation 0 0 1 -0.5235988075642769
-      name "swing couch(2)"
-    }
-    OldBench {
-      translation 0 13.509999999999994 0
-      rotation 0 0 1 4.712388966
-    }
-    OldBench {
-      translation 0 -13.609999999999998 0
-      rotation 0 0 -1 4.712389004359173
-      name "old bench(1)"
-    }
-    OldBench {
-      translation -9.220000168900672 -5.519999811483799 0
-      name "old bench(2)"
-    }
-    OldBench {
-      translation -9.219999740267221 4.650000188516192 0
-      name "old bench(3)"
-    }
     Pose {
       translation -5.220000000000001 0 0.05
       rotation 0 0 1 -1.5707953071795862
       children [
         Shape {
-          appearance Grass {
-            type "artificial"
-            textureTransform TextureTransform {
-              scale 30 17
-            }
-          }
           geometry Plane {
             size 60 35
           }
@@ -2343,8 +2268,7 @@ DEF PLAY_AREA Solid {
       poleGap 0.7000000000000001
       poleRadius 0.1
       poleShape "diamond"
-      poleAppearance RoughOak {
-      }
+      poleAppearance NULL
       path [
         0 30 0
         17.5 30 0
@@ -2354,15 +2278,13 @@ DEF PLAY_AREA Solid {
         -5 30 0
       ]
       horizontalBarsNumber 3
-      horizontalBarAppearance RoughOak {
-      }
+      horizontalBarAppearance NULL
     }
     Fence {
       height 0.19999999999999998
       poleGap 0.19
       poleRadius 0.1
-      poleAppearance RoughOak {
-      }
+      poleAppearance NULL
       path [
         8 12 0
         8 -12 0
@@ -2377,38 +2299,12 @@ DEF PLAY_AREA Solid {
       rotation 0 1 0 0
       children [
         Shape {
-          appearance Sand {
-            textureTransform TextureTransform {
-              scale 7 3
-            }
-          }
           geometry Plane {
             size 16 24
           }
           castShadows FALSE
         }
       ]
-    }
-    Swing {
-      translation -3.0933767525094957 -6.982114312085835 0
-      rotation 0 0 1 0.5235987739999998
-    }
-    Swing {
-      translation -3.0933767525094957 6.98211 0
-      rotation 0 0 1 -0.523599
-      name "swing(1)"
-    }
-    Slide {
-      translation -2.9099999999999993 -1.7100000000000006 0
-    }
-    Slide {
-      translation 2.157521734050078 4.276060120386479 0
-      rotation 0 0 1 4.974188353
-      name "slide(1)"
-    }
-    WateringCan {
-      translation 4.120000000000001 -6.64 0
-      rotation 0 0 1 0.5235987739999998
     }
     SoccerBall {
       translation 4.579999999999999 -5.080000000000001 0.2
